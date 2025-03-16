@@ -1,0 +1,38 @@
+<div class="list_profile listing_capsule pad_side_40">
+  <p class="list_label">Created Profiles:</p>
+  <ion-list>
+    <ion-item-sliding #profileItem>
+      <ion-item>
+        <ion-avatar>
+          <img src="../../assets/dummy/profile_pic_user/Ryan.png">
+        </ion-avatar>
+        <ion-label>
+          <p>Ryan Garland</p>
+        </ion-label>
+        <ion-button fill="clear" slot="end" class="btn_openOpt" (click)="profileItem.open(undefined);preventEvent($event)">
+          <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item-options slot="end" (click)="profileItem.close();preventEvent($event)">
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="trash-outline" class="pink"></ion-icon>
+        </ion-item-option>
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item class="outline_ondark">
+      <ion-avatar class="profilepic_empty">
+        <img src="../../assets/dummy/profile_pic_user/Empty.png">
+      </ion-avatar>
+      <ion-label>
+        <p>Tap to add profile</p>
+      </ion-label>
+      <ion-button fill="clear" slot="end" class="btn_plus">
+        <ion-icon name="add-outline" class="lime"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</div>

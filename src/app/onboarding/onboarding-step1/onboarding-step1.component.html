@@ -1,0 +1,52 @@
+<div class="header">
+  <div class="topbar"><ion-icon name="close-outline" class="btn_close byitself"></ion-icon></div>
+  <div class="subhdr_page">CREATE NEW PROFILE</div>
+  <div class="title_page"><span class="fw_regular">Step 1:</span> Profile Details</div>
+  <app-step-progress></app-step-progress>
+</div>
+<div class="form">
+  <div class="form_cnt">
+    <div class="form_item">
+      <ion-input label="First Name *" labelPlacement="stacked" [clearInput]="true"></ion-input>
+    </div>
+    <div class="form_item">
+      <ion-input label="Last Name *" labelPlacement="stacked" [clearInput]="true"></ion-input>
+    </div>
+    <div class="form_item">
+      <ion-input label="Date of Birth *" labelPlacement="stacked" [clearInput]="true" placeholder="MM-DD-YYYY"></ion-input>
+    </div>
+    <div class="form_item">
+      <ion-label>Gender *</ion-label>
+      <ion-radio-group class="two_opt">
+        <ion-radio value="male">Male</ion-radio>
+        <ion-radio value="female">Female</ion-radio>
+      </ion-radio-group>
+    </div>
+    <div class="form_item">
+      <ion-label>Emergency Contact *</ion-label>
+      <ion-checkbox labelPlacement="end" checked>
+        <p class="ion-text-wrap">
+          Same as Primary Account
+        </p>
+      </ion-checkbox>
+    </div>
+    <div class="form_lvl2">
+      <p>Please provide emergency contact:<br/><br/></p>
+      <div class="form_item">
+        <ion-input label="Name *" labelPlacement="stacked" [clearInput]="true"></ion-input>
+      </div>
+      <div class="form_item">
+        <ion-label>Relationship *</ion-label>
+        <ion-select label-placement="stacked" placeholder="Select One" toggleIcon="" class="hidelabel">
+          <ion-select-option value="apple">Apple</ion-select-option>
+          <ion-select-option value="banana">Banana</ion-select-option>
+          <ion-select-option value="orange">Orange</ion-select-option>
+        </ion-select>
+      </div>
+      <div class="form_item">
+        <ion-input label="Date of Birth *" labelPlacement="stacked" [clearInput]="true" placeholder="MM-DD-YYYY"></ion-input>
+      </div>
+    </div>
+    <ion-button class="main_cta">Next</ion-button>
+  </div>
+</div>

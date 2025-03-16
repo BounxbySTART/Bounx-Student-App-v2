@@ -1,0 +1,16 @@
+.Intro_cnt {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    app-intro-slideshow {
+        width: 100%;
+        flex-grow: 1;
+    }
+
+    app-intro-footer {
+        width: 100%;
+    }
+}

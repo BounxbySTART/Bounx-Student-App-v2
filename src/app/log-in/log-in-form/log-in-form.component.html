@@ -1,0 +1,23 @@
+<div class="header">
+  <div class="hdr_big_color">WELCOME BACK!</div>
+</div>
+<div class="form">
+  <div class="form_cnt">
+    <div class="form_item">
+      <ion-label>Phone Number *</ion-label>
+      <ion-select label-placement="stacked" placeholder="Code" toggleIcon="" class="hidelabel">
+        <ion-select-option value="apple">Apple</ion-select-option>
+        <ion-select-option value="banana">Banana</ion-select-option>
+        <ion-select-option value="orange">Orange</ion-select-option>
+      </ion-select>
+      <ion-input [clearInput]="true" placeholder="Phone Number"></ion-input>
+    </div>
+    <div class="form_item">
+      <ion-input label="Password *" labelPlacement="stacked" [clearInput]="true">
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+    </div>
+  </div>
+  <ion-button class="main_cta">Log In</ion-button>
+  <div class="link_byitself"><p class="p2"><a href="">Reset Password</a></p></div>
+</div>
