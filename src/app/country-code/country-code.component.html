@@ -1,3 +1,15 @@
-<p>
-  country-code works!
-</p>
+<ion-content>
+  <!-- search text box works but the font color needs to be adjusted-->
+  <ion-searchbar placeholder="type here to search country" [debounce]="1000"
+    (ionInput)="searchCountry($event)"></ion-searchbar>
+  <ion-list [inset]="true">
+    <ion-radio-group (ionChange)="handleChange($event)">
+      @for (country of countries; track country.code) {
+      <ion-item>
+        <ion-radio labelPlacement="end" alignment="center" justify="start"
+          [value]="country.dialCode"><span>{{country.flag}}</span><span>{{country.dialCode}}</span>{{country.name}}</ion-radio>
+      </ion-item>
+      }
+    </ion-radio-group>
+  </ion-list>
+</ion-content>
