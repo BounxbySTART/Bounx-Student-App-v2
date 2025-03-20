@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   IonLabel,
   IonSelect,
@@ -23,8 +24,27 @@ import {
 })
 export class LogInFormComponent  implements OnInit {
 
-  constructor() { }
+  loginForm!: FormGroup;
+  constructor() {
 
-  ngOnInit() {}
+   }
+
+  ngOnInit() {
+this.initiateLoginForm();
+    
+  }
+
+  initiateLoginForm(){
+    this.loginForm = new FormGroup({
+      phone: new FormControl('', [Validators.required]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(
+          '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$'
+        ),
+      ])
+    }
+   );
+  }
 
 }
