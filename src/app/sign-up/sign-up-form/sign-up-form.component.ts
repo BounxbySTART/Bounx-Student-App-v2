@@ -45,7 +45,8 @@ export class SignUpFormComponent implements OnInit {
         Validators.minLength(8),
         Validators.pattern(
           '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$'
-        ),])
+        ),]),
+        phone: new FormControl('', [Validators.required,Validators.minLength(4),Validators.maxLength(15)])
     });
   }
 

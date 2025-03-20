@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { environment } from 'src/environments/environment';
 import { PlayerUserRequest } from 'src/types/player-user-request';
+import { LoginUserRequest } from 'src/types/login-user-request';
 
 @Injectable({
   providedIn: 'root',
@@ -18,4 +19,10 @@ export class MasterService {
   createPlayerUser(body: PlayerUserRequest) {
     return this.http.post(environment.masterUrl.concat('auth/player'), body);
   }
+
+  login(body: LoginUserRequest){
+      return this.http.post(environment.masterUrl.concat('auth/login'), body)
+  }
+
+
 }
