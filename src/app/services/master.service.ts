@@ -3,12 +3,13 @@ import { HttpService } from './http.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MasterService {
-
-  constructor(private http: HttpService) { }
-  getAllCountries(){
-    return this.http.get(environment.masterUrl.concat('master/countries')); //returning Observable
-   }
+  constructor(private http: HttpService) {}
+  getAllCountries(searchText?: string) {
+    return this.http.get(
+      environment.masterUrl.concat(`master/countries/${searchText??''}`)
+    ); //returning Observable
+  }
 }
