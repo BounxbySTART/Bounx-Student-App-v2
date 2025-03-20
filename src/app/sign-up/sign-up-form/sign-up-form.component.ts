@@ -1,22 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { IonCheckbox, IonInput, IonInputPasswordToggle, IonIcon, IonLabel, IonSelect, IonSelectOption, IonButton } from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 
-export interface Country {
-  name: string;
-  flag: string;
-  code: string;
-  dialCode: string;
-}
 @Component({
   selector: 'app-sign-up-form',
   templateUrl: './sign-up-form.component.html',
   styleUrls: ['./sign-up-form.component.scss'],
   imports: [
     IonicModule,
-    CommonModule,/* 
+    CommonModule,
+    ReactiveFormsModule
+    /* 
     IonCheckbox,
     IonInput,
     IonInputPasswordToggle,
@@ -26,21 +22,39 @@ export interface Country {
     IonSelectOption,
     IonButton */
   ],
-  providers:[MasterService]
+  providers: [MasterService]
 })
 export class SignUpFormComponent implements OnInit {
-  countries: Country[] = [];
+  signUpFormGroup!: FormGroup;
 
 
   constructor(private masterService: MasterService) {
   }
 
   ngOnInit() {
-    this.getAllCountries();
+    this.initForm();
   }
-  getAllCountries() {
-    this.masterService.getAllCountries().subscribe((res: any) => {
-      this.countries = res;
+
+  initForm() {
+    this.signUpFormGroup = new FormGroup({
+      firstName: new FormControl('', [Validators.required, Validators.pattern(/^[ -~]{2,}$/)]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern(/^[ -~]{2,}$/)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern(
+          '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$'
+        ),])
+    });
+  }
+
+  verify() {
+    let collectedData = this.signUpFormGroup.value;
+    this.masterService.createPlayerUser(collectedData).subscribe((res: any) => {
+
     })
   }
+
+
 }

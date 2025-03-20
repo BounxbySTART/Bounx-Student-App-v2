@@ -3,19 +3,20 @@
   <div class="hdr_page">Create your <span class="em">Primary Bounx Account</span></div>
   <p>Primary Bounx Accounts are typically for Parents or Students above 15 years of age.</p>
 </div>
+<form [formGroup]="signUpFormGroup">
 <div class="form">
   <div class="form_cnt">
     <div class="form_item">
-      <ion-input label="First Name *" labelPlacement="stacked" [clearInput]="true"></ion-input>
+      <ion-input label="First Name *" type="text" labelPlacement="stacked" formControlName="firstName" [clearInput]="true" ></ion-input>
     </div>
     <div class="form_item">
-      <ion-input label="Last Name *" labelPlacement="stacked" [clearInput]="true"></ion-input>
+      <ion-input label="Last Name *" type="text" labelPlacement="stacked" formControlName="lastName"[clearInput]="true"></ion-input>
     </div>
     <div class="form_item">
-      <ion-input label="Email *" labelPlacement="stacked" [clearInput]="true"></ion-input>
+      <ion-input label="Email *" type="text" labelPlacement="stacked" formControlName="email" [clearInput]="true"></ion-input>
     </div>
     <div class="form_item">
-      <ion-input label="Password *" labelPlacement="stacked" [clearInput]="true">
+      <ion-input label="Password *" type="text" labelPlacement="stacked" formControlName="password" [clearInput]="true">
           <ion-input-password-toggle color="#000000" slot="end"></ion-input-password-toggle>
       </ion-input>
       <div class="password_guide">
@@ -28,7 +29,7 @@
     <div class="form_item">
       <ion-label>Phone Number *</ion-label>
       <ion-select label-placement="stacked" placeholder="Code" toggleIcon="" class="hidelabel" >
-        <ion-select-option *ngFor="let country of countries" value="{{country.dialCode}}">{{country.dialCode}} {{country.name}} {{country.flag}}</ion-select-option>
+        <!-- <ion-select-option *ngFor="let country of countries" value="{{country.dialCode}}">{{country.dialCode}} {{country.name}} {{country.flag}}</ion-select-option> -->
         <!-- <ion-select-option value="banana">Banana</ion-select-option>
         <ion-select-option value="orange">Orange</ion-select-option> -->
       </ion-select>
@@ -44,6 +45,7 @@
       </ion-checkbox>
     </div>
   </div>
-  <ion-button class="main_cta">Next: Verify Phone Number</ion-button>
+  <ion-button class="main_cta" (click)="verify()" [disabled]="signUpFormGroup.invalid">Next: Verify Phone Number</ion-button>
 </div>
+</form>
 </ion-content>
