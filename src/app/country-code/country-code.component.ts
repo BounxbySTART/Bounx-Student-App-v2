@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterService } from '../services/master.service';
 import { IonContent } from '@ionic/angular/standalone';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 
 export interface Country {
@@ -19,7 +19,8 @@ export interface Country {
 })
 export class CountryCodeComponent implements OnInit {
   countries: Country[] = [];
-  constructor(private masterService: MasterService) {}
+  constructor(private masterService: MasterService, private modalCtrl: ModalController
+    ) {}
 
   ngOnInit() {
     this.getAllCountries();
@@ -37,9 +38,10 @@ export class CountryCodeComponent implements OnInit {
       this.countries = res;
     });
   }
-  handleChange(event: Event): void {
+  handleChange(event: Event):Promise<boolean> {
     const target = event.target as HTMLInputElement;
     // selected value
     console.log('selected value', target.value);
+    return this.modalCtrl.dismiss(target.value, 'confirm');
   }
 }

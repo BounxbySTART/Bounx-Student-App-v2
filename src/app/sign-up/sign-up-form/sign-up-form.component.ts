@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { MasterService } from 'src/app/services/master.service';
+import { CountryCodeComponent } from "../../country-code/country-code.component";
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -12,7 +14,7 @@ import { MasterService } from 'src/app/services/master.service';
     IonicModule,
     CommonModule,
     ReactiveFormsModule
-    /* 
+    /*
     IonCheckbox,
     IonInput,
     IonInputPasswordToggle,
@@ -21,14 +23,15 @@ import { MasterService } from 'src/app/services/master.service';
     IonSelect,
     IonSelectOption,
     IonButton */
-  ],
+    ,
+],
   providers: [MasterService]
 })
 export class SignUpFormComponent implements OnInit {
   signUpFormGroup!: FormGroup;
 
 
-  constructor(private masterService: MasterService) {
+  constructor(private masterService: MasterService,private modalCtrl: ModalController) {
   }
 
   ngOnInit() {
@@ -55,6 +58,22 @@ export class SignUpFormComponent implements OnInit {
     this.masterService.createPlayerUser(collectedData).subscribe((res: any) => {
 
     })
+  }
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: CountryCodeComponent,
+      initialBreakpoint: 0.25,
+      breakpoints:[0,0.25,0.75],
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      // this.message = `Hello, ${data}!`;
+      console.log(data,"test");
+      
+    }
   }
 
 

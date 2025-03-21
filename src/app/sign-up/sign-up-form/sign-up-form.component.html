@@ -27,12 +27,8 @@
       </div>
     </div>
     <div class="form_item">
-      <ion-label>Phone Number *</ion-label>
-      <ion-select label-placement="stacked" placeholder="Code" toggleIcon="" class="hidelabel" >
-        <!-- <ion-select-option *ngFor="let country of countries" value="{{country.dialCode}}">{{country.dialCode}} {{country.name}} {{country.flag}}</ion-select-option> -->
-        <!-- <ion-select-option value="banana">Banana</ion-select-option>
-        <ion-select-option value="orange">Orange</ion-select-option> -->
-      </ion-select>
+      <ion-label (click)="openModal()">Phone Number *</ion-label>
+     
       <ion-input [clearInput]="true" formControlName="phone" placeholder="Phone Number" type="tel" autocomplete="tel"></ion-input>
     </div>
   </div>
