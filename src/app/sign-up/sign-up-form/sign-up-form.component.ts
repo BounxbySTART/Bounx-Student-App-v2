@@ -49,7 +49,8 @@ export class SignUpFormComponent implements OnInit {
         Validators.pattern(
           '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$'
         ),]),
-        phone: new FormControl('', [Validators.required,Validators.minLength(4),Validators.maxLength(15)])
+        phoneCode: new FormControl(''),
+   phone: new FormControl('', [Validators.required,Validators.minLength(4),Validators.maxLength(15)])
     });
   }
 
@@ -67,13 +68,11 @@ export class SignUpFormComponent implements OnInit {
     });
     modal.present();
 
-    const { data, role } = await modal.onWillDismiss();
+    const { data } = await modal.onWillDismiss();
 
-    if (role === 'confirm') {
-      // this.message = `Hello, ${data}!`;
       console.log(data,"test");
+      this.signUpFormGroup.patchValue({phoneCode:data});
       
-    }
   }
 
 
