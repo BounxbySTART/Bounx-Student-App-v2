@@ -19,8 +19,10 @@ export interface Country {
 })
 export class CountryCodeComponent implements OnInit {
   countries: Country[] = [];
-  constructor(private masterService: MasterService, private modalCtrl: ModalController
-    ) {}
+  constructor(
+    private masterService: MasterService,
+    private modalCtrl: ModalController
+  ) {}
 
   ngOnInit() {
     this.getAllCountries();
@@ -28,6 +30,11 @@ export class CountryCodeComponent implements OnInit {
   getAllCountries() {
     this.masterService.getAllCountries().subscribe((res: any) => {
       this.countries = res;
+    });
+  }
+  expandModal() {
+    this.modalCtrl.getTop().then((modal) => {
+      if (modal) modal.setCurrentBreakpoint(0.75);
     });
   }
 
@@ -38,7 +45,7 @@ export class CountryCodeComponent implements OnInit {
       this.countries = res;
     });
   }
-  handleChange(event: Event):Promise<boolean> {
+  handleChange(event: Event): Promise<boolean> {
     const target = event.target as HTMLInputElement;
     // selected value
     console.log('selected value', target.value);

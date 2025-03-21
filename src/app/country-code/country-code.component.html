@@ -1,7 +1,7 @@
 <ion-content>
   <!-- search text box works but the font color needs to be adjusted-->
-  <ion-searchbar placeholder="type here to search country" [debounce]="1000"
-    (ionInput)="searchCountry($event)"></ion-searchbar>
+  <ion-searchbar placeholder="type here to search country" [debounce]="1000" (ionInput)="searchCountry($event)"
+    (click)="expandModal()"></ion-searchbar>
   <ion-list [inset]="true">
     <ion-radio-group (ionChange)="handleChange($event)">
       @for (country of countries; track country.code) {
