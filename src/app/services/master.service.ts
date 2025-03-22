@@ -3,6 +3,7 @@ import { HttpService } from './http.service';
 import { environment } from 'src/environments/environment';
 import { PlayerUserRequest } from 'src/types/player-user-request';
 import { LoginUserRequest } from 'src/types/login-user-request';
+import { PlayerProfileRequest } from 'src/types/player-profile-request';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,10 @@ export class MasterService {
 
   login(body: LoginUserRequest){
       return this.http.post(environment.masterUrl.concat('auth/login'), body)
+  }
+
+  playerProfileDetail(body:PlayerProfileRequest){
+    return this.http.post<PlayerProfileRequest>(environment.masterUrl.concat('profile/player'),body)
   }
 
 

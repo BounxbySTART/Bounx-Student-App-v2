@@ -13,6 +13,8 @@ import {
 import { MasterService } from 'src/app/services/master.service';
 import { LogInFooterComponent } from "../log-in-footer/log-in-footer.component";
 import { CountryCodeComponent } from 'src/app/country-code/country-code.component';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in-form',
@@ -34,7 +36,7 @@ import { CountryCodeComponent } from 'src/app/country-code/country-code.componen
 export class LogInFormComponent  implements OnInit {
 
   loginForm!: FormGroup;
-  constructor(private masterService:MasterService,private modalCtrl:ModalController) {
+  constructor(private masterService:MasterService,private modalCtrl:ModalController, private userService: UserService, private router: Router) {
 
    }
 
@@ -59,6 +61,10 @@ this.initiateLoginForm();
   userLogin(){
     let loginDetails = this.loginForm.value;
   this.masterService.login({...loginDetails,userType:"PLAYER"}).subscribe((res:any)=>{
+if(res){
+  this.router.navigateByUrl('/tabs/tab1')
+}
+    this.userService.setUser(res)
           console.log(res,'Test1');    
     },(err)=>{})
   }
