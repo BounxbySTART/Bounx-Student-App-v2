@@ -3,6 +3,8 @@ import { SignUpFormComponent } from './sign-up/sign-up-form/sign-up-form.compone
 import { LogInFormComponent } from './log-in/log-in-form/log-in-form.component';
 import { OnboardingStep1Component } from './onboarding/onboarding-step1/onboarding-step1.component';
 import { OnboardingStep2Component } from './onboarding/onboarding-step2/onboarding-step2.component';
+import { OnboardingAddProfileComponent } from './onboarding/onboarding-add-profile/onboarding-add-profile.component';
+import { OnboardingListProfileComponent } from './onboarding/onboarding-list-profile/onboarding-list-profile.component';
 
 export const routes: Routes = [
     {
@@ -24,5 +26,13 @@ export const routes: Routes = [
       {
         path: 'onboarding-step2',
         component: OnboardingStep2Component
+      },
+      {
+        path: 'list-profile',
+        component: OnboardingListProfileComponent
+      },
+      {
+        path: 'add-profile',
+        component: OnboardingAddProfileComponent
       }
   ];

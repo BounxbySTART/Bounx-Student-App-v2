@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   IonList,
   IonItemSliding,
@@ -8,14 +10,18 @@ import {
   IonItemOptions,
   IonItemOption,
   IonIcon,
-  IonButton
+  IonButton,
+  IonContent,
 } from '@ionic/angular/standalone';
+import { PlayerService } from 'src/app/services/player.service';
+import { PlayerProfileRequest } from 'src/types/player-profile-request';
 
 @Component({
   selector: 'app-onboarding-list-profile',
   templateUrl: './onboarding-list-profile.component.html',
   styleUrls: ['./onboarding-list-profile.component.scss'],
   imports: [
+    // IonContent,
     IonList,
     IonItemSliding,
     IonItem,
@@ -24,14 +30,17 @@ import {
     IonItemOptions,
     IonItemOption,
     IonIcon,
-    IonButton
+    IonButton,
+    CommonModule
   ],
 })
-export class OnboardingListProfileComponent  implements OnInit {
+export class OnboardingListProfileComponent implements OnInit {
+  playerProfiles:PlayerProfileRequest[]=[];
+  constructor(private router: Router, private playerService: PlayerService) {}
 
-  constructor() { }
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.getPlayerProfiles();
+  }
 
   preventEvent(ev: Event) {
     ev.stopPropagation();
@@ -41,4 +50,13 @@ export class OnboardingListProfileComponent  implements OnInit {
     // throw new Error('Method not implemented.');
   }
 
+  redirectToAddProfile() {
+    this.router.navigateByUrl('/add-profile');
+  }
+
+  getPlayerProfiles() {
+    this.playerService.getPlayerProfiles().subscribe((res:any) => {
+      this.playerProfiles = res;
+    });
+  }
 }

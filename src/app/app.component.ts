@@ -6,6 +6,10 @@ import {
   radioButtonOffOutline,
   addOutline,
   checkmarkCircleOutline,
+  calendarNumberOutline,
+  ellipsisHorizontalOutline,
+  trashOutline,
+  createOutline,
 } from 'ionicons/icons';
 
 @Component({
@@ -21,6 +25,15 @@ export class AppComponent {
   }
 
   registerIonIcons() {
-    addIcons({ closeOutline, radioButtonOffOutline, addOutline, checkmarkCircleOutline });
+    addIcons({
+      closeOutline,
+      radioButtonOffOutline,
+      addOutline,
+      checkmarkCircleOutline,
+      calendarNumberOutline,
+      ellipsisHorizontalOutline,
+      trashOutline,
+      createOutline,
+    });
   }
 }

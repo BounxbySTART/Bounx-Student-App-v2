@@ -1,3 +1,4 @@
+<ion-content [fullscreen]="true" class="Onboarding light_page centerise_page">
 <div class="header">
   <div class="topbar"><ion-icon name="close-outline" class="btn_close byitself"></ion-icon></div>
   <div class="subhdr_page">CREATE NEW PROFILE</div>
@@ -8,15 +9,21 @@
   <div class="form_cnt">
     <div class="form_item">
       <ion-input label="First Name *" labelPlacement="stacked" formControlName="firstName"
-        [clearInput]="true"></ion-input>
+        [clearInput]="true" errorText="Please enter first name"></ion-input >
     </div>
     <div class="form_item">
-      <ion-input label="Last Name *" labelPlacement="stacked" formControlName="lastName"
+      <ion-input label="Last Name *" labelPlacement="stacked" formControlName="lastName" errorText="Please enter last name"
         [clearInput]="true"></ion-input>
     </div>
     <div class="form_item">
       <ion-input label="Date of Birth *" labelPlacement="stacked" formControlName="dob" [clearInput]="true"
         placeholder="MM-DD-YYYY"></ion-input>
+      <ion-icon icon="calendar-number-outline" (click)="openCalendar()"></ion-icon>
+      <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendar">
+        <ng-template>
+          <ion-datetime id="datetime" multiple="false" presentation="date" (ionChange)="test($event)"></ion-datetime>
+        </ng-template>
+      </ion-modal>
     </div>
     <div class="form_item">
       <ion-label>Gender *</ion-label>
@@ -27,13 +34,14 @@
     </div>
     <div class="form_item">
       <ion-label>Emergency Contact *</ion-label>
-      <ion-checkbox labelPlacement="end" checked formControlName="isEmergencyContactPrimaryAccount" (ionChange)="checkBoxValue($event)">
+      <ion-checkbox labelPlacement="end" checked formControlName="isEmergencyContactPrimaryAccount"
+        (ionChange)="checkBoxValue($event)">
         <p class="ion-text-wrap">
           Same as Primary Account
         </p>
       </ion-checkbox>
     </div>
-    <div class="form_lvl2" *ngIf="!checkBox" >
+    <div class="form_lvl2" *ngIf="!checkBox">
       <p>Please provide emergency contact:<br /><br /></p>
       <div class="form_item">
         <ion-input label="Name *" labelPlacement="stacked" [clearInput]="true"
@@ -52,12 +60,14 @@
 
       <div class="form_item">
         <ion-label>Phone Number *</ion-label>
-        <ion-input [clearInput]="true" formControlName="phoneCode" placeholder="+1" type="tel" readonly
+        <ion-input [clearInput]="true" formControlName="emergencyPhoneCode" placeholder="+1" type="tel" readonly
           autocomplete="tel" (click)="openModal()"></ion-input>
         <ion-input [clearInput]="true" formControlName="emergencyPhone" placeholder="Phone Number" type="tel"
           autocomplete="tel"></ion-input>
       </div>
     </div>
-    <ion-button [disabled]="playerProfileFormGroup.invalid" (click)="getPlayerProfileDetail()" class="main_cta">Next</ion-button>
+    <ion-button [disabled]="playerProfileFormGroup.invalid" (click)="getPlayerProfileDetail()"
+      class="main_cta">Next</ion-button>
   </div>
 </form>
+</ion-content>

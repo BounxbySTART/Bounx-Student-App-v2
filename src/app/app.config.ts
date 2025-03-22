@@ -1,4 +1,4 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
 import {
   PreloadAllModules,
@@ -11,6 +11,7 @@ import {
   IonicRouteStrategy,
 } from '@ionic/angular/standalone';
 import { routes } from './app.routes';
+import { authInterceptor } from 'src/auth.interceptor';
 
 export const appConfig: ApplicationConfig =
   // { providers: [provideHttpClient(), { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, importProvidersFrom(IonicModule.forRoot({})), provideRouter(routes)] };
@@ -20,6 +21,6 @@ export const appConfig: ApplicationConfig =
       { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
       provideIonicAngular(),
       provideRouter(routes, withPreloading(PreloadAllModules)),
-      provideHttpClient(),
+      provideHttpClient(withInterceptors([authInterceptor])),
     ],
   };

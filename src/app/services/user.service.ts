@@ -5,7 +5,7 @@ export interface User {
   firstName: string;
   lastName: string;
   phoneCode:string;
-  phone: number;
+  phone: string;
 }
 
 @Injectable({
