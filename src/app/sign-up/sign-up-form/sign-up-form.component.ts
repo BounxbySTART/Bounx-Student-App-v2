@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -10,6 +11,7 @@ import { IonicModule } from '@ionic/angular';
 import { MasterService } from 'src/app/services/master.service';
 import { CountryCodeComponent } from '../../country-code/country-code.component';
 import { ModalController } from '@ionic/angular';
+import { createPasswordStrengthValidator, passwordHasAlphabetValidator, passwordHasNumericValidator, passwordMinlengthValidator } from 'src/app/validators/create-password-validator';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -44,6 +46,7 @@ export class SignUpFormComponent implements OnInit {
   }
 
   initForm() {
+
     this.signUpFormGroup = new FormGroup({
       firstName: new FormControl('', [
         Validators.required,
@@ -56,10 +59,12 @@ export class SignUpFormComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(8),
         Validators.pattern(
           '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$'
         ),
+        passwordHasAlphabetValidator(),
+        passwordHasNumericValidator(),
+        passwordMinlengthValidator(8)
       ]),
       phoneCode: new FormControl(''),
       phone: new FormControl('', [
@@ -90,4 +95,6 @@ export class SignUpFormComponent implements OnInit {
     console.log(data, 'test');
     this.signUpFormGroup.patchValue({ phoneCode: data });
   }
+
+
 }
