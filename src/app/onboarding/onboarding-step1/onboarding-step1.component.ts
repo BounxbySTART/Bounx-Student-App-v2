@@ -7,8 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CheckboxCustomEvent, ModalController } from '@ionic/angular';
+import { CheckboxCustomEvent, DatetimeCustomEvent, IonicModule, ModalController } from '@ionic/angular';
 import {
+  
   IonIcon,
   IonInput,
   IonLabel,
@@ -18,11 +19,14 @@ import {
   IonSelect,
   IonSelectOption,
   IonButton,
+  IonDatetimeButton,
+  IonModal,
+  IonDatetime,
 } from '@ionic/angular/standalone';
-import { checkbox } from 'ionicons/icons';
 import { CountryCodeComponent } from 'src/app/country-code/country-code.component';
 import { StepProgressComponent } from 'src/app/general/step-progress/step-progress.component';
 import { MasterService } from 'src/app/services/master.service';
+import { PlayerService } from 'src/app/services/player.service';
 import { User, UserService } from 'src/app/services/user.service';
 import { PlayerProfileRequest } from 'src/types/player-profile-request';
 
@@ -31,15 +35,18 @@ import { PlayerProfileRequest } from 'src/types/player-profile-request';
   templateUrl: './onboarding-step1.component.html',
   styleUrls: ['./onboarding-step1.component.scss'],
   imports: [
-    IonIcon,
-    IonInput,
-    IonLabel,
-    IonRadioGroup,
-    IonRadio,
-    IonCheckbox,
-    IonSelect,
-    IonSelectOption,
-    IonButton,
+    IonicModule,
+    // IonModal,
+    // IonDatetime,
+    // // IonIcon,
+    // IonInput,
+    // IonLabel,
+    // IonRadioGroup,
+    // IonRadio,
+    // IonCheckbox,
+    // IonSelect,
+    // IonSelectOption,
+    // IonButton,
     StepProgressComponent,
     CommonModule,
     ReactiveFormsModule,
@@ -49,9 +56,10 @@ export class OnboardingStep1Component implements OnInit {
   playerProfileFormGroup!: FormGroup;
   getUser!: User;
   checkBox: boolean = true;
+  showCalendar:boolean = false;
 
   constructor(
-    private masterService: MasterService,
+    private playerService: PlayerService,
     private modalCtrl: ModalController,
     private userService: UserService,
     private router: Router
@@ -64,7 +72,7 @@ export class OnboardingStep1Component implements OnInit {
       emergencyName: this.getUser.firstName,
     });
     this.playerProfileFormGroup.patchValue({
-      phoneCode: this.getUser.phoneCode,
+      emergencyPhoneCode: this.getUser.phoneCode,
     });
     this.playerProfileFormGroup.patchValue({
       emergencyPhone: this.getUser.phone,
@@ -89,7 +97,7 @@ export class OnboardingStep1Component implements OnInit {
         'Account Owner',
         Validators.required
       ),
-      phoneCode: new FormControl('',Validators.required),
+      emergencyPhoneCode: new FormControl('', Validators.required),
       emergencyPhone: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
@@ -101,7 +109,7 @@ export class OnboardingStep1Component implements OnInit {
   getPlayerProfileDetail() {
     console.log('hello');
     let collectedData = this.playerProfileFormGroup.value;
-    this.masterService
+    this.playerService
       .playerProfileDetail(collectedData)
       .subscribe((res: PlayerProfileRequest) => {
         if (res) {
@@ -122,7 +130,7 @@ export class OnboardingStep1Component implements OnInit {
     const { data } = await modal.onWillDismiss();
 
     console.log(data, 'test');
-    this.playerProfileFormGroup.patchValue({ phoneCode: data });
+    this.playerProfileFormGroup.patchValue({ emergencyPhoneCode: data });
   }
 
   checkBoxValue(ev: CheckboxCustomEvent) {
@@ -130,21 +138,31 @@ export class OnboardingStep1Component implements OnInit {
     if (this.checkBox == false) {
       this.playerProfileFormGroup.get('emergencyName')?.reset();
       this.playerProfileFormGroup.get('emergencyRelationship')?.reset();
-      this.playerProfileFormGroup.get('phoneCode')?.reset();
+      this.playerProfileFormGroup.get('emergencyPhoneCode')?.reset();
       this.playerProfileFormGroup.get('emergencyPhone')?.reset();
     } else {
       this.playerProfileFormGroup.patchValue({
         emergencyName: this.getUser.firstName,
       });
       this.playerProfileFormGroup.patchValue({
-        emergencyRelationship: 'Account Owner'
+        emergencyRelationship: 'Account Owner',
       });
       this.playerProfileFormGroup.patchValue({
-        phoneCode: this.getUser.phoneCode,
+        emergencyPhoneCode: this.getUser.phoneCode,
       });
       this.playerProfileFormGroup.patchValue({
         emergencyPhone: this.getUser.phone,
       });
     }
+  }
+
+  openCalendar(){
+    console.log("hello")
+    this.showCalendar = true;
+  }
+
+  test(ev:DatetimeCustomEvent){
+    this.playerProfileFormGroup.patchValue({dob: ev.detail.value});
+    this.showCalendar = false;
   }
 }

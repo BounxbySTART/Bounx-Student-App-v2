@@ -25,9 +25,7 @@ export class MasterService {
       return this.http.post(environment.masterUrl.concat('auth/login'), body)
   }
 
-  playerProfileDetail(body:PlayerProfileRequest){
-    return this.http.post<PlayerProfileRequest>(environment.masterUrl.concat('profile/player'),body)
-  }
+
 
 
 }
