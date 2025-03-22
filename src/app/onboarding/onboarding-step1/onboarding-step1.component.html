@@ -4,49 +4,60 @@
   <div class="title_page"><span class="fw_regular">Step 1:</span> Profile Details</div>
   <app-step-progress></app-step-progress>
 </div>
-<div class="form">
+<form class="form" [formGroup]="playerProfileFormGroup">
   <div class="form_cnt">
     <div class="form_item">
-      <ion-input label="First Name *" labelPlacement="stacked" [clearInput]="true"></ion-input>
+      <ion-input label="First Name *" labelPlacement="stacked" formControlName="firstName"
+        [clearInput]="true"></ion-input>
     </div>
     <div class="form_item">
-      <ion-input label="Last Name *" labelPlacement="stacked" [clearInput]="true"></ion-input>
+      <ion-input label="Last Name *" labelPlacement="stacked" formControlName="lastName"
+        [clearInput]="true"></ion-input>
     </div>
     <div class="form_item">
-      <ion-input label="Date of Birth *" labelPlacement="stacked" [clearInput]="true" placeholder="MM-DD-YYYY"></ion-input>
+      <ion-input label="Date of Birth *" labelPlacement="stacked" formControlName="dob" [clearInput]="true"
+        placeholder="MM-DD-YYYY"></ion-input>
     </div>
     <div class="form_item">
       <ion-label>Gender *</ion-label>
-      <ion-radio-group class="two_opt">
-        <ion-radio value="male">Male</ion-radio>
-        <ion-radio value="female">Female</ion-radio>
+      <ion-radio-group class="two_opt" formControlName="gender">
+        <ion-radio value="MALE">Male</ion-radio>
+        <ion-radio value="FEMALE">Female</ion-radio>
       </ion-radio-group>
     </div>
     <div class="form_item">
       <ion-label>Emergency Contact *</ion-label>
-      <ion-checkbox labelPlacement="end" checked>
+      <ion-checkbox labelPlacement="end" checked formControlName="isEmergencyContactPrimaryAccount" (ionChange)="checkBoxValue($event)">
         <p class="ion-text-wrap">
           Same as Primary Account
         </p>
       </ion-checkbox>
     </div>
-    <div class="form_lvl2">
-      <p>Please provide emergency contact:<br/><br/></p>
+    <div class="form_lvl2" *ngIf="!checkBox" >
+      <p>Please provide emergency contact:<br /><br /></p>
       <div class="form_item">
-        <ion-input label="Name *" labelPlacement="stacked" [clearInput]="true"></ion-input>
+        <ion-input label="Name *" labelPlacement="stacked" [clearInput]="true"
+          formControlName="emergencyName"></ion-input>
       </div>
       <div class="form_item">
         <ion-label>Relationship *</ion-label>
-        <ion-select label-placement="stacked" placeholder="Select One" toggleIcon="" class="hidelabel">
+        <ion-select label-placement="stacked" placeholder="Select One" toggleIcon="" class="hidelabel"
+          formControlName="emergencyRelationship">
+          <ion-select-option value="Account Owner">Account Owner</ion-select-option>
           <ion-select-option value="apple">Apple</ion-select-option>
           <ion-select-option value="banana">Banana</ion-select-option>
           <ion-select-option value="orange">Orange</ion-select-option>
         </ion-select>
       </div>
+
       <div class="form_item">
-        <ion-input label="Date of Birth *" labelPlacement="stacked" [clearInput]="true" placeholder="MM-DD-YYYY"></ion-input>
+        <ion-label>Phone Number *</ion-label>
+        <ion-input [clearInput]="true" formControlName="phoneCode" placeholder="+1" type="tel" readonly
+          autocomplete="tel" (click)="openModal()"></ion-input>
+        <ion-input [clearInput]="true" formControlName="emergencyPhone" placeholder="Phone Number" type="tel"
+          autocomplete="tel"></ion-input>
       </div>
     </div>
-    <ion-button class="main_cta">Next</ion-button>
+    <ion-button [disabled]="playerProfileFormGroup.invalid" (click)="getPlayerProfileDetail()" class="main_cta">Next</ion-button>
   </div>
-</div>
+</form>
