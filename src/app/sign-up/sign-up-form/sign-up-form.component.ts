@@ -7,11 +7,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { MasterService } from 'src/app/services/master.service';
 import { CountryCodeComponent } from '../../country-code/country-code.component';
 import { ModalController } from '@ionic/angular';
 import { createPasswordStrengthValidator, passwordHasAlphabetValidator, passwordHasNumericValidator, passwordMinlengthValidator } from 'src/app/validators/create-password-validator';
+import { Router } from '@angular/router';
+import { VerificationService } from 'src/app/services/verification.service';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -38,7 +40,9 @@ export class SignUpFormComponent implements OnInit {
 
   constructor(
     private masterService: MasterService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private router: Router,
+    private verficationService: VerificationService
   ) {}
 
   ngOnInit() {
@@ -80,8 +84,12 @@ export class SignUpFormComponent implements OnInit {
     let collectedData = this.signUpFormGroup.value;
     this.masterService
       .createPlayerUser(collectedData)
-      .subscribe((res: any) => {});
+      .subscribe((res: any) => {
+        this.verficationService.signUpUser = collectedData;
+        this.router.navigateByUrl('/app-verify-form')});
+        
   }
+
   async openModal() {
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
@@ -94,7 +102,9 @@ export class SignUpFormComponent implements OnInit {
 
     console.log(data, 'test');
     this.signUpFormGroup.patchValue({ phoneCode: data });
+  
   }
+  
 
 
 }
