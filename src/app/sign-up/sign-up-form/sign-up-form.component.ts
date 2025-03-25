@@ -83,7 +83,7 @@ export class SignUpFormComponent implements OnInit {
   verify() {
     let collectedData = this.signUpFormGroup.value;
     this.masterService
-      .createPlayerUser(collectedData)
+      .verifyPlayerUser(collectedData)
       .subscribe((res: any) => {
         this.verficationService.signUpUser = collectedData;
         this.router.navigateByUrl('/app-verify-form')});

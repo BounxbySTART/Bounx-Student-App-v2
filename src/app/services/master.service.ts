@@ -21,6 +21,10 @@ export class MasterService {
     return this.http.post(environment.masterUrl.concat('auth/player'), body);
   }
 
+  verifyPlayerUser(body: PlayerUserRequest){
+    return this.http.post(environment.masterUrl.concat('auth/verify-player-user'), body);
+  }
+
   login(body: LoginUserRequest){
       return this.http.post(environment.masterUrl.concat('auth/login'), body)
   }
