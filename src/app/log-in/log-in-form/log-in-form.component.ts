@@ -83,5 +83,8 @@ if(res){
       this.loginForm.patchValue({phoneCode:data});
       
   }
+  reDirectToResetPassword(){
+    this.router.navigateByUrl('/app-reset-pass-form-step1');
+  }
 
 }
