@@ -14,6 +14,7 @@ import { ModalController } from '@ionic/angular';
 import { createPasswordStrengthValidator, passwordHasAlphabetValidator, passwordHasNumericValidator, passwordMinlengthValidator } from 'src/app/validators/create-password-validator';
 import { Router } from '@angular/router';
 import { VerificationService } from 'src/app/services/verification.service';
+import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -23,6 +24,7 @@ import { VerificationService } from 'src/app/services/verification.service';
     IonicModule,
     CommonModule,
     ReactiveFormsModule,
+    DropdownButtonComponent
     /*
     IonCheckbox,
     IonInput,
