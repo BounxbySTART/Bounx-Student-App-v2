@@ -11,7 +11,7 @@ import { SignUpUser, VerificationService } from 'src/app/services/verification.s
     IonicModule
   ],
 })
-export class VerifyFormComponent  implements OnInit {
+export class VerifyFormComponent implements OnInit {
   signUpUser!:SignUpUser;
 
   constructor(private verificationService:VerificationService) { }

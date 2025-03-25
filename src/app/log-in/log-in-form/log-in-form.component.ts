@@ -97,4 +97,8 @@ export class LogInFormComponent implements OnInit {
     console.log(data, 'test');
     this.loginForm.patchValue({ phoneCode: data });
   }
+  reDirectToResetPassword(){
+    this.router.navigateByUrl('/app-reset-pass-form-step1');
+  }
+
 }

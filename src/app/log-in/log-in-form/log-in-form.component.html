@@ -17,7 +17,7 @@
     </div> 
   </div>
   <ion-button class="main_cta" (click)="userLogin()" [disabled]="!loginForm.valid">Log In</ion-button>
-  <div class="link_byitself"><p class="p2"><a href="">Reset Password</a></p></div>
+  <div class="link_byitself"><p class="p2"><a (click)="reDirectToResetPassword()">Reset Password</a></p></div>
 </div>
 </form>
 <app-log-in-footer></app-log-in-footer>
