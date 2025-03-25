@@ -10,6 +10,7 @@ import {
   ellipsisHorizontalOutline,
   trashOutline,
   createOutline,
+  chevronDownOutline,
 } from 'ionicons/icons';
 
 @Component({
@@ -34,6 +35,7 @@ export class AppComponent {
       ellipsisHorizontalOutline,
       trashOutline,
       createOutline,
+      chevronDownOutline,
     });
   }
 }
