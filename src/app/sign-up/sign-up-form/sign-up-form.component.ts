@@ -84,6 +84,7 @@ export class SignUpFormComponent implements OnInit {
 
   verify() {
     let collectedData = this.signUpFormGroup.value;
+  
     this.masterService
       .verifyPlayerUser(collectedData)
       .subscribe((res: any) => {

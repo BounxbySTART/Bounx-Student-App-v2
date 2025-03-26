@@ -8,6 +8,7 @@ import { OnboardingAddProfileComponent } from './onboarding/onboarding-add-profi
 import { OnboardingListProfileComponent } from './onboarding/onboarding-list-profile/onboarding-list-profile.component';
 import { ResetPassFormStep1Component } from './reset-password/reset-pass-form-step1/reset-pass-form-step1.component';
 import { ResetPassFormStep2Component } from './reset-password/reset-pass-form-step2/reset-pass-form-step2.component';
+import { SignUpSuccessComponent } from './sign-up/sign-up-success/sign-up-success.component';
 
 export const routes: Routes = [
     {
@@ -48,6 +49,10 @@ export const routes: Routes = [
       {
         path: 'app-reset-pass-form-step2',
         component:ResetPassFormStep2Component
+      },
+      {
+        path:'app-sign-up-success',
+        component:SignUpSuccessComponent
       }
 
   ];

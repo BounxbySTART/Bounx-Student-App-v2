@@ -4,10 +4,16 @@ export interface SignUpUser{
     lastName: string;
     phoneCode:string;
     phone: string;
+    email:string;
+    deviceId?:string;
+    pushTaken?:string;
     password:string;
     isTermsAgreed:boolean;
-
+    sId?:string;
+    OTP?:string;
 }
+
+
 
 @Injectable({
   providedIn: 'root',
