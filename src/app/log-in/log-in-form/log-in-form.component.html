@@ -8,10 +8,10 @@
     <div class="form_item">
       <ion-label (click)="openModal()">Phone Number *</ion-label>
     
-      <ion-input [clearInput]="true" placeholder="Phone Number" type="tel" formControlName="phone" autocomplete="tel"></ion-input>
+      <ion-input [clearInput]="true" placeholder="Phone Number" type="tel" formControlName="phone" autocomplete="tel-national"></ion-input>
     </div>
     <div class="form_item">
-      <ion-input label="Password *" labelPlacement="stacked" type="text" formControlName="password" [clearInput]="true" autocomplete="password">
+      <ion-input label="Password *" labelPlacement="stacked" type="text" formControlName="password" [clearInput]="true" autocomplete="current-password">
         <ion-input-password-toggle slot="end"></ion-input-password-toggle>
       </ion-input>
     </div> 

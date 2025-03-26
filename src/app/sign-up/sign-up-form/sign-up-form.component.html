@@ -16,7 +16,7 @@
       <ion-input label="Email *" type="email" labelPlacement="stacked" formControlName="email" [clearInput]="true" autocomplete="email"></ion-input>
     </div>
     <div class="form_item">
-      <ion-input label="Password *" type="password" labelPlacement="stacked" formControlName="password" [clearInput]="true" autocomplete="password" >
+      <ion-input label="Password *" type="password" labelPlacement="stacked" formControlName="password" [clearInput]="true" autocomplete="new-password" >
           <ion-input-password-toggle color="#000000" slot="end"></ion-input-password-toggle>
       </ion-input>
       <div class="password_guide" *ngIf="signUpFormGroup.get('password')?.touched">
