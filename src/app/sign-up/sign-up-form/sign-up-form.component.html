@@ -26,8 +26,8 @@
       </div>
     </div>
     <div class="form_item">
-      <ion-label (click)="openModal()">Phone Number *</ion-label>
-      <app-dropdown-button></app-dropdown-button>
+      <ion-label >Phone Number *</ion-label>
+      <app-dropdown-button (click)="openModal()" [label]="signUpFormGroup.get('phoneCode')?.value"></app-dropdown-button>
       <ion-input [clearInput]="true" formControlName="phone" placeholder="Phone Number" type="tel" autocomplete="tel"></ion-input>
     </div>
   </div>
