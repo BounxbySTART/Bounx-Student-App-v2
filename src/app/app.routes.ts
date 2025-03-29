@@ -9,50 +9,78 @@ import { OnboardingListProfileComponent } from './onboarding/onboarding-list-pro
 import { ResetPassFormStep1Component } from './reset-password/reset-pass-form-step1/reset-pass-form-step1.component';
 import { ResetPassFormStep2Component } from './reset-password/reset-pass-form-step2/reset-pass-form-step2.component';
 import { SignUpSuccessComponent } from './sign-up/sign-up-success/sign-up-success.component';
+import { Tab3Page } from './tab3/tab3.page';
+import { Tab1Page } from './tab1/tab1.page';
+import { Tab2Page } from './tab2/tab2.page';
+import { TabsPage } from './tabs/tabs.page';
 
 export const routes: Routes = [
-    {
-      path: '',
-      loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-    },
-    {
-      path: 'sign-up',
-      component: SignUpFormComponent
-    },
-    {
-        path: 'log-in',
-        component: LogInFormComponent
+  {
+    path: '',
+    redirectTo: '/tabs/tab1',
+    pathMatch: 'full',
+  },
+  {
+    path: 'tabs',
+    component: TabsPage,
+    children: [
+      {
+        path: 'tab1',
+        component: Tab1Page,
       },
       {
-        path: 'onboarding-step1',
-        component: OnboardingStep1Component
+        path: 'tab2',
+        component: Tab2Page,
       },
       {
-        path: 'onboarding-step2',
-        component: OnboardingStep2Component
+        path: 'tab3',
+        component: Tab3Page,
       },
       {
-        path:'app-verify-form',
-        component:VerifyFormComponent},
-        {
-        path: 'list-profile',
-        component: OnboardingListProfileComponent
+        path: '',
+        redirectTo: '/tabs/tab1',
+        pathMatch: 'full',
       },
-      {
-        path: 'add-profile',
-        component: OnboardingAddProfileComponent
-      },
-      {
-        path: 'app-reset-pass-form-step1',
-        component:ResetPassFormStep1Component
-      },
-      {
-        path: 'app-reset-pass-form-step2',
-        component:ResetPassFormStep2Component
-      },
-      {
-        path:'app-sign-up-success',
-        component:SignUpSuccessComponent
-      }
-
-  ];
+    ],
+  },
+  {
+    path: 'sign-up',
+    component: SignUpFormComponent,
+  },
+  {
+    path: 'log-in',
+    component: LogInFormComponent,
+  },
+  {
+    path: 'onboarding-step1',
+    component: OnboardingStep1Component,
+  },
+  {
+    path: 'onboarding-step2',
+    component: OnboardingStep2Component,
+  },
+  {
+    path: 'app-verify-form',
+    component: VerifyFormComponent,
+  },
+  {
+    path: 'list-profile',
+    component: OnboardingListProfileComponent,
+  },
+  {
+    path: 'add-profile',
+    component: OnboardingAddProfileComponent,
+  },
+  {
+    path: 'app-reset-pass-form-step1',
+    component: ResetPassFormStep1Component,
+  },
+  {
+    path: 'app-reset-pass-form-step2',
+    component: ResetPassFormStep2Component,
+  },
+  {
+    path: 'app-sign-up-success',
+    component: SignUpSuccessComponent,
+  },
+];

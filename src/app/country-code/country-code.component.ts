@@ -7,8 +7,9 @@ import {
   IonRadio,
   IonList,
   IonItem,
+  ModalController
 } from '@ionic/angular/standalone';
-import { ModalController } from '@ionic/angular/providers/modal-controller';
+
 
 export interface Country {
   name: string;
