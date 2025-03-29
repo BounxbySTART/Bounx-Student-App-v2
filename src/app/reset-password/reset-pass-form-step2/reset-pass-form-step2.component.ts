@@ -1,31 +1,50 @@
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
-import { passwordHasAlphabetValidator, passwordHasNumericValidator, passwordMinlengthValidator } from 'src/app/validators/create-password-validator';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {
+  ModalController,
+  IonContent,
+  IonButton,
+  IonIcon,
+  IonInput,
+  IonInputPasswordToggle,
+} from '@ionic/angular/standalone';
+import {
+  passwordHasAlphabetValidator,
+  passwordHasNumericValidator,
+  passwordMinlengthValidator,
+} from 'src/app/validators/create-password-validator';
 
 @Component({
   selector: 'app-reset-pass-form-step2',
   templateUrl: './reset-pass-form-step2.component.html',
   styleUrls: ['./reset-pass-form-step2.component.scss'],
   imports: [
-    CommonModule,
-    IonicModule,
-    ReactiveFormsModule
+    IonIcon,
+    IonButton,
+    IonContent,
+    ReactiveFormsModule,
+    IonInput,
+    IonInputPasswordToggle,
+    NgClass,
   ],
 })
-export class ResetPassFormStep2Component  implements OnInit {
-  resetPasswordForm!:FormGroup;
+export class ResetPassFormStep2Component implements OnInit {
+  resetPasswordForm!: FormGroup;
 
-  constructor(private modalCtrl:ModalController) { }
-
+  constructor(private modalCtrl: ModalController) {}
 
   ngOnInit() {
-this.initForm();
+    this.initForm();
   }
 
-  initForm(){
-    this.resetPasswordForm = new FormGroup({ 
+  initForm() {
+    this.resetPasswordForm = new FormGroup({
       password: new FormControl('', [
         Validators.required,
         Validators.pattern(
@@ -33,9 +52,8 @@ this.initForm();
         ),
         passwordHasAlphabetValidator(),
         passwordHasNumericValidator(),
-        passwordMinlengthValidator(8)
-      ])
+        passwordMinlengthValidator(8),
+      ]),
     });
   }
-
 }

@@ -6,7 +6,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+import {
+  IonIcon,
+  ModalController,
+  IonContent,
+  IonLabel,
+  IonButton,
+  IonInput,
+} from '@ionic/angular/standalone';
 import { CountryCodeComponent } from 'src/app/country-code/country-code.component';
 import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
 import { ResetPassFooterComponent } from '../reset-pass-footer/reset-pass-footer.component';
@@ -19,11 +26,14 @@ import { VerificationService } from 'src/app/services/verification.service';
   templateUrl: './reset-pass-form-step1.component.html',
   styleUrls: ['./reset-pass-form-step1.component.scss'],
   imports: [
-    CommonModule,
-    IonicModule,
-    ReactiveFormsModule,
+    IonInput,
+    IonButton,
+    IonLabel,
+    IonContent,
+    IonIcon,
     DropdownButtonComponent,
     ResetPassFooterComponent,
+    ReactiveFormsModule,
   ],
 })
 export class ResetPassFormStep1Component implements OnInit {
