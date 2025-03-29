@@ -79,17 +79,17 @@ export class ResetPassFormStep1Component implements OnInit {
       .generatePasswordResetCode(codeInitObj)
       .subscribe((res: any) => {
         this.verficationService.signUpUser = {
-          firstName: '',
-          lastName: '',
-          email: '',
-          password: '',
-          phone: '',
-          phoneCode: '',
+          firstName: 'reset',
+          lastName: 'reset',
+          email: 'reset@email',
+          password: 'password',
+          phone: codeInitObj.phone,
+          phoneCode: codeInitObj.phoneCode,
           isTermsAgreed: true,
           isPasswordReset: true,
           sId: res.sId,
         };
+        this.router.navigateByUrl('/app-verify-form');
       });
-    this.router.navigateByUrl('/app-verify-form');
   }
 }

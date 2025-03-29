@@ -10,9 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { MasterService } from 'src/app/services/master.service';
-import {
-  VerificationService,
-} from 'src/app/services/verification.service';
+import { VerificationService } from 'src/app/services/verification.service';
 import { SignUpUser } from 'src/types/sign-up-user';
 
 @Component({
@@ -33,8 +31,8 @@ export class VerifyFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.verificationService.signUpUser); 
-    
+    console.log(this.verificationService.signUpUser);
+
     this.otpIntitiate();
     this.startTimer();
   }
@@ -49,22 +47,27 @@ export class VerifyFormComponent implements OnInit {
     if (!this.otpForm.valid) return false;
     console.log(this.verificationService.signUpUser);
 
-    this.verificationService.signUpUser.OTP = this.otpForm.value.otpInput.toString();
+    this.verificationService.signUpUser.OTP =
+      this.otpForm.value.otpInput.toString();
     if (!this.verificationService.signUpUser.sId) return false;
-   if(!this.verificationService.signUpUser.isPasswordReset){
-    this.masterService
-      .createPlayerUser(this.verificationService.signUpUser)
-      .subscribe((res: any) => {
-        console.log(res);
-        this.router.navigateByUrl('/app-sign-up-success');
-      });
+    if (!this.verificationService.signUpUser.isPasswordReset) {
+      this.masterService
+        .createPlayerUser(this.verificationService.signUpUser)
+        .subscribe((res: any) => {
+          console.log(res);
+          this.router.navigateByUrl('/app-sign-up-success');
+        });
     }
-    if(this.verificationService.signUpUser.isPasswordReset){
-      this.masterService.createPlayerUser(this.verificationService.signUpUser).subscribe((res)=>{
-        console.log(res);
-        this.router.navigateByUrl('/app-reset-pass-form-step2')
-        
-      })
+    if (this.verificationService.signUpUser.isPasswordReset) {
+      this.masterService
+        .verifyPasswordResetCode({
+          ...this.verificationService.signUpUser,
+          userType: 'PLAYER',
+        })
+        .subscribe((res) => {
+          console.log(res);
+          this.router.navigateByUrl('/app-reset-pass-form-step2');
+        });
     }
     return true;
   }
@@ -84,14 +87,16 @@ export class VerifyFormComponent implements OnInit {
     this.otpForm.reset();
     // this.signUpUser.OTP = undefined;
 
-    this.masterService.verifyPlayerUser(this.verificationService.signUpUser).subscribe(
-      (res:any) => {
-        this.verificationService.signUpUser.sId = res.sId;
-        this.startTimer();
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.masterService
+      .verifyPlayerUser(this.verificationService.signUpUser)
+      .subscribe(
+        (res: any) => {
+          this.verificationService.signUpUser.sId = res.sId;
+          this.startTimer();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 }
