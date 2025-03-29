@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { MasterService } from 'src/app/services/master.service';
 import {
-  SignUpUser,
   VerificationService,
 } from 'src/app/services/verification.service';
+import { SignUpUser } from 'src/types/sign-up-user';
 
 @Component({
   selector: 'app-verify-form',
@@ -22,7 +22,6 @@ import {
   imports: [IonicModule, CommonModule, ReactiveFormsModule],
 })
 export class VerifyFormComponent implements OnInit {
-  signUpUser!: SignUpUser;
   otpForm!: FormGroup;
   retryTimer: number = 40;
   timeInterval: any;
@@ -34,7 +33,8 @@ export class VerifyFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.signUpUser = this.verificationService.signUpUser;
+    console.log(this.verificationService.signUpUser); 
+    
     this.otpIntitiate();
     this.startTimer();
   }
@@ -47,16 +47,25 @@ export class VerifyFormComponent implements OnInit {
 
   proceedToCreateUser() {
     if (!this.otpForm.valid) return false;
-    console.log(this.signUpUser);
+    console.log(this.verificationService.signUpUser);
 
-    this.signUpUser.OTP = this.otpForm.value.otpInput.toString();
-    if (!this.signUpUser.sId) return false;
+    this.verificationService.signUpUser.OTP = this.otpForm.value.otpInput.toString();
+    if (!this.verificationService.signUpUser.sId) return false;
+   if(!this.verificationService.signUpUser.isPasswordReset){
     this.masterService
-      .createPlayerUser(this.signUpUser)
+      .createPlayerUser(this.verificationService.signUpUser)
       .subscribe((res: any) => {
         console.log(res);
         this.router.navigateByUrl('/app-sign-up-success');
       });
+    }
+    if(this.verificationService.signUpUser.isPasswordReset){
+      this.masterService.createPlayerUser(this.verificationService.signUpUser).subscribe((res)=>{
+        console.log(res);
+        this.router.navigateByUrl('/app-reset-pass-form-step2')
+        
+      })
+    }
     return true;
   }
 
@@ -75,9 +84,9 @@ export class VerifyFormComponent implements OnInit {
     this.otpForm.reset();
     // this.signUpUser.OTP = undefined;
 
-    this.masterService.verifyPlayerUser(this.signUpUser).subscribe(
+    this.masterService.verifyPlayerUser(this.verificationService.signUpUser).subscribe(
       (res:any) => {
-        this.signUpUser.sId = res.sId;
+        this.verificationService.signUpUser.sId = res.sId;
         this.startTimer();
       },
       (err) => {

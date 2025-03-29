@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { PlayerUserRequest, VerifyPlayerUserRequest } from 'src/types/player-user-request';
 import { LoginUserRequest } from 'src/types/login-user-request';
 import { PlayerProfileRequest } from 'src/types/player-profile-request';
+import { PasswordResetCode } from 'src/types/password-reset-code-request';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,10 @@ export class MasterService {
 
   verifyPlayerUser(body: VerifyPlayerUserRequest){
     return this.http.post(environment.masterUrl.concat('auth/verify-player-user'), body);
+  }
+
+  generatePasswordResetCode(body:PasswordResetCode){
+    return this.http.post(environment.masterUrl.concat('auth/generate-password-reset-code'), body)
   }
 
   login(body: LoginUserRequest){
