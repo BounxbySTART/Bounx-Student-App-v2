@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterService } from '../services/master.service';
-import { IonContent } from '@ionic/angular/standalone';
-import { IonicModule, ModalController } from '@ionic/angular';
-import { CommonModule } from '@angular/common';
+import {
+  IonContent,
+  IonSearchbar,
+  IonRadioGroup,
+  IonRadio,
+  IonList,
+  IonItem,
+} from '@ionic/angular/standalone';
+import { ModalController } from '@ionic/angular/providers/modal-controller';
 
 export interface Country {
   name: string;
@@ -15,7 +21,14 @@ export interface Country {
   selector: 'app-country-code',
   templateUrl: './country-code.component.html',
   styleUrls: ['./country-code.component.scss'],
-  imports: [IonicModule, CommonModule],
+  imports: [
+    IonRadio,
+    IonContent,
+    IonSearchbar,
+    IonRadioGroup,
+    IonList,
+    IonItem,
+  ],
 })
 export class CountryCodeComponent implements OnInit {
   countries: Country[] = [];
