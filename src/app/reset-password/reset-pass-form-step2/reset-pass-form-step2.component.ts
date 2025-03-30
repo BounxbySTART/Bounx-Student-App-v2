@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   ModalController,
   IonContent,
@@ -14,6 +15,8 @@ import {
   IonInput,
   IonInputPasswordToggle,
 } from '@ionic/angular/standalone';
+import { MasterService } from 'src/app/services/master.service';
+import { VerificationService } from 'src/app/services/verification.service';
 import {
   passwordHasAlphabetValidator,
   passwordHasNumericValidator,
@@ -37,7 +40,8 @@ import {
 export class ResetPassFormStep2Component implements OnInit {
   resetPasswordForm!: FormGroup;
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController, private masterService:MasterService, 
+    private verificationService:VerificationService, private router:Router) {}
 
   ngOnInit() {
     this.initForm();
@@ -47,13 +51,18 @@ export class ResetPassFormStep2Component implements OnInit {
     this.resetPasswordForm = new FormGroup({
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern(
-          '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$'
-        ),
         passwordHasAlphabetValidator(),
         passwordHasNumericValidator(),
         passwordMinlengthValidator(8),
       ]),
     });
+  }
+
+  proceedToSave(){
+    if(!this.verificationService.signUpUser.sId || !this.verificationService.signUpUser.passwordResetToken) return;
+ this.masterService.resetPlayerUserPassword({sId:this.verificationService.signUpUser.sId,
+  passwordResetToken:this.verificationService.signUpUser.passwordResetToken, newPassword : this.resetPasswordForm.value.password}).subscribe((res)=>{
+this.router.navigateByUrl('/app-reset-pass-success');
+ },(err)=>{});
   }
 }

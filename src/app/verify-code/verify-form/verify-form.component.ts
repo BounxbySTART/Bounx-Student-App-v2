@@ -39,7 +39,7 @@ export class VerifyFormComponent implements OnInit {
 
   otpIntitiate() {
     this.otpForm = new FormGroup({
-      otpInput: new FormControl('', [Validators.required]),
+      otpInput: new FormControl('', [Validators.required,Validators.pattern('^[0-9]{6}$')]),
     });
   }
 
@@ -64,8 +64,9 @@ export class VerifyFormComponent implements OnInit {
           ...this.verificationService.signUpUser,
           userType: 'PLAYER',
         })
-        .subscribe((res) => {
+        .subscribe((res:any) => {
           console.log(res);
+          this.verificationService.signUpUser.passwordResetToken = res.passwordResetToken;
           this.router.navigateByUrl('/app-reset-pass-form-step2');
         });
     }

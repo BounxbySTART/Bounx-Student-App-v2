@@ -64,7 +64,7 @@ export class ResetPassFormStep1Component implements OnInit {
   }
   initResetPassword() {
     this.resetPasswordForm = new FormGroup({
-      phoneCode: new FormControl(''),
+      phoneCode: new FormControl('',[Validators.required]),
       phone: new FormControl('', [
         Validators.required,
         Validators.minLength(4),

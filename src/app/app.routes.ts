@@ -13,6 +13,7 @@ import { Tab3Page } from './tab3/tab3.page';
 import { Tab1Page } from './tab1/tab1.page';
 import { Tab2Page } from './tab2/tab2.page';
 import { TabsPage } from './tabs/tabs.page';
+import { ResetPassSuccessComponent } from './reset-password/reset-pass-success/reset-pass-success.component';
 
 export const routes: Routes = [
   {
@@ -78,6 +79,10 @@ export const routes: Routes = [
   {
     path: 'app-reset-pass-form-step2',
     component: ResetPassFormStep2Component,
+  },
+  {
+    path: 'app-reset-pass-success',
+    component: ResetPassSuccessComponent,
   },
   {
     path: 'app-sign-up-success',

@@ -15,7 +15,7 @@
             autocomplete="tel"></ion-input>
         </div>
       </div>
-      <ion-button class="main_cta" (click)="generateCode()">Request Code</ion-button>
+      <ion-button class="main_cta" (click)="generateCode()" [disabled]="!resetPasswordForm.valid">Request Code</ion-button>
     </form>
   </div>
   <app-reset-pass-footer></app-reset-pass-footer>

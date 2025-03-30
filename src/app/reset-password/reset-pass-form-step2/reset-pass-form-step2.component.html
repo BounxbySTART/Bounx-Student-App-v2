@@ -36,7 +36,7 @@
           }
         </div>
       </div>
-      <ion-button class="main_cta">Save</ion-button>
+      <ion-button class="main_cta" (click)="proceedToSave()" [disabled]="!resetPasswordForm.valid">Save</ion-button>
 
     </div>
   </form>

@@ -11,4 +11,5 @@ export interface SignUpUser{
     sId?:string;
     OTP?:string;
     isPasswordReset:boolean;
+    passwordResetToken?:string;
 }

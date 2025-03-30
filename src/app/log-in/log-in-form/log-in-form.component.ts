@@ -21,6 +21,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
+import { passwordHasAlphabetValidator, passwordHasNumericValidator, passwordMinlengthValidator } from 'src/app/validators/create-password-validator';
 
 @Component({
   selector: 'app-log-in-form',
@@ -52,7 +53,7 @@ export class LogInFormComponent implements OnInit {
 
   initiateLoginForm() {
     this.loginForm = new FormGroup({
-      phoneCode: new FormControl(''),
+      phoneCode: new FormControl('',[Validators.required]),
       phone: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
@@ -60,9 +61,9 @@ export class LogInFormComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern(
-          '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$'
-        ),
+        passwordHasAlphabetValidator(),
+        passwordHasNumericValidator(),
+        passwordMinlengthValidator(8)
       ]),
     });
   }
@@ -77,7 +78,10 @@ export class LogInFormComponent implements OnInit {
           this.router.navigateByUrl('/tabs/tab1');
         }
       },
-      (err) => {}
+      (err) => {
+        console.log(err.error.message);
+        
+      }
     );
   }
 
