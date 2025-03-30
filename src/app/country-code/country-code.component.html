@@ -1,7 +1,21 @@
 <ion-content>
   <!-- search text box works but the font color needs to be adjusted-->
   <ion-searchbar placeholder="type here to search country" [debounce]="1000" (ionInput)="searchCountry($event)"
-    (click)="expandModal()"></ion-searchbar>
+    (click)="expandModal()" autocomplete="off"></ion-searchbar>
+  @if (!countries || countries.length==0) {
+  <ion-list [inset]="true">
+    <ion-item>
+      <ion-label> <ion-skeleton-text [animated]="true"></ion-skeleton-text></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> <ion-skeleton-text [animated]="true"></ion-skeleton-text></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label> <ion-skeleton-text [animated]="true"></ion-skeleton-text></ion-label>
+    </ion-item>
+  </ion-list>
+  }
+  @else {
   <ion-list [inset]="true">
     <ion-radio-group (ionChange)="handleChange($event)">
       @for (country of countries; track country.code) {
@@ -12,4 +26,5 @@
       }
     </ion-radio-group>
   </ion-list>
+  }
 </ion-content>

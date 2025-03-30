@@ -8,4 +8,5 @@ import { IonInput, IonIcon } from '@ionic/angular/standalone';
 })
 export class DropdownButtonComponent {
   @Input('label') label!: string;
+  @Input('placeholder') placeholder: string = 'Select';
 }

@@ -99,8 +99,8 @@ export class SignUpFormComponent implements OnInit {
   async openModal() {
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
-      initialBreakpoint: 0.25,
-      breakpoints: [0, 0.25, 0.75],
+      initialBreakpoint: 0.5,
+      breakpoints: [0, 0.5, 0.75],
     });
     modal.present();
 

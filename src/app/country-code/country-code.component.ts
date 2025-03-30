@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MasterService } from '../services/master.service';
 import {
   IonContent,
@@ -7,9 +7,7 @@ import {
   IonRadio,
   IonList,
   IonItem,
-  ModalController
-} from '@ionic/angular/standalone';
-
+  ModalController, IonSkeletonText, IonLabel } from '@ionic/angular/standalone';
 
 export interface Country {
   name: string;
@@ -22,7 +20,7 @@ export interface Country {
   selector: 'app-country-code',
   templateUrl: './country-code.component.html',
   styleUrls: ['./country-code.component.scss'],
-  imports: [
+  imports: [IonLabel, IonSkeletonText, 
     IonRadio,
     IonContent,
     IonSearchbar,
@@ -31,14 +29,14 @@ export interface Country {
     IonItem,
   ],
 })
-export class CountryCodeComponent implements OnInit {
+export class CountryCodeComponent implements AfterViewInit {
   countries: Country[] = [];
   constructor(
     private masterService: MasterService,
     private modalCtrl: ModalController
   ) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.getAllCountries();
   }
   getAllCountries() {

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -6,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+
 import {
   IonLabel,
   IonSelect,
@@ -14,29 +13,27 @@ import {
   IonInput,
   IonInputPasswordToggle,
   IonButton,
-} from '@ionic/angular/standalone';
+  ModalController, IonContent } from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { LogInFooterComponent } from '../log-in-footer/log-in-footer.component';
 import { CountryCodeComponent } from 'src/app/country-code/country-code.component';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
 
 @Component({
   selector: 'app-log-in-form',
   templateUrl: './log-in-form.component.html',
   styleUrls: ['./log-in-form.component.scss'],
-  imports: [
-    /* IonLabel,
-    IonSelect,
-    IonSelectOption,
+  imports: [IonContent, 
+    IonLabel,
     IonInput,
     IonInputPasswordToggle,
-    IonButton */
-    IonicModule,
-    CommonModule,
+    IonButton,
     ReactiveFormsModule,
     LogInFooterComponent,
+    DropdownButtonComponent,
   ],
 })
 export class LogInFormComponent implements OnInit {
@@ -97,8 +94,7 @@ export class LogInFormComponent implements OnInit {
     console.log(data, 'test');
     this.loginForm.patchValue({ phoneCode: data });
   }
-  reDirectToResetPassword(){
+  reDirectToResetPassword() {
     this.router.navigateByUrl('/app-reset-pass-form-step1');
   }
-
 }
