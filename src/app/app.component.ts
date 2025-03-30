@@ -13,17 +13,18 @@ import {
   arrowBackOutline,
   searchOutline,
 } from 'ionicons/icons';
-import { IonApp, IonRouterOutlet } from "@ionic/angular/standalone";
+import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [IonRouterOutlet, IonApp, ],
+  imports: [IonRouterOutlet, IonApp],
 })
 export class AppComponent {
-  constructor() {
+  constructor(private userService: UserService) {
     this.registerIonIcons();
   }
 
@@ -39,7 +40,7 @@ export class AppComponent {
       createOutline,
       chevronDownOutline,
       arrowBackOutline,
-      searchOutline
+      searchOutline,
     });
   }
 }
