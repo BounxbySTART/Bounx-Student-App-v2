@@ -11,7 +11,12 @@ import { IonicModule, NavController } from '@ionic/angular';
 import { MasterService } from 'src/app/services/master.service';
 import { CountryCodeComponent } from '../../country-code/country-code.component';
 import { ModalController } from '@ionic/angular';
-import { createPasswordStrengthValidator, passwordHasAlphabetValidator, passwordHasNumericValidator, passwordMinlengthValidator } from 'src/app/validators/create-password-validator';
+import {
+  createPasswordStrengthValidator,
+  passwordHasAlphabetValidator,
+  passwordHasNumericValidator,
+  passwordMinlengthValidator,
+} from 'src/app/validators/create-password-validator';
 import { Router } from '@angular/router';
 import { VerificationService } from 'src/app/services/verification.service';
 import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
@@ -24,7 +29,7 @@ import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdow
     IonicModule,
     CommonModule,
     ReactiveFormsModule,
-    DropdownButtonComponent
+    DropdownButtonComponent,
     /*
     IonCheckbox,
     IonInput,
@@ -52,7 +57,6 @@ export class SignUpFormComponent implements OnInit {
   }
 
   initForm() {
-
     this.signUpFormGroup = new FormGroup({
       firstName: new FormControl('', [
         Validators.required,
@@ -70,7 +74,7 @@ export class SignUpFormComponent implements OnInit {
         ),
         passwordHasAlphabetValidator(),
         passwordHasNumericValidator(),
-        passwordMinlengthValidator(8)
+        passwordMinlengthValidator(8),
       ]),
       phoneCode: new FormControl(''),
       phone: new FormControl('', [
@@ -84,19 +88,21 @@ export class SignUpFormComponent implements OnInit {
 
   verify() {
     let collectedData = this.signUpFormGroup.value;
-  
-    this.masterService
-      .verifyPlayerUser(collectedData)
-      .subscribe((res: any) => {
-        this.verficationService.signUpUser = collectedData;
-       this.verficationService.signUpUser.sId = res.sId;
-       this.verficationService.signUpUser.isPasswordReset = false;
 
-        this.router.navigateByUrl('/app-verify-form')});
-        
+    this.masterService.verifyPlayerUser(collectedData).subscribe((res: any) => {
+      this.verficationService.signUpUser = collectedData;
+      this.verficationService.signUpUser.sId = res.sId;
+      this.verficationService.signUpUser.isPasswordReset = false;
+
+      this.router.navigateByUrl('/app-verify-form');
+    });
   }
 
-  async openModal() {
+  async openModal(ev: Event) {
+    ev.preventDefault();
+    ev.stopImmediatePropagation();
+    ev.stopPropagation();
+
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
       initialBreakpoint: 0.5,
@@ -108,9 +114,5 @@ export class SignUpFormComponent implements OnInit {
 
     console.log(data, 'test');
     this.signUpFormGroup.patchValue({ phoneCode: data });
-  
   }
-  
-
-
 }

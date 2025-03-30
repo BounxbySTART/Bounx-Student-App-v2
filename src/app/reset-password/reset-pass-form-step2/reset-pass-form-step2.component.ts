@@ -40,8 +40,12 @@ import {
 export class ResetPassFormStep2Component implements OnInit {
   resetPasswordForm!: FormGroup;
 
-  constructor(private modalCtrl: ModalController, private masterService:MasterService, 
-    private verificationService:VerificationService, private router:Router) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private masterService: MasterService,
+    private verificationService: VerificationService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -58,11 +62,24 @@ export class ResetPassFormStep2Component implements OnInit {
     });
   }
 
-  proceedToSave(){
-    if(!this.verificationService.signUpUser.sId || !this.verificationService.signUpUser.passwordResetToken) return;
- this.masterService.resetPlayerUserPassword({sId:this.verificationService.signUpUser.sId,
-  passwordResetToken:this.verificationService.signUpUser.passwordResetToken, newPassword : this.resetPasswordForm.value.password}).subscribe((res)=>{
-this.router.navigateByUrl('/app-reset-pass-success');
- },(err)=>{});
+  proceedToSave() {
+    if (
+      !this.verificationService.signUpUser.sId ||
+      !this.verificationService.signUpUser.passwordResetToken
+    )
+      return;
+    this.masterService
+      .resetPlayerUserPassword({
+        sId: this.verificationService.signUpUser.sId,
+        passwordResetToken:
+          this.verificationService.signUpUser.passwordResetToken,
+        newPassword: this.resetPasswordForm.value.password,
+      })
+      .subscribe(
+        (res) => {
+          this.router.navigateByUrl('/app-reset-pass-success');
+        },
+        (err) => {}
+      );
   }
 }
