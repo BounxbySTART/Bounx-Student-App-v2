@@ -25,7 +25,7 @@ export class VerifyFormComponent implements OnInit {
   timeInterval: any;
 
   constructor(
-    private verificationService: VerificationService,
+    public verificationService: VerificationService,
     private masterService: MasterService,
     private router: Router
   ) {}
