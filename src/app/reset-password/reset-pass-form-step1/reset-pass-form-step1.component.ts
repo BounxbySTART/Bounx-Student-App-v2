@@ -49,7 +49,11 @@ export class ResetPassFormStep1Component implements OnInit {
     this.initResetPassword();
   }
 
-  async openModal() {
+  async openModal(ev: Event) {
+    ev.preventDefault();
+    ev.stopImmediatePropagation();
+    ev.stopPropagation();
+
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
       initialBreakpoint: 0.25,
@@ -64,7 +68,7 @@ export class ResetPassFormStep1Component implements OnInit {
   }
   initResetPassword() {
     this.resetPasswordForm = new FormGroup({
-      phoneCode: new FormControl('',[Validators.required]),
+      phoneCode: new FormControl('', [Validators.required]),
       phone: new FormControl('', [
         Validators.required,
         Validators.minLength(4),

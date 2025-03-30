@@ -7,7 +7,7 @@
       <div class="form_cnt">
         <div class="form_item">
           <ion-label>Phone Number *</ion-label>
-          <app-dropdown-button (click)="openModal()" [label]="loginForm.get('phoneCode')?.value"
+          <app-dropdown-button (click)="openModal($event)" [label]="loginForm.get('phoneCode')?.value"
             placeholder="Code"></app-dropdown-button>
           <ion-input [clearInput]="true" placeholder="Phone Number" type="tel" formControlName="phone"
             autocomplete="tel-national"></ion-input>

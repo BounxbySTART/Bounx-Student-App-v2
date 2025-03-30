@@ -85,7 +85,11 @@ export class LogInFormComponent implements OnInit {
     );
   }
 
-  async openModal() {
+  async openModal(ev: Event) {
+    ev.preventDefault();
+    ev.stopImmediatePropagation();
+    ev.stopPropagation();
+    
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
       initialBreakpoint: 0.25,
