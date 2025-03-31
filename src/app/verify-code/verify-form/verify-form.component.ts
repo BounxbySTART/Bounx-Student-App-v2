@@ -23,6 +23,29 @@ import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 export class VerifyFormComponent implements OnInit {
   readonly otpMaskOptions: MaskitoOptions = {
     mask: [/\d/, ' ', /\d/, ' ', /\d/, ' ', /\d/, ' ', /\d/, ' ', /\d/],
+    postprocessors: [
+      ({ value, selection }, initialElementState) => {
+        console.log(value.replace(/\ /g, ''));
+
+        if (value.length == 11 && /^[0-9]{6}$/.test(value.replace(/\ /g, ''))) {
+          this.otpForm.get('otpInput')?.clearValidators();
+          this.otpForm.get('otpInput')?.updateValueAndValidity();
+        } else {
+          this.otpForm
+            .get('otpInput')
+            ?.setValidators([
+              Validators.required,
+              Validators.pattern('^[0-9]{6}$'),
+            ]);
+          this.otpForm.get('otpInput')?.updateValueAndValidity();
+        }
+
+        return {
+          value,
+          selection,
+        };
+      },
+    ],
   };
   readonly maskPredicate: MaskitoElementPredicate = async (el) =>
     (el as HTMLIonInputElement).getInputElement();
@@ -56,8 +79,9 @@ export class VerifyFormComponent implements OnInit {
     if (!this.otpForm.valid) return false;
     console.log(this.verificationService.signUpUser);
 
-    this.verificationService.signUpUser.OTP =
-      this.otpForm.value.otpInput.toString();
+    this.verificationService.signUpUser.OTP = this.otpForm.value.otpInput
+      .toString()
+      .replace(/\ /g, '');
     if (!this.verificationService.signUpUser.sId) return false;
     if (!this.verificationService.signUpUser.isPasswordReset) {
       this.masterService
