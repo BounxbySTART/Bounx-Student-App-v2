@@ -11,15 +11,21 @@ import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { MasterService } from 'src/app/services/master.service';
 import { VerificationService } from 'src/app/services/verification.service';
-import { SignUpUser } from 'src/types/sign-up-user';
+import { MaskitoDirective } from '@maskito/angular';
+import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 
 @Component({
   selector: 'app-verify-form',
   templateUrl: './verify-form.component.html',
   styleUrls: ['./verify-form.component.scss'],
-  imports: [IonicModule, CommonModule, ReactiveFormsModule],
+  imports: [IonicModule, CommonModule, ReactiveFormsModule, MaskitoDirective],
 })
 export class VerifyFormComponent implements OnInit {
+  readonly otpMaskOptions: MaskitoOptions = {
+    mask: [/\d/, ' ', /\d/, ' ', /\d/, ' ', /\d/, ' ', /\d/, ' ', /\d/],
+  };
+  readonly maskPredicate: MaskitoElementPredicate = async (el) =>
+    (el as HTMLIonInputElement).getInputElement();
   otpForm!: FormGroup;
   retryTimer: number = 40;
   timeInterval: any;
@@ -39,7 +45,10 @@ export class VerifyFormComponent implements OnInit {
 
   otpIntitiate() {
     this.otpForm = new FormGroup({
-      otpInput: new FormControl('', [Validators.required,Validators.pattern('^[0-9]{6}$')]),
+      otpInput: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]{6}$'),
+      ]),
     });
   }
 
@@ -64,9 +73,10 @@ export class VerifyFormComponent implements OnInit {
           ...this.verificationService.signUpUser,
           userType: 'PLAYER',
         })
-        .subscribe((res:any) => {
+        .subscribe((res: any) => {
           console.log(res);
-          this.verificationService.signUpUser.passwordResetToken = res.passwordResetToken;
+          this.verificationService.signUpUser.passwordResetToken =
+            res.passwordResetToken;
           this.router.navigateByUrl('/app-reset-pass-form-step2');
         });
     }
