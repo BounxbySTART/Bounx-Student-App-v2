@@ -8,11 +8,11 @@
       <div class="form_cnt">
         <div class="form_item">
           <ion-input label="First Name *" type="text" labelPlacement="stacked" formControlName="firstName"
-            [clearInput]="true" autocomplete="given-name"></ion-input>
+            [clearInput]="true" autocomplete="given-name" [maskito]="nameMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
         </div>
         <div class="form_item">
           <ion-input label="Last Name *" type="text" labelPlacement="stacked" formControlName="lastName"
-            [clearInput]="true" autocomplete="family-name"></ion-input>
+            [clearInput]="true" autocomplete="family-name" [maskito]="nameMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
         </div>
         <div class="form_item">
           <ion-input label="Email *" type="email" labelPlacement="stacked" formControlName="email" [clearInput]="true"

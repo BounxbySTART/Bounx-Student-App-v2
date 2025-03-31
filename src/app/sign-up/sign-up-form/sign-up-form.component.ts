@@ -12,14 +12,13 @@ import {
   IonInputPasswordToggle,
   IonIcon,
   IonLabel,
-  IonSelect,
-  IonSelectOption,
   IonButton,
   IonContent,
+  ModalController,
 } from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { CountryCodeComponent } from '../../country-code/country-code.component';
-import { ModalController } from '@ionic/angular';
+
 import {
   passwordHasAlphabetValidator,
   passwordHasNumericValidator,
@@ -54,6 +53,10 @@ export class SignUpFormComponent implements OnInit {
   readonly phoneNumberMaskOptions: MaskitoOptions = {
     mask: /^\d{0,15}$/,
   };
+  readonly nameMaskOptions: MaskitoOptions = {
+    // mask: /^(\w+\ ?\w*)$/
+    mask: /^\w+(\ |\w)*$/,
+  };
   readonly maskPredicate: MaskitoElementPredicate = async (el) =>
     (el as HTMLIonInputElement).getInputElement();
 
@@ -83,9 +86,6 @@ export class SignUpFormComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern(
-          '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$'
-        ),
         passwordHasAlphabetValidator(),
         passwordHasNumericValidator(),
         passwordMinlengthValidator(8),
@@ -101,7 +101,11 @@ export class SignUpFormComponent implements OnInit {
   }
 
   verify() {
-    let collectedData = this.signUpFormGroup.value;
+    let collectedData = {
+      ...this.signUpFormGroup.value,
+      firstName: this.signUpFormGroup.value.firstName.trim(),
+      lastName: this.signUpFormGroup.value.lastName.trim(),
+    };
 
     this.masterService.verifyPlayerUser(collectedData).subscribe((res: any) => {
       this.verficationService.signUpUser = collectedData;
