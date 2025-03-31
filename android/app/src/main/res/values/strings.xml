@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">bounx-student-v-2</string>
+    <string name="title_activity_main">bounx-student-v-2</string>
+    <string name="package_name">com.bounx.student</string>
+    <string name="custom_url_scheme">com.bounx.student</string>
+</resources>
