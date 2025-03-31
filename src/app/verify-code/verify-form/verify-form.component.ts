@@ -23,7 +23,7 @@ import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 export class VerifyFormComponent implements OnInit {
   readonly otpMaskOptions: MaskitoOptions = {
     mask: [/\d/, ' ', /\d/, ' ', /\d/, ' ', /\d/, ' ', /\d/, ' ', /\d/],
-    postprocessors: [
+    /* postprocessors: [
       ({ value, selection }, initialElementState) => {
         console.log(value.replace(/\ /g, ''));
 
@@ -45,7 +45,7 @@ export class VerifyFormComponent implements OnInit {
           selection,
         };
       },
-    ],
+    ], */
   };
   readonly maskPredicate: MaskitoElementPredicate = async (el) =>
     (el as HTMLIonInputElement).getInputElement();
@@ -70,7 +70,7 @@ export class VerifyFormComponent implements OnInit {
     this.otpForm = new FormGroup({
       otpInput: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[0-9]{6}$'),
+        Validators.pattern('^[0-9] [0-9] [0-9] [0-9] [0-9] [0-9]$'),
       ]),
     });
   }
