@@ -41,7 +41,7 @@ import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 })
 export class ResetPassFormStep1Component implements OnInit {
   readonly phoneNumberMaskOptions: MaskitoOptions = {
-    mask: /^\d{0,11}$/,
+    mask: /^\d{0,15}$/,
   };
   readonly maskPredicate: MaskitoElementPredicate = async (el) =>
     (el as HTMLIonInputElement).getInputElement();

@@ -49,7 +49,7 @@ import { MaskitoDirective } from '@maskito/angular';
 })
 export class LogInFormComponent implements OnInit {
   readonly phoneNumberMaskOptions: MaskitoOptions = {
-    mask: /^\d{0,11}$/,
+    mask: /^\d{0,15}$/,
   };
   readonly maskPredicate: MaskitoElementPredicate = async (el) =>
     (el as HTMLIonInputElement).getInputElement();
