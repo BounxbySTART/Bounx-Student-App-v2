@@ -1,18 +1,26 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { IonicModule, NavController } from '@ionic/angular';
+import {
+  IonCheckbox,
+  IonInput,
+  IonInputPasswordToggle,
+  IonIcon,
+  IonLabel,
+  IonSelect,
+  IonSelectOption,
+  IonButton,
+  IonContent,
+} from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { CountryCodeComponent } from '../../country-code/country-code.component';
 import { ModalController } from '@ionic/angular';
 import {
-  createPasswordStrengthValidator,
   passwordHasAlphabetValidator,
   passwordHasNumericValidator,
   passwordMinlengthValidator,
@@ -20,29 +28,35 @@ import {
 import { Router } from '@angular/router';
 import { VerificationService } from 'src/app/services/verification.service';
 import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
+import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
+import { MaskitoDirective } from '@maskito/angular';
 
 @Component({
   selector: 'app-sign-up-form',
   templateUrl: './sign-up-form.component.html',
   styleUrls: ['./sign-up-form.component.scss'],
   imports: [
-    IonicModule,
-    CommonModule,
+    IonContent,
+    NgClass,
     ReactiveFormsModule,
     DropdownButtonComponent,
-    /*
     IonCheckbox,
     IonInput,
     IonInputPasswordToggle,
     IonIcon,
     IonLabel,
-    IonSelect,
-    IonSelectOption,
-    IonButton */
+    IonButton,
+    MaskitoDirective,
   ],
   providers: [MasterService],
 })
 export class SignUpFormComponent implements OnInit {
+  readonly phoneNumberMaskOptions: MaskitoOptions = {
+    mask: /^\d{0,11}$/,
+  };
+  readonly maskPredicate: MaskitoElementPredicate = async (el) =>
+    (el as HTMLIonInputElement).getInputElement();
+
   signUpFormGroup!: FormGroup;
 
   constructor(

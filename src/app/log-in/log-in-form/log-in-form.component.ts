@@ -13,7 +13,9 @@ import {
   IonInput,
   IonInputPasswordToggle,
   IonButton,
-  ModalController, IonContent } from '@ionic/angular/standalone';
+  ModalController,
+  IonContent,
+} from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { LogInFooterComponent } from '../log-in-footer/log-in-footer.component';
 import { CountryCodeComponent } from 'src/app/country-code/country-code.component';
@@ -21,13 +23,20 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
-import { passwordHasAlphabetValidator, passwordHasNumericValidator, passwordMinlengthValidator } from 'src/app/validators/create-password-validator';
+import {
+  passwordHasAlphabetValidator,
+  passwordHasNumericValidator,
+  passwordMinlengthValidator,
+} from 'src/app/validators/create-password-validator';
+import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
+import { MaskitoDirective } from '@maskito/angular';
 
 @Component({
   selector: 'app-log-in-form',
   templateUrl: './log-in-form.component.html',
   styleUrls: ['./log-in-form.component.scss'],
-  imports: [IonContent, 
+  imports: [
+    IonContent,
     IonLabel,
     IonInput,
     IonInputPasswordToggle,
@@ -35,9 +44,15 @@ import { passwordHasAlphabetValidator, passwordHasNumericValidator, passwordMinl
     ReactiveFormsModule,
     LogInFooterComponent,
     DropdownButtonComponent,
+    MaskitoDirective,
   ],
 })
 export class LogInFormComponent implements OnInit {
+  readonly phoneNumberMaskOptions: MaskitoOptions = {
+    mask: /^\d{0,11}$/,
+  };
+  readonly maskPredicate: MaskitoElementPredicate = async (el) =>
+    (el as HTMLIonInputElement).getInputElement();
   loginForm!: FormGroup;
   constructor(
     private masterService: MasterService,
@@ -53,7 +68,7 @@ export class LogInFormComponent implements OnInit {
 
   initiateLoginForm() {
     this.loginForm = new FormGroup({
-      phoneCode: new FormControl('',[Validators.required]),
+      phoneCode: new FormControl('', [Validators.required]),
       phone: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
@@ -63,7 +78,7 @@ export class LogInFormComponent implements OnInit {
         Validators.required,
         passwordHasAlphabetValidator(),
         passwordHasNumericValidator(),
-        passwordMinlengthValidator(8)
+        passwordMinlengthValidator(8),
       ]),
     });
   }
@@ -80,7 +95,6 @@ export class LogInFormComponent implements OnInit {
       },
       (err) => {
         console.log(err.error.message);
-        
       }
     );
   }
@@ -89,7 +103,7 @@ export class LogInFormComponent implements OnInit {
     ev.preventDefault();
     ev.stopImmediatePropagation();
     ev.stopPropagation();
-    
+
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
       initialBreakpoint: 0.25,

@@ -20,6 +20,8 @@ import { ResetPassFooterComponent } from '../reset-pass-footer/reset-pass-footer
 import { Router } from '@angular/router';
 import { MasterService } from 'src/app/services/master.service';
 import { VerificationService } from 'src/app/services/verification.service';
+import { MaskitoDirective } from '@maskito/angular';
+import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 
 @Component({
   selector: 'app-reset-pass-form-step1',
@@ -34,9 +36,15 @@ import { VerificationService } from 'src/app/services/verification.service';
     DropdownButtonComponent,
     ResetPassFooterComponent,
     ReactiveFormsModule,
+    MaskitoDirective,
   ],
 })
 export class ResetPassFormStep1Component implements OnInit {
+  readonly phoneNumberMaskOptions: MaskitoOptions = {
+    mask: /^\d{0,11}$/,
+  };
+  readonly maskPredicate: MaskitoElementPredicate = async (el) =>
+    (el as HTMLIonInputElement).getInputElement();
   resetPasswordForm!: FormGroup;
   constructor(
     private modalCtrl: ModalController,

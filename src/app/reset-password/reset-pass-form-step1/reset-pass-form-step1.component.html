@@ -12,10 +12,11 @@
           <app-dropdown-button (click)="openModal($event)" [label]="resetPasswordForm.get('phoneCode')?.value"
             placeholder="Code"></app-dropdown-button>
           <ion-input [clearInput]="true" formControlName="phone" placeholder="Phone Number" type="tel"
-            autocomplete="tel"></ion-input>
+            autocomplete="tel" [maskito]="phoneNumberMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
         </div>
       </div>
-      <ion-button class="main_cta" (click)="generateCode()" [disabled]="!resetPasswordForm.valid">Request Code</ion-button>
+      <ion-button class="main_cta" (click)="generateCode()" [disabled]="!resetPasswordForm.valid">Request
+        Code</ion-button>
     </form>
   </div>
   <app-reset-pass-footer></app-reset-pass-footer>
