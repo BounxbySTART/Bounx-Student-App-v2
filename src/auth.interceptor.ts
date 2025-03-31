@@ -67,6 +67,7 @@ export function authInterceptor(
           );
         }
       }
+      if (err.status === 424) authService.logout();
       return throwError(err);
     })
   );

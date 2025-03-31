@@ -16,8 +16,10 @@ export class AuthService {
   }
 
   setRefreshToken(token: string) {
-    localStorage.setItem('refreshToken', token);
-    this.refreshToken = token;
+    if (token) {
+      localStorage.setItem('refreshToken', token);
+      this.refreshToken = token;
+    }
   }
 
   refreshAuthToken(): Observable<{ accessToken: string }> {
@@ -25,12 +27,11 @@ export class AuthService {
     // Call your API to refresh the token
     return this.http.post<{ accessToken: string }>(
       `${environment.masterUrl}auth/refresh-token`,
-      { refreshToken: this.refreshAuthToken }
+      { refreshToken: this.refreshToken }
     );
   }
   logout() {
-    console.log(`logout`);
-
+    localStorage.removeItem('refreshToken');
     this.router.navigateByUrl('/log-in');
   }
 }
