@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IonIcon, IonButton } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
+import { IonIcon, IonButton,IonContent} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-reset-pass-success',
@@ -7,13 +8,33 @@ import { IonIcon, IonButton } from '@ionic/angular/standalone';
   styleUrls: ['./reset-pass-success.component.scss'],
   imports: [
     IonIcon,
-    IonButton
+    IonButton,
+    IonContent
   ],
 })
 export class ResetPassSuccessComponent  implements OnInit {
+  retryTimer: number = 8;
+  constructor(private router:Router) { }
 
-  constructor() { }
+  ngOnInit() {
+    this.startTimer();
+  }
 
-  ngOnInit() {}
+
+  startTimer() {
+    this.retryTimer = 8;
+    let timeInterval = setInterval(() => {
+      this.retryTimer--;
+      if (this.retryTimer <= 0) {
+        clearInterval(timeInterval);
+        this.router.navigateByUrl('/tabs/tab1');
+       
+      }
+    }, 1000);
+  }
+
+  proceedToLogin(){
+    this.router.navigateByUrl('/tabs/tab1');
+  }
 
 }

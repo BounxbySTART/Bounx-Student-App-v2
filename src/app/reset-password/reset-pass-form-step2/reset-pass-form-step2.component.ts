@@ -22,6 +22,7 @@ import {
   passwordHasNumericValidator,
   passwordMinlengthValidator,
 } from 'src/app/validators/create-password-validator';
+import { ResetPassFooterComponent } from "../reset-pass-footer/reset-pass-footer.component";
 
 @Component({
   selector: 'app-reset-pass-form-step2',
@@ -35,7 +36,8 @@ import {
     IonInput,
     IonInputPasswordToggle,
     NgClass,
-  ],
+    ResetPassFooterComponent
+],
 })
 export class ResetPassFormStep2Component implements OnInit {
   resetPasswordForm!: FormGroup;
