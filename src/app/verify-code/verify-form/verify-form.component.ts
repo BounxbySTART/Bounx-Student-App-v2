@@ -13,6 +13,8 @@ import { MasterService } from 'src/app/services/master.service';
 import { VerificationService } from 'src/app/services/verification.service';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
+import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-verify-form',
@@ -56,7 +58,9 @@ export class VerifyFormComponent implements OnInit {
   constructor(
     public verificationService: VerificationService,
     private masterService: MasterService,
-    private router: Router
+    private router: Router,
+    private userService:UserService,
+    private authService:AuthService
   ) {}
 
   ngOnInit() {
@@ -88,7 +92,11 @@ export class VerifyFormComponent implements OnInit {
         .createPlayerUser(this.verificationService.signUpUser)
         .subscribe((res: any) => {
           console.log(res);
-          this.router.navigateByUrl('/app-sign-up-success');
+          
+            this.userService.setUser(res);
+            this.authService.authToken = res.accessToken;
+            this.authService.setRefreshToken(res.refreshToken);
+            this.router.navigateByUrl('/app-sign-up-success');
         });
     }
     if (this.verificationService.signUpUser.isPasswordReset) {

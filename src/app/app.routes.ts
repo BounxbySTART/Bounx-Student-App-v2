@@ -18,9 +18,14 @@ import { ResetPassSuccessComponent } from './reset-password/reset-pass-success/r
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/log-in',
     pathMatch: 'full',
   },
+ /*  {
+    path: '',
+    redirectTo: '/tabs/tab1',
+    pathMatch: 'full',
+  }, */
   {
     path: 'tabs',
     component: TabsPage,
