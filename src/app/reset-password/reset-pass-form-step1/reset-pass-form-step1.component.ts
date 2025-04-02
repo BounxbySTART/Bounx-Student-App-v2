@@ -13,6 +13,7 @@ import {
   IonLabel,
   IonButton,
   IonInput,
+  IonText
 } from '@ionic/angular/standalone';
 import { CountryCodeComponent } from 'src/app/country-code/country-code.component';
 import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
@@ -22,6 +23,7 @@ import { MasterService } from 'src/app/services/master.service';
 import { VerificationService } from 'src/app/services/verification.service';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
+
 
 @Component({
   selector: 'app-reset-pass-form-step1',
@@ -33,6 +35,7 @@ import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
     IonLabel,
     IonContent,
     IonIcon,
+    IonText,
     DropdownButtonComponent,
     ResetPassFooterComponent,
     ReactiveFormsModule,
@@ -46,6 +49,7 @@ export class ResetPassFormStep1Component implements OnInit {
   readonly maskPredicate: MaskitoElementPredicate = async (el) =>
     (el as HTMLIonInputElement).getInputElement();
   resetPasswordForm!: FormGroup;
+  authenticationError:any;
   constructor(
     private modalCtrl: ModalController,
     private router: Router,
@@ -102,6 +106,10 @@ export class ResetPassFormStep1Component implements OnInit {
           sId: res.sId,
         };
         this.router.navigateByUrl('/app-verify-form');
+      },(err:any)=>{
+        this.authenticationError = err.error.message;
+        console.log(err);
+        
       });
   }
 }

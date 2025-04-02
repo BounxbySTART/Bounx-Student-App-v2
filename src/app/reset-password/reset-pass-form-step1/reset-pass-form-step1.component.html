@@ -14,6 +14,7 @@
           <ion-input [clearInput]="true" formControlName="phone" placeholder="Phone Number" type="tel"
             autocomplete="tel" [maskito]="phoneNumberMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
         </div>
+        <ion-text color="danger">{{authenticationError}}</ion-text>
       </div>
       <ion-button class="main_cta" (click)="generateCode()" [disabled]="!resetPasswordForm.valid">Request
         Code</ion-button>

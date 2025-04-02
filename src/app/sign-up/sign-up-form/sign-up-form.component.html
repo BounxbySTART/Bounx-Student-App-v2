@@ -41,7 +41,11 @@
           <ion-input [clearInput]="true" formControlName="phone" placeholder="Phone Number" type="tel"
             autocomplete="tel" [maskito]="phoneNumberMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
         </div>
+        @if (authenticationError && authenticationError.message){
+          <ion-text color="danger">{{authenticationError.message}}</ion-text>
+          }
       </div>
+     
       <div class="form_cnt">
         <div class="form_item">
           <ion-checkbox labelPlacement="end" formControlName="isTermsAgreed">

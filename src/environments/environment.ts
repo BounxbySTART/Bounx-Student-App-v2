@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  masterUrl: "https://dev.technotrant.com/"
+  // masterUrl: "https://dev.technotrant.com/"
+  masterUrl: "http://localhost:8080/"
 };
 
 /*

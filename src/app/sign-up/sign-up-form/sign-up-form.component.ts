@@ -1,4 +1,4 @@
-import { CommonModule, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -15,6 +15,7 @@ import {
   IonButton,
   IonContent,
   ModalController,
+  IonText
 } from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { CountryCodeComponent } from '../../country-code/country-code.component';
@@ -46,6 +47,7 @@ import { MaskitoDirective } from '@maskito/angular';
     IonLabel,
     IonButton,
     MaskitoDirective,
+    IonText,
   ],
   providers: [MasterService],
 })
@@ -61,6 +63,7 @@ export class SignUpFormComponent implements OnInit {
     (el as HTMLIonInputElement).getInputElement();
 
   signUpFormGroup!: FormGroup;
+  authenticationError:any;
 
   constructor(
     private masterService: MasterService,
@@ -113,6 +116,9 @@ export class SignUpFormComponent implements OnInit {
       this.verficationService.signUpUser.isPasswordReset = false;
 
       this.router.navigateByUrl('/app-verify-form');
+    },(err:any)=>{
+     this.authenticationError= err.error;
+          
     });
   }
 

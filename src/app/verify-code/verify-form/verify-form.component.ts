@@ -97,6 +97,9 @@ export class VerifyFormComponent implements OnInit {
             this.authService.authToken = res.accessToken;
             this.authService.setRefreshToken(res.refreshToken);
             this.router.navigateByUrl('/app-sign-up-success');
+        },(err)=>{
+          console.log(err,"test");
+          
         });
     }
     if (this.verificationService.signUpUser.isPasswordReset) {

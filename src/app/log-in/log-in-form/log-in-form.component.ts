@@ -15,6 +15,7 @@ import {
   IonButton,
   ModalController,
   IonContent,
+  IonText
 } from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { LogInFooterComponent } from '../log-in-footer/log-in-footer.component';
@@ -45,6 +46,7 @@ import { MaskitoDirective } from '@maskito/angular';
     LogInFooterComponent,
     DropdownButtonComponent,
     MaskitoDirective,
+    IonText,
   ],
 })
 export class LogInFormComponent implements OnInit {
@@ -54,6 +56,7 @@ export class LogInFormComponent implements OnInit {
   readonly maskPredicate: MaskitoElementPredicate = async (el) =>
     (el as HTMLIonInputElement).getInputElement();
   loginForm!: FormGroup;
+  authenticationError:any;
   constructor(
     private masterService: MasterService,
     private modalCtrl: ModalController,
@@ -94,6 +97,7 @@ export class LogInFormComponent implements OnInit {
         }
       },
       (err) => {
+        this.authenticationError = err.error;
         console.log(err.error.message);
       }
     );
