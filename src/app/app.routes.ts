@@ -14,11 +14,12 @@ import { Tab1Page } from './tab1/tab1.page';
 import { Tab2Page } from './tab2/tab2.page';
 import { TabsPage } from './tabs/tabs.page';
 import { ResetPassSuccessComponent } from './reset-password/reset-pass-success/reset-pass-success.component';
+import { IntroContentComponent } from './intro/intro-content/intro-content.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/log-in',
+    redirectTo: '/app-intro-content',
     pathMatch: 'full',
   },
  /*  {
@@ -93,4 +94,8 @@ export const routes: Routes = [
     path: 'app-sign-up-success',
     component: SignUpSuccessComponent,
   },
+  {
+    path: 'app-intro-content',
+    component: IntroContentComponent,
+  }
 ];

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IntroSlideshowComponent } from '../intro-slideshow/intro-slideshow.component';
 import { IntroFooterComponent } from '../intro-footer/intro-footer.component';
+import { IonContent } from '@ionic/angular/standalone';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intro-content',
@@ -8,12 +10,13 @@ import { IntroFooterComponent } from '../intro-footer/intro-footer.component';
   styleUrls: ['./intro-content.component.scss'],
   imports: [
     IntroSlideshowComponent,
-    IntroFooterComponent
+    IntroFooterComponent,
+    IonContent
   ]
 })
 export class IntroContentComponent  implements OnInit {
 
-  constructor() { }
+  constructor( private router:Router) { }
 
   ngOnInit() {}
 
