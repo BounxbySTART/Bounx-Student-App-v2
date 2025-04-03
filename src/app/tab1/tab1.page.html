@@ -67,16 +67,6 @@
 
 
 
-<!-- •••••• DASHBOARD •••••• -->
-<ion-content [fullscreen]="true" class="Dashboard dark_page">
-  <app-onboarding-start></app-onboarding-start>
-  <!-- <app-onboarding-completed></app-onboarding-completed> -->
-  <app-onboarding-list-profile></app-onboarding-list-profile>
-</ion-content>
-
-
-
-
 <!-- •••••• ONBOARDING •••••• -->
 <!-- <ion-content [fullscreen]="true" class="Onboarding light_page centerise_page"> -->
 <!-- <app-onboarding-step1></app-onboarding-step1> -->
@@ -86,3 +76,27 @@
 <!-- <app-onboarding-favorite-tray></app-onboarding-favorite-tray> -->
 <!-- <app-onboarding-step4></app-onboarding-step4> -->
 <!-- </ion-content> -->
+
+
+
+
+<!-- •••••• DASHBOARD - ONBOARDING •••••• -->
+<!-- <ion-content [fullscreen]="true" class="Dashboard dark_page">
+  <app-onboarding-start></app-onboarding-start>
+  <app-onboarding-completed></app-onboarding-completed>
+  <app-onboarding-list-profile></app-onboarding-list-profile>
+</ion-content> -->
+
+
+
+
+<!-- •••••• DASHBOARD •••••• -->
+<ion-content [fullscreen]="true" class="Dashboard dark_page">
+  <app-bounx-logo-icon></app-bounx-logo-icon>
+
+  <app-profile-selector></app-profile-selector>
+  <app-my-favorites></app-my-favorites>
+  <div class="div_slandedlines"></div>
+  <app-term-badge></app-term-badge>
+  <app-my-bookings></app-my-bookings>
+</ion-content>

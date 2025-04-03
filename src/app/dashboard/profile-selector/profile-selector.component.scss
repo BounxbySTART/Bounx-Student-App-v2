@@ -1,0 +1,134 @@
+.ProfileSelect {
+
+    .ProfileSelect_cnt {
+
+        .profiles {
+
+            .item {
+
+                .item_cnt {
+                    display: flex;
+
+                    .profile_pic {
+                        border: 1px var(--grey-400) solid;
+                        border-radius: 50%;
+                        overflow: hidden;
+                    }
+
+                    .profile_dete {
+
+                        .profile_name {
+                            text-transform: uppercase;
+                            overflow-wrap: anywhere;
+                        }
+
+                        .gamifi_data {
+
+                            .ave_energy {
+                                font-size: 0.75rem;
+                                line-height: 1em;
+                                font-weight: 600;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+
+                                &::after {
+                                    content: '';
+                                    margin-left: 5px;
+                                    width: 20px;
+                                    height: 20px;
+                                    background: url(../../../assets/icon/icon_energy_limedarkgrey.svg) center center no-repeat;
+                                    display: block;
+                                }
+                            }
+
+                            .term_xp {
+                                padding: 5px 15px;
+                                font-size: 0.875rem;
+                                line-height: 1em;
+                                font-weight: 700;
+                                text-transform: uppercase;
+                                color: #000000;
+                                background-color: var(--primary-lime);
+                                border-radius: 30px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+
+                                &::after {
+                                    content: 'XP';
+                                    margin: 2px 0 0 3px;
+                                    font-size: 0.625rem;
+                                    line-height: 1em;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+
+                        .btn_viewProfile {
+                            margin-top: 15px;
+                            width: 30px;
+                            height: 30px;
+                            background: #ffffff;
+                            border-radius: 50%;
+                            display: inline-flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            ion-icon {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.one_profile {
+
+            .profiles {
+                padding: 40px 11.5% 30px;
+    
+                .item {
+    
+                    .item_cnt {
+    
+                        .profile_pic {
+                            min-width: 100px;
+                            width: 100px;
+                            height: 100px;
+                        }
+    
+                        .profile_dete {
+                            margin: 0 20px;
+    
+                            .profile_name {
+                                margin: 15px 0;
+                                font-size: 1.875rem;
+                                line-height: 0.93em;
+                                font-weight: 700;
+                            }
+    
+                            .gamifi_data {
+                                display: flex;
+                                align-items: stretch;
+    
+                                .ave_energy {
+                                    margin-right: 10px;
+                                    padding: 3px 10px;
+                                    color: #ffffff;
+                                    border: 1px solid #ffffff;
+                                    border-radius: 30px;
+                                }
+    
+                                // .term_xp {}
+                            }
+    
+                            // .btn_viewProfile {}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
