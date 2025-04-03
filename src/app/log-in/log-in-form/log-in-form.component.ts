@@ -24,6 +24,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
+import { BounxLogoIconComponent } from 'src/app/general/bounx-logo-icon/bounx-logo-icon.component';
 import {
   passwordHasAlphabetValidator,
   passwordHasNumericValidator,
@@ -45,6 +46,7 @@ import { MaskitoDirective } from '@maskito/angular';
     ReactiveFormsModule,
     LogInFooterComponent,
     DropdownButtonComponent,
+    BounxLogoIconComponent,
     MaskitoDirective,
     IonText,
   ],

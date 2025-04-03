@@ -729,6 +729,9 @@ body {
 
     .header {
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -797,6 +800,15 @@ body {
     font-size: 1.375rem;
     line-height: 1.09em;
     font-weight: 600;
+}
+
+/* Text Gradient */ 
+.text_gradient {
+    color: #EBFF78; 
+    background-image: linear-gradient(135deg, #A6FFE6 , #EBFF78 100%); 
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
 }
 
 

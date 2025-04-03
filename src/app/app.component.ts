@@ -12,6 +12,7 @@ import {
   chevronDownOutline,
   arrowBackOutline,
   searchOutline,
+  arrowForwardOutline,
 } from 'ionicons/icons';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { UserService } from './services/user.service';
@@ -41,6 +42,7 @@ export class AppComponent {
       chevronDownOutline,
       arrowBackOutline,
       searchOutline,
+      arrowForwardOutline
     });
   }
 }
