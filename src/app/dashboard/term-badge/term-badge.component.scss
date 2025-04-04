@@ -1,0 +1,32 @@
+.TermBadge {
+
+    .termBadge_cnt {
+        padding-left: 20px;
+        padding-right: 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .badge_dete {
+            padding: 15px 20px 20px;
+
+            .tag_termbadge {
+                padding: 3px 15px 5px;
+                font-size: 0.6875rem;
+                line-height: 1em;
+                font-weight: 700;
+                color: #ffffff;
+                background: var(--grey-100);
+                border-radius: 20px;
+                display: inline-flex;
+            }
+
+            .badge_title {
+                padding: 10px 0 5px;
+                font-size: 1.25rem;
+                line-height: 1em;
+                font-weight: 700;
+            }
+        }
+    }
+}

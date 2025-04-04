@@ -826,7 +826,7 @@ body {
 }
 
 .wCnt {
-    margin: 0 5px;
+    margin: 0 5px 5px;
     padding-bottom: 30px;
     border-radius: 40px;
 
@@ -848,8 +848,12 @@ body {
         }
     }
 
+    &.standalone_banner {
+        padding-bottom: 0;
+    }
+
     &.lime_cnt {
-        background: var(--lime);
+        background: var(--primary-lime);
     }
 
     &.white_cnt {
@@ -1049,6 +1053,51 @@ body {
         height: 10px;
         background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAD5JREFUKFONzNkJACAMBFHT55a3fSoRFI9c8/0YaYVIdsmcIgASwoV05sITufBFJrTQBz10wQhtmKEJK0jhAFq1Jvb2JA9gAAAAAElFTkSuQmCC);
         display: block;
+    }
+}
+
+
+/* Badge */
+
+.img_badge {
+    width: 70px;
+    height: 70px;
+    position: relative;
+
+    &.locked {
+
+        &::before {
+            content: '';
+            width: 30px;
+            height: 30px;
+            background: var(--grey-100) url(assets/icon/icon_lock_lime.svg) center center no-repeat;
+            background-size: 70%;
+            border-radius: 50%;
+            display: inline-block;
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+        }
+
+        &::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            border: 1px var(--general-black) dashed;
+            border-radius: 50%;
+            opacity: 0.4;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    &.b_conqueror {
+
+        &::after {
+            background: url(assets/badge/conqueror.svg) center center no-repeat;
+        }
     }
 }
 
