@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
+  IonContent,
   IonList,
   IonItemSliding,
   IonItem,
@@ -11,7 +12,7 @@ import {
   IonItemOption,
   IonIcon,
   IonButton,
-  IonContent,
+  
 } from '@ionic/angular/standalone';
 import { PlayerService } from 'src/app/services/player.service';
 import { PlayerProfileRequest } from 'src/types/player-profile-request';
@@ -21,7 +22,7 @@ import { PlayerProfileRequest } from 'src/types/player-profile-request';
   templateUrl: './onboarding-list-profile.component.html',
   styleUrls: ['./onboarding-list-profile.component.scss'],
   imports: [
-    // IonContent,
+    IonContent,
     IonList,
     IonItemSliding,
     IonItem,
