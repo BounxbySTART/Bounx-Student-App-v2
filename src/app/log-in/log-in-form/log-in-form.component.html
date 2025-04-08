@@ -8,30 +8,30 @@
       <div class="form_cnt">
         <div class="form_item">
           <ion-label>Phone Number *</ion-label>
-          <app-dropdown-button (click)="openModal($event)" [label]="loginForm.get('phoneCode')?.value"
-            placeholder="Code"></app-dropdown-button>
-          <ion-input [clearInput]="true" placeholder="Phone Number" type="tel" formControlName="phone"
-            autocomplete="tel-national" [maskito]="phoneNumberMaskOptions" [maskitoElement]="maskPredicate">
-          </ion-input>
-          @if (loginForm.controls['phone'].invalid && loginForm.controls['phone'].dirty) {
-          <div>
-            <ion-text color="danger">That doesn't seem like a valid phone.</ion-text>
+          <div class="two_inputs phone_input">
+            <app-dropdown-button (click)="openModal($event)" [label]="loginForm.get('phoneCode')?.value"
+              placeholder="Code"></app-dropdown-button>
+            <ion-input [clearInput]="true" placeholder="Phone Number" type="tel" formControlName="phone"
+              autocomplete="tel-national" [maskito]="phoneNumberMaskOptions" [maskitoElement]="maskPredicate">
+            </ion-input>
           </div>
-        }
+          @if (loginForm.controls['phone'].invalid && loginForm.controls['phone'].dirty) {
+            <ion-text color="danger">That doesn't seem like a valid phone number.</ion-text>
+          }
         </div>
         <div class="form_item">
-          <ion-input label="Password *" labelPlacement="stacked" type="text" formControlName="password"
-            [clearInput]="true" autocomplete="current-password">
-            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          <ion-label>Password *</ion-label>
+          <ion-input type="text" formControlName="password" [clearInput]="true" autocomplete="current-password">
+            <ion-input-password-toggle slot="end" color="dark" fill="#000" name="eye-outline"></ion-input-password-toggle>
           </ion-input>
-        <!--   @if (loginForm.controls['password'].invalid && loginForm.controls['password'].dirty) {
+          <!--   @if (loginForm.controls['password'].invalid && loginForm.controls['password'].dirty) {
             <div>
               <ion-text color="danger">Invalid password.</ion-text>
             </div>
           } -->
         </div>
         @if (authenticationError && authenticationError.message){
-        <ion-text color="danger">{{authenticationError.message}}</ion-text>
+          <ion-text color="danger">{{authenticationError.message}}</ion-text>
         }
       </div>
       <ion-button class="main_cta" (click)="userLogin()" [disabled]="!loginForm.valid">Log In</ion-button>

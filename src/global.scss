@@ -235,6 +235,19 @@ p {
                 font-weight: 400;
                 display: block;
             }
+
+            ion-text[color="danger"] {
+                font-size: 0.875rem;
+                line-height: 1em;
+                font-weight: 500;
+            }
+
+            .two_inputs {
+                display: flex;
+                gap: 10px;
+
+                &.phone_input {}
+            }
         }
 
         .form_lvl2 {
@@ -300,8 +313,19 @@ ion-input {
         }
     }
 
+    ion-icon {
+        font-size: 20px;
+    }
+
     ion-input-password-toggle {
         margin-inline-start: 0 !important;
+        margin-top: -3px;
+        margin-bottom: -3px;
+    }
+
+    .input-clear-icon {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 }
 

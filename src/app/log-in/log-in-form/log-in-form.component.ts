@@ -15,8 +15,7 @@ import {
   IonButton,
   ModalController,
   IonContent,
-  IonText
-} from '@ionic/angular/standalone';
+  IonText, IonIcon } from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { LogInFooterComponent } from '../log-in-footer/log-in-footer.component';
 import { CountryCodeComponent } from 'src/app/country-code/country-code.component';
@@ -37,7 +36,7 @@ import { MaskitoDirective } from '@maskito/angular';
   selector: 'app-log-in-form',
   templateUrl: './log-in-form.component.html',
   styleUrls: ['./log-in-form.component.scss'],
-  imports: [
+  imports: [IonIcon, 
     IonContent,
     IonLabel,
     IonInput,
