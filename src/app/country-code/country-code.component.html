@@ -1,30 +1,39 @@
-<ion-content>
-  <!-- search text box works but the font color needs to be adjusted-->
-  <ion-searchbar placeholder="type here to search country" [debounce]="1000" (ionInput)="searchCountry($event)"
-    (click)="expandModal()" autocomplete="off"></ion-searchbar>
-  @if (!countries || countries.length==0) {
-  <ion-list [inset]="true">
-    <ion-item>
-      <ion-label> <ion-skeleton-text [animated]="true"></ion-skeleton-text></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label> <ion-skeleton-text [animated]="true"></ion-skeleton-text></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label> <ion-skeleton-text [animated]="true"></ion-skeleton-text></ion-label>
-    </ion-item>
-  </ion-list>
-  }
-  @else {
-  <ion-list [inset]="true">
-    <ion-radio-group (ionChange)="handleChange($event)">
-      @for (country of countries; track country.code) {
+<ion-content class="CountryCode">
+  <div class="modal_cnt">
+    <div class="header_modal">
+      <div class="title">Country Code</div>
+      <ion-button class="round_btn bg_white"><ion-icon name="close-outline"></ion-icon></ion-button>
+    </div>
+    <div class="SearchBar">
+      <ion-label>Search</ion-label>
+      <!-- search text box works but the font color needs to be adjusted-->
+      <ion-searchbar placeholder="Type here to search country" [debounce]="1000" (ionInput)="searchCountry($event)"
+        (click)="expandModal()" autocomplete="off" class="search_input"></ion-searchbar>
+    </div>
+    @if (!countries || countries.length==0) {
+    <ion-list [inset]="true">
       <ion-item>
-        <ion-radio labelPlacement="end" alignment="center" justify="start"
-          [value]="country.dialCode"><span>{{country.flag}}</span><span>{{country.dialCode}}</span>{{country.name}}</ion-radio>
+        <ion-label> <ion-skeleton-text [animated]="true"></ion-skeleton-text></ion-label>
       </ion-item>
-      }
-    </ion-radio-group>
-  </ion-list>
-  }
+      <ion-item>
+        <ion-label> <ion-skeleton-text [animated]="true"></ion-skeleton-text></ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label> <ion-skeleton-text [animated]="true"></ion-skeleton-text></ion-label>
+      </ion-item>
+    </ion-list>
+    }
+    @else {
+    <ion-list [inset]="true">
+      <ion-radio-group (ionChange)="handleChange($event)">
+        @for (country of countries; track country.code) {
+        <ion-item>
+          <ion-radio labelPlacement="end" alignment="center" justify="start"
+            [value]="country.dialCode"><span>{{country.flag}}</span><span>{{country.dialCode}}</span>{{country.name}}</ion-radio>
+        </ion-item>
+        }
+      </ion-radio-group>
+    </ion-list>
+    }
+  </div>
 </ion-content>

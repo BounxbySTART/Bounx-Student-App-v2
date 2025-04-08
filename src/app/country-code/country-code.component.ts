@@ -7,7 +7,7 @@ import {
   IonRadio,
   IonList,
   IonItem,
-  ModalController, IonSkeletonText, IonLabel } from '@ionic/angular/standalone';
+  ModalController, IonSkeletonText, IonLabel, IonButton, IonIcon } from '@ionic/angular/standalone';
 
 export interface Country {
   name: string;
@@ -20,7 +20,7 @@ export interface Country {
   selector: 'app-country-code',
   templateUrl: './country-code.component.html',
   styleUrls: ['./country-code.component.scss'],
-  imports: [IonLabel, IonSkeletonText, 
+  imports: [IonIcon, IonButton, IonLabel, IonSkeletonText, 
     IonRadio,
     IonContent,
     IonSearchbar,
