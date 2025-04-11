@@ -1,26 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
-  Form,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
 import { MasterService } from 'src/app/services/master.service';
 import { VerificationService } from 'src/app/services/verification.service';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { IonText,IonButton, IonContent,IonIcon,IonInput } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-verify-form',
   templateUrl: './verify-form.component.html',
   styleUrls: ['./verify-form.component.scss'],
-  imports: [IonicModule, CommonModule, ReactiveFormsModule, MaskitoDirective],
+  imports: [IonContent,IonInput, IonText,IonButton,IonIcon, CommonModule, ReactiveFormsModule, MaskitoDirective],
 })
 export class VerifyFormComponent implements OnInit {
   readonly otpMaskOptions: MaskitoOptions = {
@@ -54,6 +53,7 @@ export class VerifyFormComponent implements OnInit {
   otpForm!: FormGroup;
   retryTimer: number = 40;
   timeInterval: any;
+  authenticationError:any;
 
   constructor(
     public verificationService: VerificationService,
@@ -98,7 +98,7 @@ export class VerifyFormComponent implements OnInit {
             this.authService.setRefreshToken(res.refreshToken);
             this.router.navigateByUrl('/app-sign-up-success');
         },(err)=>{
-          console.log(err,"test");
+          this.authenticationError = err.error.message;
           
         });
     }
@@ -113,6 +113,8 @@ export class VerifyFormComponent implements OnInit {
           this.verificationService.signUpUser.passwordResetToken =
             res.passwordResetToken;
           this.router.navigateByUrl('/app-reset-pass-form-step2');
+        },(err)=>{
+          this.authenticationError = err.error.message;
         });
     }
     return true;

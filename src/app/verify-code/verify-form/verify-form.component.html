@@ -11,6 +11,7 @@
     <div class="form_item">
       <ion-input placeholder="Enter Code" formControlName="otpInput"  type="tel" autocomplete="one-time-code" [maskito]="otpMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
     </div>
+   <ion-text color="danger">{{authenticationError}}</ion-text> 
   </div>
   <p style="text-align: center;" [ngClass]="retryTimer<=0?'enable':'disable'">Didn't get the code? <a (click)="resendOtp()">Resend one</a> &nbsp;&nbsp;&bull;&nbsp;{{retryTimer}}s </p> 
   <ion-button class="main_cta" (click)="proceedToCreateUser()" [disabled]="!otpForm.valid">Verify</ion-button>
