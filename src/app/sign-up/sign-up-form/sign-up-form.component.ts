@@ -112,7 +112,7 @@ export class SignUpFormComponent implements OnInit {
 
     this.masterService.verifyPlayerUser(collectedData).subscribe((res: any) => {
       this.verficationService.signUpUser = collectedData;
-      this.verficationService.signUpUser.sId = res.sId;
+      this.verficationService.signUpUser.sid = res.sid;
       this.verficationService.signUpUser.isPasswordReset = false;
 
       this.router.navigateByUrl('/app-verify-form');

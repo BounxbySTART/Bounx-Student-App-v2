@@ -24,7 +24,7 @@ export class MasterService {
   }
 
   createPlayerUser(body: PlayerUserRequest) {
-    if (!body.sId || !body.OTP) throw new Error('sId and OTP is required');
+    if (!body.sid || !body.OTP) throw new Error('sid and OTP is required');
     return this.http.post(environment.masterUrl.concat('auth/player'), body);
   }
 

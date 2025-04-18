@@ -88,7 +88,7 @@ export class LogInFormComponent implements OnInit {
   }
   userLogin() {
     let loginDetails = this.loginForm.value;
-    this.masterService.login({ ...loginDetails, userType: 'PLAYER' }).subscribe(
+    this.masterService.login({ ...loginDetails, userType: 'STUDENT' }).subscribe(
       (res: any) => {
         if (res) {
           this.userService.setUser(res);

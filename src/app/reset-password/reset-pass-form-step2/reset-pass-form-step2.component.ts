@@ -66,13 +66,13 @@ export class ResetPassFormStep2Component implements OnInit {
 
   proceedToSave() {
     if (
-      !this.verificationService.signUpUser.sId ||
+      !this.verificationService.signUpUser.sid ||
       !this.verificationService.signUpUser.passwordResetToken
     )
       return;
     this.masterService
       .resetPlayerUserPassword({
-        sId: this.verificationService.signUpUser.sId,
+        sid: this.verificationService.signUpUser.sid,
         passwordResetToken:
           this.verificationService.signUpUser.passwordResetToken,
         newPassword: this.resetPasswordForm.value.password,

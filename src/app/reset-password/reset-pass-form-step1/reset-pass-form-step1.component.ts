@@ -86,7 +86,7 @@ export class ResetPassFormStep1Component implements OnInit {
         Validators.minLength(4),
         Validators.maxLength(15),
       ]),
-      userType: new FormControl('PLAYER'),
+      userType: new FormControl('STUDENT'),
     });
   }
   generateCode() {
@@ -103,7 +103,7 @@ export class ResetPassFormStep1Component implements OnInit {
           phoneCode: codeInitObj.phoneCode,
           isTermsAgreed: true,
           isPasswordReset: true,
-          sId: res.sId,
+          sid: res.sid,
         };
         this.router.navigateByUrl('/app-verify-form');
       },(err:any)=>{

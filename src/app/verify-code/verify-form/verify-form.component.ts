@@ -86,7 +86,7 @@ export class VerifyFormComponent implements OnInit {
     this.verificationService.signUpUser.OTP = this.otpForm.value.otpInput
       .toString()
       .replace(/\ /g, '');
-    if (!this.verificationService.signUpUser.sId) return false;
+    if (!this.verificationService.signUpUser.sid) return false;
     if (!this.verificationService.signUpUser.isPasswordReset) {
       this.masterService
         .createPlayerUser(this.verificationService.signUpUser)
@@ -106,7 +106,7 @@ export class VerifyFormComponent implements OnInit {
       this.masterService
         .verifyPasswordResetCode({
           ...this.verificationService.signUpUser,
-          userType: 'PLAYER',
+          userType: 'STUDENT',
         })
         .subscribe((res: any) => {
           console.log(res);
@@ -139,7 +139,7 @@ export class VerifyFormComponent implements OnInit {
       .verifyPlayerUser(this.verificationService.signUpUser)
       .subscribe(
         (res: any) => {
-          this.verificationService.signUpUser.sId = res.sId;
+          this.verificationService.signUpUser.sid = res.sid;
           this.startTimer();
         },
         (err) => {

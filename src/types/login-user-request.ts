@@ -1,11 +1,11 @@
 export interface LoginUserRequest{
 phone:string,
 password:string
-userType:"PLAYER"
+userType:"STUDENT"
 }
 
 export interface ResetPasswordUserRequest{
-    sId: string;
+    sid: string;
     passwordResetToken: string;
     newPassword: string;
 }

@@ -9,6 +9,6 @@ export interface VerifyPlayerUserRequest {
 }
 
 export interface PlayerUserRequest extends VerifyPlayerUserRequest {
-  sId?: string;
+  sid?: string;
   OTP?: string;
 }

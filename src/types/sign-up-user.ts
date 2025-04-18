@@ -8,7 +8,7 @@ export interface SignUpUser{
     pushTaken?:string;
     password:string;
     isTermsAgreed:boolean;
-    sId?:string;
+    sid?:string;
     OTP?:string;
     isPasswordReset:boolean;
     passwordResetToken?:string;
