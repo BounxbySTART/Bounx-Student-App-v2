@@ -14,3 +14,9 @@ ion-input {
   text-align: center;
   border-top: 1px var(--grey-750) solid;
 }
+
+app-sign-up-success-footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}

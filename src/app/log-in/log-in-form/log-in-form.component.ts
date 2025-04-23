@@ -36,7 +36,7 @@ import { MaskitoDirective } from '@maskito/angular';
   selector: 'app-log-in-form',
   templateUrl: './log-in-form.component.html',
   styleUrls: ['./log-in-form.component.scss'],
-  imports: [IonIcon, 
+  imports: [ 
     IonContent,
     IonLabel,
     IonInput,
