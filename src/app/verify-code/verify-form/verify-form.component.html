@@ -1,21 +1,20 @@
 <ion-content [fullscreen]="true" class="VerifyCode dark_page centerise_page">
-<div class="header">
-  <div class="topbar"><ion-icon name="arrow-back-outline"></ion-icon></div>
-  <div class="hdr_page">Verify Phone Number</div>
-  <p>Enter the code that we've sent to:</p>
-  <p>{{verificationService.signUpUser.phoneCode}} *** ***-{{verificationService.signUpUser.phone.substr(verificationService.signUpUser.phone.length-4)}}<ion-icon name="create-outline" size="small"></ion-icon></p>
-</div>
-<form [formGroup]="otpForm">
-<div class="form">
-  <div class="form_cnt">
-    <div class="form_item">
-      <ion-input placeholder="Enter Code" formControlName="otpInput"  type="tel" autocomplete="one-time-code" [maskito]="otpMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
-    </div>
-   <ion-text color="danger">{{authenticationError}}</ion-text> 
+  <div class="header">
+    <div class="topbar"><ion-icon name="arrow-back-outline"></ion-icon></div>
+    <div class="hdr_page">Verify Phone Number</div>
+    <p>Enter the code that we've sent to:</p>
+    <p>{{verificationService.signUpUser.phoneCode}} *** ***-{{verificationService.signUpUser.phone.substr(verificationService.signUpUser.phone.length-4)}}<ion-icon name="create-outline" size="small"></ion-icon></p>
   </div>
-  <p style="text-align: center;" [ngClass]="retryTimer<=0?'enable':'disable'">Didn't get the code? <a (click)="resendOtp()">Resend one</a> &nbsp;&nbsp;&bull;&nbsp;{{retryTimer}}s </p> 
-  <ion-button class="main_cta" (click)="proceedToCreateUser()" [disabled]="!otpForm.valid">Verify</ion-button>
-</div>
-</form>
-<app-sign-up-success-footer></app-sign-up-success-footer>
+  <form [formGroup]="otpForm">
+    <div class="form">
+      <div class="form_cnt">
+        <div class="form_item">
+          <ion-input placeholder="Enter Code" formControlName="otpInput"  type="tel" autocomplete="one-time-code" [maskito]="otpMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
+        </div>
+        <ion-text color="danger">{{authenticationError}}</ion-text> 
+        <p class="txt_didntgetcode" [ngClass]="retryTimer<=0?'enable':'disable'">Didn't get the code? <a (click)="resendOtp()" class="black">Resend one</a> &nbsp;&nbsp;&bull;&nbsp;{{retryTimer}}s </p> 
+      </div>
+      <ion-button class="main_cta" (click)="proceedToCreateUser()" [disabled]="!otpForm.valid">Verify</ion-button>
+    </div>
+  </form>
 </ion-content>

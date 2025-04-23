@@ -29,6 +29,7 @@ import { VerificationService } from 'src/app/services/verification.service';
 import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
 import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 import { MaskitoDirective } from '@maskito/angular';
+import { SignUpFooterComponent } from "../sign-up-footer/sign-up-footer.component";
 
 @Component({
   selector: 'app-sign-up-form',
@@ -48,7 +49,8 @@ import { MaskitoDirective } from '@maskito/angular';
     IonButton,
     MaskitoDirective,
     IonText,
-  ],
+    SignUpFooterComponent
+],
   providers: [MasterService],
 })
 export class SignUpFormComponent implements OnInit {

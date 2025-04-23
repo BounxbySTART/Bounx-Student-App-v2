@@ -13,8 +13,7 @@ import {
   IonButton,
   IonIcon,
   IonInput,
-  IonInputPasswordToggle,
-} from '@ionic/angular/standalone';
+  IonInputPasswordToggle, IonLabel } from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { VerificationService } from 'src/app/services/verification.service';
 import {
@@ -28,7 +27,7 @@ import { ResetPassFooterComponent } from "../reset-pass-footer/reset-pass-footer
   selector: 'app-reset-pass-form-step2',
   templateUrl: './reset-pass-form-step2.component.html',
   styleUrls: ['./reset-pass-form-step2.component.scss'],
-  imports: [
+  imports: [IonLabel, 
     IonIcon,
     IonButton,
     IonContent,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonButton,IonContent } from '@ionic/angular/standalone';
 import { SignUpSuccessFooterComponent } from '../sign-up-success-footer/sign-up-success-footer.component';
+import { BounxLogoIconComponent } from 'src/app/general/bounx-logo-icon/bounx-logo-icon.component';
 import { Router } from '@angular/router';
 
 
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   selector: 'app-sign-up-success',
   templateUrl: './sign-up-success.component.html',
   styleUrls: ['./sign-up-success.component.scss'],
-  imports: [IonButton,IonContent, SignUpSuccessFooterComponent],
+  imports: [IonButton,IonContent, SignUpSuccessFooterComponent, BounxLogoIconComponent],
 })
 export class SignUpSuccessComponent implements OnInit {
   retryTimer: number = 8;

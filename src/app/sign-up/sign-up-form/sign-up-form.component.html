@@ -11,123 +11,76 @@
   <form [formGroup]="signUpFormGroup">
     <div class="form">
       <div class="form_cnt">
+        <!-- <p class="p3 grey_4d4d4d allfieldsmandatory">Please note that all fields are mandatory.</p> -->
         <div class="form_item">
-          <ion-input
-            label="First Name *"
-            type="text"
-            labelPlacement="stacked"
-            formControlName="firstName"
-            [clearInput]="true"
-            autocomplete="given-name"
-            [maskito]="nameMaskOptions"
-            [maskitoElement]="maskPredicate"
-          ></ion-input>
+          <ion-label>
+            First Name *
+            <ion-icon name="information-circle-outline" class="label_tooltip"></ion-icon>
+          </ion-label>
+          <ion-input type="text" formControlName="firstName" [clearInput]="true" autocomplete="given-name" [maskito]="nameMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
+          <div *ngIf="signUpFormGroup.get('firstName')?.errors?.['required'] && signUpFormGroup.get('firstName')?.touched">
+            <ion-text color="danger">Firs name is required.</ion-text>
+          </div>
+          <div *ngIf="signUpFormGroup.get('firstName')?.errors?.['pattern']">
+            <ion-text color="danger"> First name should be of min 2 characters.</ion-text>
+          </div>
         </div>
-        <div *ngIf="signUpFormGroup.get('firstName')?.errors?.['required'] && signUpFormGroup.get('firstName')?.touched">
-          <ion-text color="danger">FirstName is required</ion-text></div>
-        <div *ngIf="signUpFormGroup.get('firstName')?.errors?.['pattern']"><ion-text color="danger"> FirstName should be of min 2 characters </ion-text> </div>
-
-
        
         <div class="form_item">
-          <ion-input
-            label="Last Name *"
-            type="text"
-            labelPlacement="stacked"
-            formControlName="lastName"
-            [clearInput]="true"
-            autocomplete="family-name"
-            [maskito]="nameMaskOptions"
-            [maskitoElement]="maskPredicate"
-          ></ion-input>
+          <ion-label>
+            Last Name *
+            <ion-icon name="information-circle-outline" class="label_tooltip"></ion-icon>
+          </ion-label>
+          <ion-input type="text" formControlName="lastName" [clearInput]="true" autocomplete="family-name" [maskito]="nameMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
+          <div *ngIf="signUpFormGroup.get('lastName')?.errors?.['required'] && signUpFormGroup.get('lastName')?.touched">
+            <ion-text color="danger">Last name is required.</ion-text>
+          </div>
+          <div *ngIf="signUpFormGroup.get('lastName')?.errors?.['pattern']">
+            <ion-text color="danger">Last name should be of min 2 characters.</ion-text>
+          </div>
         </div>
-        <div *ngIf="signUpFormGroup.get('lastName')?.errors?.['required'] && signUpFormGroup.get('lastName')?.touched"><ion-text color="danger">LastName is required</ion-text></div>
-        <div *ngIf="signUpFormGroup.get('lastName')?.errors?.['pattern']"><ion-text color="danger">LastName should be of min 2 characters</ion-text></div>
+
         <div class="form_item">
-          <ion-input
-            label="Email *"
-            type="email"
-            labelPlacement="stacked"
-            formControlName="email"
-            [clearInput]="true"
-            autocomplete="email"
-          ></ion-input>
+          <ion-label>Email *</ion-label>
+          <ion-input type="email" formControlName="email" [clearInput]="true" autocomplete="email"></ion-input>
+          <div *ngIf="signUpFormGroup.get('email')?.errors?.['required'] &&signUpFormGroup.get('email')?.touched ">
+            <ion-text color="danger">Email is required.</ion-text>
+          </div>
+          <div *ngIf="signUpFormGroup.get('email')?.errors?.['email'] ">
+            <ion-text color="danger">Email is not in proper format.</ion-text>
+          </div>
         </div>
-        <div *ngIf="signUpFormGroup.get('email')?.errors?.['required'] &&signUpFormGroup.get('email')?.touched "><ion-text color="danger">email is required</ion-text></div>
-        <div *ngIf="signUpFormGroup.get('email')?.errors?.['email'] "><ion-text color="danger">email is not in proper format</ion-text></div>
         
         <div class="form_item">
-          <ion-input
-            label="Password *"
-            type="password"
-            labelPlacement="stacked"
-            formControlName="password"
-            [clearInput]="true"
-            autocomplete="new-password"
-          >
-            <ion-input-password-toggle
-              color="#000000"
-              slot="end"
-            ></ion-input-password-toggle>
+          <ion-label>Password *</ion-label>
+          <ion-input type="password" formControlName="password" [clearInput]="true" autocomplete="new-password">
+            <ion-input-password-toggle slot="end" color="dark" fill="#000" showIcon="eye-outline" hideIcon="eye-off-outline"></ion-input-password-toggle>
           </ion-input>
-          @if (signUpFormGroup.get('password')?.dirty) {
+          <!-- @if (signUpFormGroup.get('password')?.touched) { -->
+          <!-- @if (signUpFormGroup.get('password')?.dirty) { -->
           <div class="password_guide">
-            <div class="item">
-              <ion-icon
-                [ngClass]="
-                  signUpFormGroup.get('password')?.getError('hasAlphabet')
-                    ? ''
-                    : 'green'
-                "
-                name="checkmark-circle-outline"
-              ></ion-icon>
-              contains at least ONE (1) alphabet
-            </div>
-            <div class="item">
-              <ion-icon
-                [ngClass]="
-                  signUpFormGroup.get('password')?.getError('hasNumeric')
-                    ? ''
-                    : 'green'
-                "
-                name="checkmark-circle-outline"
-              ></ion-icon>
-              contains at least ONE (1) number
-            </div>
-            <div class="item">
-              <ion-icon
-                [ngClass]="
-                  signUpFormGroup.get('password')?.getError('minLength')
-                    ? ''
-                    : 'green'
-                "
-                name="checkmark-circle-outline"
-              ></ion-icon>
-              contains at least EIGHT(8) characters
-            </div>
+            <div class="item"><ion-icon [ngClass]="signUpFormGroup.get('password')?.getError('hasAlphabet')?'':'good'"
+                name="checkmark-circle-outline"></ion-icon> contains at least ONE (1) alphabet</div>
+            <div class="item"><ion-icon [ngClass]="signUpFormGroup.get('password')?.getError('hasNumeric')?'':'good'"
+                name="checkmark-circle-outline"></ion-icon> contains at least ONE (1) number</div>
+            <div class="item"><ion-icon [ngClass]="signUpFormGroup.get('password')?.getError('minLength')?'':'good'"
+                name="checkmark-circle-outline"></ion-icon> contains at least EIGHT(8) characters</div>
           </div>
-          }
+          <!-- } -->
         </div>
         <div class="form_item">
           <ion-label>Phone Number *</ion-label>
-          <app-dropdown-button
-            (click)="openModal($event)"
-            [label]="signUpFormGroup.get('phoneCode')?.value"
-            placeholder="Code"
-          ></app-dropdown-button>
-          <ion-input
-            [clearInput]="true"
-            formControlName="phone"
-            placeholder="Phone Number"
-            type="tel"
-            autocomplete="tel"
-            [maskito]="phoneNumberMaskOptions"
-            [maskitoElement]="maskPredicate"
-          ></ion-input>
+          <div class="two_inputs phone_input">
+            <app-dropdown-button (click)="openModal($event)" [label]="signUpFormGroup.get('phoneCode')?.value"
+              placeholder="Code"></app-dropdown-button>
+            <ion-input [clearInput]="true" placeholder="Phone Number" type="tel" formControlName="phone"
+              autocomplete="tel" [maskito]="phoneNumberMaskOptions" [maskitoElement]="maskPredicate">
+            </ion-input>
+          </div>
+          @if(signUpFormGroup.get('phone')?.touched && (signUpFormGroup.get('phone')?.errors?.['required'] || signUpFormGroup.get('phone')?.errors?.['minLength'] )){
+            <ion-text color="danger">Phone number is required.</ion-text>
+          }
         </div>
-        @if(signUpFormGroup.get('phone')?.touched && (signUpFormGroup.get('phone')?.errors?.['required'] || signUpFormGroup.get('phone')?.errors?.['minLength'] )){
-          <ion-text color="danger"> Phone Number is required</ion-text>
-        }
 
         <!-- <div *ngIf="signUpFormGroup.get('phone')?.errors?.minLength">Phone Number should be of min 5 digits</div>
         <div *ngIf="signUpFormGroup.get('phone')?.errors?.maxLength">Phone Number should be of max 15 digits</div> -->
@@ -135,12 +88,12 @@
         <ion-text color="danger">{{ authenticationError.message }}</ion-text>
         }
       </div>
-
-      <div class="form_cnt">
+     
+      <div class="form_cnt onlycheckbox">
         <div class="form_item">
           <ion-checkbox labelPlacement="end" formControlName="isTermsAgreed">
             <div class="ion-text-wrap">
-              I have read and accept the Privacy Policy and Terms of Use.
+              I have read and accept the <a href="#" class="black"><strong>Privacy Policy</strong></a> and <a href="" class="black"><strong>Terms of Use</strong></a>.
             </div>
           </ion-checkbox>
         </div>
@@ -153,4 +106,6 @@
       >
     </div>
   </form>
+
+  <app-sign-up-footer></app-sign-up-footer>
 </ion-content>

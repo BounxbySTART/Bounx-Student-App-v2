@@ -14,7 +14,8 @@ import {
   searchOutline,
   arrowForwardOutline,
   eyeOutline,
-  eyeOffOutline
+  eyeOffOutline,
+  informationCircleOutline
 } from 'ionicons/icons';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { UserService } from './services/user.service';
@@ -46,7 +47,8 @@ export class AppComponent {
       searchOutline,
       arrowForwardOutline,
       eyeOutline,
-      eyeOffOutline
+      eyeOffOutline,
+      informationCircleOutline
     });
   }
 }
