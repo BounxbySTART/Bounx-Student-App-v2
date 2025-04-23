@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { NgClass,NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -19,7 +19,6 @@ import {
 } from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { CountryCodeComponent } from '../../country-code/country-code.component';
-
 import {
   passwordHasAlphabetValidator,
   passwordHasNumericValidator,
@@ -37,6 +36,7 @@ import { MaskitoDirective } from '@maskito/angular';
   styleUrls: ['./sign-up-form.component.scss'],
   imports: [
     IonContent,
+    NgIf,
     NgClass,
     ReactiveFormsModule,
     DropdownButtonComponent,
@@ -96,7 +96,7 @@ export class SignUpFormComponent implements OnInit {
       phoneCode: new FormControl(''),
       phone: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(5),
         Validators.maxLength(15),
       ]),
       isTermsAgreed: new FormControl(false, [Validators.requiredTrue]),

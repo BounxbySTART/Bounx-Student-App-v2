@@ -55,7 +55,7 @@ export class MasterService {
 
 
   resetPlayerUserPassword(body: ResetPasswordUserRequest ){
-    return this.http.post(environment.masterUrl.concat('auth/reset-player-user-password'),body);
+    return this.http.post(environment.masterUrl.concat('auth/reset-user-password'),body);
   }
 
 }

@@ -27,14 +27,14 @@ export class ResetPassSuccessComponent  implements OnInit {
       this.retryTimer--;
       if (this.retryTimer <= 0) {
         clearInterval(timeInterval);
-        this.router.navigateByUrl('/tabs/tab1');
+        this.router.navigateByUrl('/log-in');
        
       }
     }, 1000);
   }
 
   proceedToLogin(){
-    this.router.navigateByUrl('/tabs/tab1');
+    this.router.navigateByUrl('/log-in');
   }
 
 }

@@ -29,7 +29,7 @@
         @for (country of countries; track country.code) {
         <ion-item>
           <ion-radio labelPlacement="end" alignment="center" justify="start"
-            [value]="country.dialCode"><span>{{country.flag}}</span><span>{{country.dialCode}}</span>{{country.name}}</ion-radio>
+            [value]="country.dialCode"><span>{{country.flag}} &nbsp;</span><span>{{country.dialCode}} &nbsp;</span>{{country.name}}</ion-radio>
         </ion-item>
         }
       </ion-radio-group>

@@ -27,7 +27,7 @@ export class SignUpSuccessComponent implements OnInit {
       this.retryTimer--;
       if (this.retryTimer <= 0) {
         clearInterval(timeInterval);
-        this.router.navigateByUrl('/tabs/tab1');
+        this.router.navigateByUrl('/list-profile');
        
       }
     }, 1000);

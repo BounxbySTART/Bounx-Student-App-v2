@@ -14,12 +14,13 @@ import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { IonText,IonButton, IonContent,IonIcon,IonInput } from '@ionic/angular/standalone';
+import { SignUpSuccessFooterComponent } from "../../sign-up/sign-up-success-footer/sign-up-success-footer.component";
 
 @Component({
   selector: 'app-verify-form',
   templateUrl: './verify-form.component.html',
   styleUrls: ['./verify-form.component.scss'],
-  imports: [IonContent,IonInput, IonText,IonButton,IonIcon, CommonModule, ReactiveFormsModule, MaskitoDirective],
+  imports: [IonContent, IonInput, IonText, IonButton, IonIcon, CommonModule, ReactiveFormsModule, MaskitoDirective, SignUpSuccessFooterComponent],
 })
 export class VerifyFormComponent implements OnInit {
   readonly otpMaskOptions: MaskitoOptions = {
