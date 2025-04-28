@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
 import { addIcons } from 'ionicons';
 import {
-  closeOutline,
-  radioButtonOffOutline,
   addOutline,
-  checkmarkCircleOutline,
-  calendarNumberOutline,
-  ellipsisHorizontalOutline,
-  trashOutline,
-  createOutline,
-  chevronDownOutline,
   arrowBackOutline,
-  searchOutline,
   arrowForwardOutline,
-  eyeOutline,
+  calendarOutline,
+  calendarNumberOutline,
+  checkmarkCircleOutline,
+  chevronDownOutline,
+  chevronUpOutline,
+  closeOutline,
+  createOutline,
+  ellipsisHorizontal,
+  ellipsisHorizontalOutline,
   eyeOffOutline,
-  informationCircleOutline
+  eyeOutline,
+  informationCircleOutline,
+  radioButtonOffOutline,
+  searchOutline,
+  shareSocialOutline,
+  trashOutline
 } from 'ionicons/icons';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { UserService } from './services/user.service';
@@ -34,21 +38,25 @@ export class AppComponent {
 
   registerIonIcons() {
     addIcons({
-      closeOutline,
-      radioButtonOffOutline,
       addOutline,
-      checkmarkCircleOutline,
-      calendarNumberOutline,
-      ellipsisHorizontalOutline,
-      trashOutline,
-      createOutline,
-      chevronDownOutline,
       arrowBackOutline,
-      searchOutline,
       arrowForwardOutline,
-      eyeOutline,
+      calendarOutline,
+      calendarNumberOutline,
+      checkmarkCircleOutline,
+      chevronDownOutline,
+      chevronUpOutline,
+      closeOutline,
+      createOutline,
+      ellipsisHorizontalOutline,
+      ellipsisHorizontal,
       eyeOffOutline,
-      informationCircleOutline
+      eyeOutline,
+      informationCircleOutline,
+      radioButtonOffOutline,
+      searchOutline,
+      shareSocialOutline,
+      trashOutline
     });
   }
 }

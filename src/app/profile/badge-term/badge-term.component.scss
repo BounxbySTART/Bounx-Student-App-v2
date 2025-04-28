@@ -1,0 +1,125 @@
+.badgeTerm {
+    margin-top: 30px;
+    padding: 30px 10%;
+    display: flex;
+    align-items: center;
+
+    .contentTxt {
+        padding-right: 30px;
+        flex: 1 0 0;
+
+        .tag_unlocked {
+            margin-bottom: 10px;
+            padding: 1px;
+            color: var(--teal-shade03);
+            border: 2px var(--teal-shade03) solid;
+            border-radius: 6px;
+            display: inline-flex;
+
+            &::after {
+                content: 'UNLOCKED!';
+                padding: 0 3px;
+                font-size: 0.75rem;
+                line-height: 1em;
+                font-weight: 800;
+                border: 1px var(--teal-shade03) solid;
+                border-radius: 3px;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .title {
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+            line-height: 0.916em;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .desc {
+            padding-bottom: 10px;
+            font-size: 0.875rem;
+            line-height: 1.28em;
+            font-weight: 500;
+        }
+
+        .date {
+            padding: 3px 13px 5px;
+            font-size: 0.6875rem;
+            line-height: 1.18em;
+            font-weight: 700;
+            background: var(--grey-800);
+            border-radius: 10px;
+            display: inline-flex;
+        }
+    }
+
+    .badgeDete {
+        padding: 0 20px;
+        border-radius: 60px;
+        flex: 1 0 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .thebadge {
+            margin-top: -30px;
+            padding-bottom: 15px;
+        }
+
+        .badge_title {
+            padding-bottom: 10px;
+            font-size: 1.125rem;
+            line-height: 1em;
+            font-weight: 700;
+            color: var(--lime-shade06);
+            text-align: center;
+        }
+
+        .badge_desc {
+            padding-bottom: 15px;
+            font-size: 0.8125rem;
+            line-height: 1.15em;
+            font-weight: 500;
+            color: var(--lime-shade06);
+            text-align: center;
+        }
+
+        .badge_xp {
+            padding-bottom: 20px;
+            font-size: 0.8125rem;
+            line-height: 1.15em;
+            font-weight: 600;
+            color: var(--lime-shade05);
+            text-align: center;
+        }
+
+        ion-button {
+            margin-bottom: -20px;
+            width: 40px;
+            height: 40px;
+            min-height: auto;
+
+            ion-icon {
+                font-size: 1.125rem;
+            }
+        }
+    }
+
+    &.beforeUnlock {
+        
+        .badgeDete {
+            background: var(--primary-lime);
+        }
+    }
+
+    &.afterUnlock {
+        
+        .badgeDete {
+            background: linear-gradient(180deg, #EFF3D9 40%, var(--lime-shade01, #F3FFB3) 100%);
+            ;
+        }
+    }
+}

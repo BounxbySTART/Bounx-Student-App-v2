@@ -1,0 +1,18 @@
+.badgeLatest {
+    margin: 30px 0 20px;
+
+    .badgeLatest_cnt {
+        padding: 0 13%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .badge_item {
+            margin: 0 5px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

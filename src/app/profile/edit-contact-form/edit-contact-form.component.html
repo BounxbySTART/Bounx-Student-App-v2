@@ -1,0 +1,41 @@
+<ion-content [fullscreen]="true" class="editProfile light_page centerise_page">
+  <div class="header">
+    <div class="topbar">
+      <ion-button class="round_btn bg_white btn_back">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <div class="title_page">Set Up Primary Bounx Account</div>
+      <ion-button class="round_btn bg_none btn_back" [disabled]="true"></ion-button>
+    </div>
+  </div>
+
+  <div class="edit_contactDete contentTABS_body bg_white">
+    <div class="form form_group">
+      <div class="form_head">Contact Info</div>
+      <div class="form_info">
+        <ion-icon name="information-circle-outline"></ion-icon>
+        <div class="text">
+          <p class="p3">
+            By adding a unique email to a Profile, a Primary Bounx Account will be activated for the Profile and login instructions will be sent to the email.
+          </p>
+        </div>
+      </div>
+      <div class="form_cnt">
+        <div class="form_item">
+          <ion-label>Phone Number *</ion-label>
+          <div class="two_inputs phone_input">
+            <app-dropdown-button placeholder="Code"></app-dropdown-button>
+            <ion-input placeholder="Phone Number" type="tel">
+            </ion-input>
+          </div>
+        </div>
+        <div class="form_item">
+          <ion-label>Relationship *</ion-label>
+          <ion-input></ion-input>
+        </div>
+      </div>
+    </div>
+
+    <ion-button class="main_cta">Save</ion-button>
+  </div>
+</ion-content>

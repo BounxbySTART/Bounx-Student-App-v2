@@ -1,0 +1,208 @@
+<ion-content [fullscreen]="true" class="editProfile light_page centerise_page">
+  <div class="header">
+    <div class="topbar">
+      <ion-button class="round_btn bg_white btn_back">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <div class="title_page">Edit Personal Details</div>
+      <ion-button class="round_btn bg_none btn_back" [disabled]="true"></ion-button>
+    </div>
+  </div>
+
+  <div class="edit_profilePic pad_side_40">
+    <div class="profilePic_preview">
+      <ion-button class="round_btn bg_white btn_edit">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+      <div class="profilePic">
+        <img src="../../../assets/dummy/profile_pic_user/Ryan.png" />
+      </div>
+    </div>
+    <div class="uploadPic">
+      <div class="form_item">
+        <ion-label>Upload a picture from</ion-label>
+        <div class="two_inputs">
+          <ion-button class="input_btn">Camera</ion-button>
+          <ion-button class="input_btn">Gallery</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="edit_profileDete contentTABS_body bg_white">
+    <div class="form form_group">
+      <div class="form_head">Personal Details</div>
+      <div class="form_cnt">
+        <div class="form_item">
+          <ion-label>
+            First Name *
+            <ion-icon name="information-circle-outline" class="label_tooltip"></ion-icon>
+          </ion-label>
+          <ion-input type="text"></ion-input>
+        </div>
+        <div class="form_item">
+          <ion-label>
+            Last Name *
+            <ion-icon name="information-circle-outline" class="label_tooltip"></ion-icon>
+          </ion-label>
+          <ion-input type="text"></ion-input>
+        </div>
+        <div class="form_item">
+          <ion-label>
+            Date of Birth *
+          </ion-label>
+          <ion-input type="text" class="w_calendar">
+            <ion-icon icon="calendar-outline" class="btn_calendar"></ion-icon>
+          </ion-input>
+        </div>
+        <div class="form_item">
+          <ion-label>
+            Gender *
+          </ion-label>
+          <ion-radio-group class="two_opt" formControlName="gender">
+            <ion-radio value="MALE">Male</ion-radio>
+            <ion-radio value="FEMALE">Female</ion-radio>
+          </ion-radio-group>
+        </div>
+        <div class="form_item">
+          <ion-label>
+            School
+          </ion-label>
+          <ion-input type="text"></ion-input>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form form_group">
+      <div class="form_head">Address</div>
+      <div class="form_cnt">
+        <div class="form_item">
+          <ion-label>Country</ion-label>
+          <ion-select label-placement="stacked" placeholder="Select Country" toggleIcon="">
+            <ion-select-option value="Account Owner">Account Owner</ion-select-option>
+            <ion-select-option value="apple">Apple</ion-select-option>
+            <ion-select-option value="banana">Banana</ion-select-option>
+            <ion-select-option value="orange">Orange</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form_item">
+          <ion-label>State</ion-label>
+          <ion-select label-placement="stacked" placeholder="Select State" toggleIcon="" [disabled]="true">
+            <ion-select-option value="Account Owner">Account Owner</ion-select-option>
+            <ion-select-option value="apple">Apple</ion-select-option>
+            <ion-select-option value="banana">Banana</ion-select-option>
+            <ion-select-option value="orange">Orange</ion-select-option>
+          </ion-select>
+        </div>
+        <div class="form_item">
+          <ion-label>
+            Postal Code
+          </ion-label>
+          <ion-input type="text" [disabled]="true"></ion-input>
+        </div>
+        <div class="form_item">
+          <ion-label>
+            City
+          </ion-label>
+          <ion-input type="text" [disabled]="true"></ion-input>
+        </div>
+        <div class="form_item stack_input">
+          <ion-label>
+            Address
+          </ion-label>
+          <ion-input type="text" placeholder="Address line 1" [disabled]="true"></ion-input>
+          <ion-input type="text" placeholder="Address line 2" [disabled]="true"></ion-input>
+        </div>
+      </div>
+    </div>
+
+    <div class="form form_group">
+      <div class="form_head">Medical Conditions</div>
+      <div class="form_cnt">
+        <div class="form_item">
+          <ion-label>
+            Allergies
+          </ion-label>
+          <ion-radio-group class="two_opt" formControlName="gender">
+            <ion-radio value="MALE">Yes</ion-radio>
+            <ion-radio value="FEMALE">No</ion-radio>
+          </ion-radio-group>
+        </div>
+        <div class="form_item">
+          <ion-label>Please Specify *</ion-label>
+          <ion-select label-placement="stacked" placeholder="Select State" toggleIcon="">
+            <ion-select-option value="Account Owner">Account Owner</ion-select-option>
+            <ion-select-option value="apple">Apple</ion-select-option>
+            <ion-select-option value="banana">Banana</ion-select-option>
+            <ion-select-option value="orange">Orange</ion-select-option>
+          </ion-select>
+          <div class="form_item_btn">
+            <ion-button class="small_btn bg_none">Add Another <ion-icon name="add-outline" class="ontheright"></ion-icon></ion-button>
+          </div>
+        </div>
+        <div class="form_item">
+          <ion-label>
+            Medical Conditions
+          </ion-label>
+          <ion-radio-group class="two_opt" formControlName="gender">
+            <ion-radio value="MALE">Yes</ion-radio>
+            <ion-radio value="FEMALE">No</ion-radio>
+          </ion-radio-group>
+        </div>
+        <div class="form_item">
+          <ion-label>Please Specify *</ion-label>
+          <ion-select label-placement="stacked" placeholder="Select State" toggleIcon="">
+            <ion-select-option value="Account Owner">Account Owner</ion-select-option>
+            <ion-select-option value="apple">Apple</ion-select-option>
+            <ion-select-option value="banana">Banana</ion-select-option>
+            <ion-select-option value="orange">Orange</ion-select-option>
+          </ion-select>
+          <div class="form_item_btn">
+            <ion-button class="small_btn bg_none">Add Another <ion-icon name="add-outline" class="ontheright"></ion-icon></ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form form_group">
+      <div class="form_head">Emergency Contact</div>
+      <div class="form_info">
+        <div class="form_item">
+          <ion-label>Emergency Contact *</ion-label>
+          <ion-checkbox labelPlacement="end" checked>
+            <p class="ion-text-wrap">
+              Same as Primary Account
+            </p>
+          </ion-checkbox>
+        </div>
+      </div>
+      <div class="form_cnt">
+        <div class="form_item">
+          <ion-label>
+            Name *
+          </ion-label>
+          <ion-input></ion-input>
+        </div>
+        <div class="form_item">
+          <ion-label>Phone Number *</ion-label>
+          <div class="two_inputs phone_input">
+            <app-dropdown-button placeholder="Code"></app-dropdown-button>
+            <ion-input placeholder="Phone Number" type="tel">
+            </ion-input>
+          </div>
+        </div>
+        <div class="form_item">
+          <ion-label>Relationship *</ion-label>
+          <ion-select label-placement="stacked" placeholder="Select State" toggleIcon="">
+            <ion-select-option value="Account Owner">Account Owner</ion-select-option>
+            <ion-select-option value="apple">Apple</ion-select-option>
+            <ion-select-option value="banana">Banana</ion-select-option>
+            <ion-select-option value="orange">Orange</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+    </div>
+
+    <ion-button class="main_cta">Update Profile</ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,69 @@
+<ion-content [fullscreen]="true" class="Profile p_Student dark_page">
+  <div class="header">
+    <div class="topbar">
+      <div class="btn_icon btn_back">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </div>
+    </div>
+    <div class="floating_btns">
+      <ion-button class="round_btn bg_white btn_otherProfiles">
+        <img src="../../../assets/icon/icon_change_profile_darkgrey.svg" />
+      </ion-button>
+      <ion-button class="round_btn bg_none btn_otherProfiles">
+        <ion-icon name="share-social-outline"></ion-icon>
+      </ion-button>
+      <ion-button class="round_btn bg_none btn_otherProfiles">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
+
+
+  <!-- •••••• PROFILE COVER •••••• -->
+  <app-profile-cover></app-profile-cover>
+  <app-badge-latest></app-badge-latest>
+
+
+
+  <!-- •••••• TABS •••••• -->
+  <app-content-tabs></app-content-tabs>
+
+
+    
+  <!-- •••••• TAB - BOUNX PROFILE •••••• -->
+  <!-- <div class="TAB_BounxProfile contentTABS_body bg_white">
+    <div class="group_btns section">
+      <ion-button class="small_btn bg_black">
+        All Badges <ion-icon name="arrow-forward-outline" class="ontheright"></ion-icon>
+      </ion-button>
+      <ion-button class="small_btn bg_black">
+        All Frames <ion-icon name="arrow-forward-outline" class="ontheright"></ion-icon>
+      </ion-button>
+    </div>
+    <app-badge-term></app-badge-term>
+    <app-profile-stats></app-profile-stats>
+  </div> -->
+
+
+
+  <!-- •••••• TAB - FEEDBACK •••••• -->
+  <!-- <div class="TAB_feedback contentTABS_body bg_white">
+    <app-coach-feedback-card></app-coach-feedback-card>
+  </div> -->
+
+
+
+  <!-- •••••• TAB - FAVORITES •••••• -->
+  <!-- <div class="TAB_favorites contentTABS_body bg_grey800">
+    <app-favorite-listing></app-favorite-listing>
+  </div> -->
+
+
+
+  <!-- •••••• TAB - PERSONAL DETAILS •••••• -->
+  <div class="TAB_personalDetes contentTABS_body bg_white">
+    <app-personal-details></app-personal-details>
+  </div>
+
+</ion-content>

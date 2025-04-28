@@ -1,0 +1,127 @@
+.coachFBcard {
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    .coachFBcard_item {
+        background: var(--general-white);
+        border: 1px var(--grey-700) solid;
+        border-radius: 15px;
+        position: relative;
+
+        .class_dete {
+            padding: 35px 20px 15px;
+            background: var(--lime-shade01);
+            border-bottom: 1px var(--grey-700) solid;
+            border-radius: 15px 15px 0 0;
+
+            .energy_level {
+                margin-top: -45px;
+                display: flex;
+                justify-content: flex-end;
+
+                &.level_1 {
+                    .energy1::after { content: ''; }
+                }
+
+                &.level_2 {
+                    .energy1::after, .energy2::after { content: ''; }
+                }
+
+                &.level_3 {
+                    .energy1::after, .energy2::after, .energy3::after { content: ''; }
+                }
+
+                .energy_item {
+                    margin-left: 5px;
+                    width: 34px;
+                    height: 34px;
+                    background: url('../../../assets/icon/icon_energy_a4a4a4.svg') center center no-repeat;
+                    background-size: 100%;
+                    
+                    &::after {
+                        width: 100%;
+                        height: 100%;
+                        background: url('../../../assets/icon/icon_energy_limedarkgrey.svg') center center no-repeat;
+                        background-size: 100%;
+                        display: block;
+                    }
+                }
+            }
+
+            .class_title {
+                padding-top: 10px;
+                font-size: 1.25rem;
+                line-height: 1em;
+                font-weight: 700;
+                color: var(--grey-100);
+            }
+
+            .session_datetime {
+                padding-top: 10px;
+                display: flex;
+
+                .item {
+                    font-size: 0.875rem;
+                    line-height: 1em;
+                    font-weight: 700;
+                    color: var(--seafoam-shade05);
+
+                    &::before {
+                        content: '/';
+                        margin: 0 7px;
+                        font-weight: 400;
+                        color: var(--grey-600);
+                    }
+
+                    &:first-child::before {
+                        content: '';
+                        margin: 0;
+                    }
+                }
+            }
+
+            .session_coach {
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+
+                .profilepic_coach {
+                    width: 20px;
+                    height: 20px;
+                }
+
+                .coach_name {
+                    padding-left: 5px;
+                    font-size: 0.8125rem;
+                    line-height: 1em;
+                    font-weight: 700;
+                    color: var(--grey-400);
+                }
+            }
+        }
+
+        .listing_data {
+
+            ion-item:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .xp_earned {
+            padding: 5px 10px 8px;
+            width: calc(100% - 40px);
+            font-size: 1.125rem;
+            line-height: 1em;
+            font-weight: 700;
+            color: var(--primary-lime);
+            background: var(--grey-100);
+            border-radius: 0px 0px 20px 20px;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 100%;
+            left: 20px;
+        }
+    }
+}
