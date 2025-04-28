@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CheckboxCustomEvent, DatetimeCustomEvent, IonicModule, ModalController } from '@ionic/angular';
+import { CheckboxCustomEvent, DatetimeCustomEvent, IonicModule, ModalController, NavController } from '@ionic/angular';
 import {
   
   IonIcon,
@@ -57,7 +57,8 @@ export class OnboardingStep1Component implements OnInit {
   getUser!: User;
   checkBox: boolean = true;
   showCalendar:boolean = false;
-
+emergencyRel:any = ['Father', 'Mother', 'Guardian', 'Brother', 'Sister', 'Husband', 'Wife', 'Fianće(e)', 'Grandparent', 'Aunt', 'Uncle', 'Cousin', 'Friend', 'Coach', 'Teacher', 'Employer', 'Neighbour'];
+navControler:NavController = inject(NavController);
   constructor(
     private playerService: PlayerService,
     private modalCtrl: ModalController,
@@ -94,7 +95,7 @@ export class OnboardingStep1Component implements OnInit {
       isEmergencyContactPrimaryAccount: new FormControl(true),
       emergencyName: new FormControl('', Validators.required),
       emergencyRelationship: new FormControl(
-        'Account Owner',
+        '',
         Validators.required
       ),
       emergencyPhoneCode: new FormControl('', Validators.required),
@@ -164,5 +165,8 @@ export class OnboardingStep1Component implements OnInit {
   test(ev:DatetimeCustomEvent){
     this.playerProfileFormGroup.patchValue({dob: ev.detail.value});
     this.showCalendar = false;
+  }
+  dismiss(){
+    this.navControler.pop();
   }
 }

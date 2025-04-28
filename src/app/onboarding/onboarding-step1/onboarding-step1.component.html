@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true" class="Onboarding light_page centerise_page">
 <div class="header">
-  <div class="topbar"><ion-icon name="close-outline" class="btn_close byitself"></ion-icon></div>
+  <div class="topbar"><ion-icon name="close-outline" class="btn_close byitself" (click)="dismiss()"></ion-icon></div>
   <div class="subhdr_page">CREATE NEW PROFILE</div>
   <div class="title_page"><span class="fw_regular">Step 1:</span> Profile Details</div>
   <app-step-progress></app-step-progress>
@@ -51,10 +51,12 @@
         <ion-label>Relationship *</ion-label>
         <ion-select label-placement="stacked" placeholder="Select One" toggleIcon="" class="hidelabel"
           formControlName="emergencyRelationship">
-          <ion-select-option value="Account Owner">Account Owner</ion-select-option>
-          <ion-select-option value="apple">Apple</ion-select-option>
+
+          <!-- <ion-select-option value="Account Owner">Account Owner</ion-select-option> -->
+          <ion-select-option value="{{emerRel}}" *ngFor="let emerRel of emergencyRel">{{emerRel}}</ion-select-option>
+          <!-- <ion-select-option value="apple">Apple</ion-select-option>
           <ion-select-option value="banana">Banana</ion-select-option>
-          <ion-select-option value="orange">Orange</ion-select-option>
+          <ion-select-option value="orange">Orange</ion-select-option> -->
         </ion-select>
       </div>
 

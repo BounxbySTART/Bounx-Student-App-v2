@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import {
   IonIcon,
   IonLabel,
@@ -22,9 +23,12 @@ import { StepProgressComponent } from 'src/app/general/step-progress/step-progre
   ],
 })
 export class OnboardingStep2Component  implements OnInit {
+  navController:NavController = inject(NavController);
 
   constructor() { }
 
   ngOnInit() {}
-
+dismiss(){
+  this.navController.pop();
+}
 }
