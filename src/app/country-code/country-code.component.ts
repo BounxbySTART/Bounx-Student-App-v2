@@ -63,4 +63,7 @@ export class CountryCodeComponent implements AfterViewInit {
     console.log('selected value', target.value);
     return this.modalCtrl.dismiss(target.value, 'confirm');
   }
+  cancel(){
+    return this.modalCtrl.dismiss();
+  }
 }
