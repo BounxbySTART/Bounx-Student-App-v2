@@ -701,15 +701,24 @@ ion-button {
     }
 
     &.small_btn {
-        --padding-top: 10px;
-        --padding-bottom: 10px;
-        --padding-start: 15px;
+        --padding-top: 7px;
+        --padding-bottom: 9px;
+        --padding-start: 18px;
         --padding-end: 15px;
         min-height: auto;
-        font-size: 0.815rem;
+        font-size: 0.8125rem;
         line-height: 1.15em;
         border: 1px solid var(--grey-700);
         border-radius: 10px;
+        --border-radius: 10px;
+
+        ion-icon {
+            font-size: 18px;
+
+            &.ontheright {
+                margin-left: 10px;
+            }
+        }
     }
     
     &.round_btn {
@@ -724,11 +733,47 @@ ion-button {
         ion-icon {
             font-size: 24px;
         }
+
+        &.bg_black {
+
+            ion-icon {
+                color: var(--primary-lime);
+            }
+        }
     }
 
-    &.bg_white { --background: var(--general-white); }
+    &.bg_white {
+        --background: var(--general-white);
+        --background-activated: var(--general-white);
+        --background-focused: var(--grey-900);
+        --background-hover: var(--grey-900);
+    }
 
-    &.bg_none { --background: transparent; }
+    &.bg_black {
+        color: var(--general-white);
+        --color: var(--general-white);
+        --background: var(--general-black);
+        --background-activated: var(--general-black);
+        --background-focused: var(--grey-250);
+        --background-hover: var(--grey-250);
+        border: none;
+
+        ion-icon {
+            color: var(--general-white);
+        }
+    }
+
+    &.bg_none {
+        --background: transparent;
+        --background-activated: transparent;
+        --background-focused: transparent;
+        --background-hover: transparent;
+    }
+
+    &.bdr_line_grey100 {
+        border: 1px var(--grey-100) solid;
+        
+    }
 }
 
 .btn_optional {
@@ -810,6 +855,10 @@ ion-button {
         }
     }
 
+    ion-list {
+        background: transparent;
+    }
+
     ion-item {
         margin-bottom: 5px;
         padding: 10px;
@@ -862,6 +911,10 @@ ion-button {
             color: var(--ion-color-dark);
         }
 
+        ion-icon {
+            font-size: 24px;
+        }
+
         &.outline_ondark {
             color: var(--ion-color-medium);
             background: transparent;
@@ -884,6 +937,102 @@ ion-button {
             ion-icon {
                 font-size: 24px;
             }
+        }
+    }
+}
+
+.listing_data {
+
+    &.bdr_btm {
+
+        ion-item {
+            border-bottom: 1px var(--grey-700) solid;
+        }
+    }
+
+    ion-item {
+        padding: 15px 20px;
+        background: transparent;
+        --background: transparent;
+
+        .listing_content {
+
+            .label {
+                padding-bottom: 10px;
+                font-size: 0.75rem;
+                line-height: 1em;
+                font-weight: 500;
+                color: var(--grey-500);
+
+                &::after {
+                    content: '/';
+                    margin-left: 5px;
+                }
+            }
+
+            .data {
+                font-size: 1rem;
+                font-weight: 500;
+            }
+
+            &.w_video {
+
+                .data {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+
+                    &::after {
+                        content: '';
+                        width: 24px;
+                        height: 24px;
+                        background: url(assets/icon/Icon_video_darkgrey.svg) center center no-repeat;
+                        display: block;
+                    }
+                }
+            }
+
+            &.w_badge {
+
+                .data {
+                    padding-top: 5px;
+                    display: flex;
+                    gap: 10px;
+
+                    .badge_item {
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.list_groups {
+    margin-bottom: 5px;
+    padding-bottom: 20px;
+    background: var(--grey-900);
+    border: 1px var(--grey-700) solid;
+    border-radius: 15px;
+
+    .list_group_head {
+        padding: 10px 25px;
+        background: var(--grey-750);
+        border-bottom: 1px var(--grey-700) solid;
+        border-radius: 14px 14px 0 0;
+    }
+
+    .list_info {
+        padding: 15px 25px;
+        background: var(--grey-850);
+        border-bottom: 1px var(--grey-700) solid;
+        display: flex;
+
+        ion-icon {
+            margin-right: 10px;
+            min-width: 18px;
+            font-size: 18px;
         }
     }
 }
@@ -939,12 +1088,17 @@ body {
 }
 
 .centerise_page {
+    --padding-top: 20px;
 
     .header {
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        p {
+            padding: 0 20px 20px;
+        }
     }
 }
 
@@ -952,7 +1106,7 @@ body {
 /* Header */
 
 .header {
-    padding: 30px 40px;
+    padding: 10px 20px;
 }
 
 .section_header {
@@ -960,6 +1114,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+
+    ion-icon {
+        font-size: 20px;
+    }
 }
 
 .topbar {
@@ -968,6 +1126,19 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .btn_icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        ion-icon {
+            font-size: 24px;
+        }
+    }
 
     .btn_close {
 
@@ -978,7 +1149,79 @@ body {
 }
 
 
+/* 30px */
+.hdr_page {
+    padding: 0 20px 20px;
+    width: 100%;
+    font-size: 1.875rem;
+    line-height: 1.13em;
+    font-weight: 500;
+    // text-align: center;
+
+    .em {
+        color: var(--ion-color-primary);
+    }
+}
+
+/* 12px */
+.subhdr_page {
+    padding: 0 0 10px;
+    font-size: 0.75rem;
+    line-height: 1.16em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* 20px */
+.hdr_section {
+    font-size: 1.25rem;
+    line-height: 1em;
+    font-weight: 700;
+}
+
+/* 48px */
+.hdr_big_color {
+    padding: 0 0 20px;
+    font-size: 3rem;
+    line-height: 0.83em;
+    font-weight: 800;
+}
+
+/* 22px */
+.title_page {
+    font-size: 1.375rem;
+    line-height: 1.09em;
+    font-weight: 600;
+}
+
+/* Text Gradient */ 
+.text_gradient {
+    color: #EBFF78; 
+    background-image: linear-gradient(135deg, #A6FFE6 , #EBFF78 100%); 
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+}
+
+
 /* Content */
+
+.contentTABS_body {
+    margin: 0 5px;
+    padding: 30px 0 80px;
+    min-height: 300px;
+    border-radius: 40px 40px 0 0;
+
+    &.bg_white {
+        color: var(--general-black);
+        background: var(--general-white);
+    }
+
+    &.bg_grey800 {
+        color: var(--general-black);
+        background: var(--grey-800);
+    }
+}
 
 .section {
     padding-left: 30px;
@@ -1035,61 +1278,6 @@ body {
     &.dadada_o_cnt {
         border: 1px solid var(--grey-750);
     }
-}
-
-
-/* 30px */
-.hdr_page {
-    padding: 0 0 20px;
-    width: 100%;
-    font-size: 1.875rem;
-    line-height: 1.13em;
-    font-weight: 500;
-    // text-align: center;
-
-    .em {
-        color: var(--ion-color-primary);
-    }
-}
-
-/* 12px */
-.subhdr_page {
-    padding: 0 0 10px;
-    font-size: 0.75rem;
-    line-height: 1.16em;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-/* 20px */
-.hdr_section {
-    font-size: 1.25rem;
-    line-height: 1em;
-    font-weight: 700;
-}
-
-/* 48px */
-.hdr_big_color {
-    padding: 0 0 30px;
-    font-size: 3rem;
-    line-height: 0.83em;
-    font-weight: 800;
-}
-
-/* 22px */
-.title_page {
-    font-size: 1.375rem;
-    line-height: 1.09em;
-    font-weight: 600;
-}
-
-/* Text Gradient */ 
-.text_gradient {
-    color: #EBFF78; 
-    background-image: linear-gradient(135deg, #A6FFE6 , #EBFF78 100%); 
-    background-clip: text; 
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent; 
 }
 
 
