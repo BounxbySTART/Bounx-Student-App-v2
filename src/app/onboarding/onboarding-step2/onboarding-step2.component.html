@@ -7,18 +7,18 @@
 <div class="form">
   <div class="form_cnt">
     <p class="ion-text-center">
-      Pictures are for vanity & security so Coaches can put a face to a name.<br/><br/>
+      Pictures are for vanity & security so Coaches can put a face to a name.<br /><br />
     </p>
     <div class="form_item">
       <div class="profilePic_preview">
-        <img src="../../assets/dummy/profile_pic_user/Ryan.png" />
+        <img src="{{profileImage}}" />
       </div>
     </div>
     <div class="form_item">
       <ion-label>Upload picture from</ion-label>
-      <ion-radio-group class="two_opt">
-        <ion-radio value="male">Camera</ion-radio>
-        <ion-radio value="female">Gallery</ion-radio>
+      <ion-radio-group class="two_opt" (ionChange)="chooseImage($event.detail.value)">
+        <ion-radio value="CAMERA">Camera</ion-radio>
+        <ion-radio value="PHOTOA">Gallery</ion-radio>
       </ion-radio-group>
     </div>
     <ion-button class="main_cta" (click)="proceedToClubSelection()">Next</ion-button>
