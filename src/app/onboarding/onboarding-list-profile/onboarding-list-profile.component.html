@@ -1,6 +1,5 @@
-<ion-content [fullscreen]="true" class="Dashboard dark_page">
 <div class="list_profile listing_capsule pad_side_40">
-  <p class="list_label">Created Profiles:</p>
+  @if(playerProfiles && playerProfiles.length>0){<p class="list_label">Created Profiles:</p>}
   <ion-list>
     @for (profile of playerProfiles; track profile.id){
     <ion-item-sliding #profileItem>
@@ -39,4 +38,3 @@
     </ion-item>
   </ion-list>
 </div>
-</ion-content>

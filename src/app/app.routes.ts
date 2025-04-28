@@ -15,6 +15,9 @@ import { Tab2Page } from './tab2/tab2.page';
 import { TabsPage } from './tabs/tabs.page';
 import { ResetPassSuccessComponent } from './reset-password/reset-pass-success/reset-pass-success.component';
 import { IntroContentComponent } from './intro/intro-content/intro-content.component';
+import { OnboardingStartComponent } from './onboarding/onboarding-start/onboarding-start.component';
+import { OnboardingStep3Component } from './onboarding/onboarding-step3/onboarding-step3.component';
+import { OnboardingStep4Component } from './onboarding/onboarding-step4/onboarding-step4.component';
 
 export const routes: Routes = [
   {
@@ -22,7 +25,7 @@ export const routes: Routes = [
     redirectTo: '/app-intro-content',
     pathMatch: 'full',
   },
- /*  {
+  /*  {
     path: '',
     redirectTo: '/tabs/tab1',
     pathMatch: 'full',
@@ -59,12 +62,24 @@ export const routes: Routes = [
     component: LogInFormComponent,
   },
   {
+    path: 'onboarding-start',
+    component: OnboardingStartComponent,
+  },
+  {
     path: 'onboarding-step1',
     component: OnboardingStep1Component,
   },
   {
     path: 'onboarding-step2',
     component: OnboardingStep2Component,
+  },
+  {
+    path: 'onboarding-step3',
+    component: OnboardingStep3Component,
+  },
+  {
+    path: 'onboarding-step4',
+    component: OnboardingStep4Component,
   },
   {
     path: 'app-verify-form',
@@ -97,5 +112,5 @@ export const routes: Routes = [
   {
     path: 'app-intro-content',
     component: IntroContentComponent,
-  }
+  },
 ];

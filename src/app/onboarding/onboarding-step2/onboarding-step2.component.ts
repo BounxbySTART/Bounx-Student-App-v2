@@ -5,7 +5,7 @@ import {
   IonLabel,
   IonRadioGroup,
   IonRadio,
-  IonButton
+  IonButton,
 } from '@ionic/angular/standalone';
 import { StepProgressComponent } from 'src/app/general/step-progress/step-progress.component';
 
@@ -19,16 +19,19 @@ import { StepProgressComponent } from 'src/app/general/step-progress/step-progre
     IonRadioGroup,
     IonRadio,
     IonButton,
-    StepProgressComponent
+    StepProgressComponent,
   ],
 })
-export class OnboardingStep2Component  implements OnInit {
-  navController:NavController = inject(NavController);
+export class OnboardingStep2Component implements OnInit {
+  navController: NavController = inject(NavController);
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
-dismiss(){
-  this.navController.pop();
-}
+  proceedToClubSelection() {
+    this.navController.navigateForward('/onboarding-step3');
+  }
+  dismiss() {
+    this.navController.pop();
+  }
 }
