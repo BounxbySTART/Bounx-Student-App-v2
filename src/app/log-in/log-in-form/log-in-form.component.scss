@@ -1,12 +1,15 @@
-app-bounx-logo-icon {
-    margin-bottom: 20px;
-    width: 40px;
-    color: #E1FF40;
-    display: block;
-}
+.LogIn {
 
-app-log-in-footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
+    app-bounx-logo-icon {
+        margin-bottom: 20px;
+        width: 40px;
+        color: #E1FF40;
+        display: block;
+    }
+    
+    app-log-in-footer {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
 }
