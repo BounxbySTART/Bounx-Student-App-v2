@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  masterUrl: "https://dev.technotrant.com/"
+  masterUrl: 'https://master.staging.api.bounx.com/',
 };
