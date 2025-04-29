@@ -57,7 +57,9 @@ export class OnboardingStep1Component implements OnInit {
   getUser!: User;
   checkBox: boolean = true;
   showCalendar:boolean = false;
-emergencyRel:any = ['Father', 'Mother', 'Guardian', 'Brother', 'Sister', 'Husband', 'Wife', 'Fianće(e)', 'Grandparent', 'Aunt', 'Uncle', 'Cousin', 'Friend', 'Coach', 'Teacher', 'Employer', 'Neighbour'];
+  selectedOption: string | null = null;
+  ifEmerOther:boolean = false;
+emergencyRel:any = ['Father', 'Mother', 'Guardian', 'Brother', 'Sister', 'Husband', 'Wife', 'Fianće(e)', 'Grandparent', 'Aunt', 'Uncle', 'Cousin', 'Friend', 'Coach', 'Teacher', 'Employer', 'Neighbour', 'Other'];
 navControler:NavController = inject(NavController);
   constructor(
     private playerService: PlayerService,
@@ -105,6 +107,19 @@ navControler:NavController = inject(NavController);
         Validators.maxLength(15),
       ]),
     });
+
+    
+
+  }
+
+  onSelectionChange(event:any){
+   console.log(event.target.value);
+   
+    if(event.target.value === 'Other'){
+      this.ifEmerOther = true;
+    }
+    else this.ifEmerOther=false; return
+
   }
 
   getPlayerProfileDetail() {

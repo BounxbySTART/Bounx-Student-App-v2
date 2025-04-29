@@ -47,17 +47,24 @@
         <ion-input label="Name *" labelPlacement="stacked" [clearInput]="true"
           formControlName="emergencyName"></ion-input>
       </div>
-      <div class="form_item">
+      <div class="form_item" >
         <ion-label>Relationship *</ion-label>
         <ion-select label-placement="stacked" placeholder="Select One" toggleIcon="" class="hidelabel"
-          formControlName="emergencyRelationship">
+          formControlName="emergencyRelationship" (ionChange)="onSelectionChange($event)">
 
           <!-- <ion-select-option value="Account Owner">Account Owner</ion-select-option> -->
-          <ion-select-option value="{{emerRel}}" *ngFor="let emerRel of emergencyRel">{{emerRel}}</ion-select-option>
-          <!-- <ion-select-option value="apple">Apple</ion-select-option>
-          <ion-select-option value="banana">Banana</ion-select-option>
-          <ion-select-option value="orange">Orange</ion-select-option> -->
+           <ion-select-option *ngFor="let emerRel of emergencyRel" value="{{emerRel}}" >{{emerRel}}</ion-select-option>
+          <!-- <ion-select (ionChange)="updateUI($event)">
+            <ion-select-option value="light">Light Mode</ion-select-option>
+            <ion-select-option value="dark">Dark Mode</ion-select-option>
+          </ion-select>
+          
+          <p>Current Theme: {{ selectedTheme }}</p> -->
+          
+          
         </ion-select>
+        <ion-input *ngIf="ifEmerOther" formControlName="emergencyRelationship"> Please Specify*</ion-input>
+        
       </div>
 
       <div class="form_item">
