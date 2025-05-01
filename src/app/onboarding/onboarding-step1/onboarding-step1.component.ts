@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import {
   FormControl,
@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CheckboxCustomEvent, DatetimeCustomEvent, IonicModule, ModalController, NavController } from '@ionic/angular';
+import { CheckboxCustomEvent, DatetimeCustomEvent, IonicModule, ModalController } from '@ionic/angular';
 import {
   
   IonIcon,
@@ -60,7 +60,7 @@ export class OnboardingStep1Component implements OnInit {
   selectedOption: string | null = null;
   ifEmerOther:boolean = false;
 emergencyRel:any = ['Father', 'Mother', 'Guardian', 'Brother', 'Sister', 'Husband', 'Wife', 'Fianće(e)', 'Grandparent', 'Aunt', 'Uncle', 'Cousin', 'Friend', 'Coach', 'Teacher', 'Employer', 'Neighbour', 'Other'];
-navControler:NavController = inject(NavController);
+location:Location = inject(Location);
   constructor(
     private playerService: PlayerService,
     private modalCtrl: ModalController,
@@ -173,7 +173,6 @@ navControler:NavController = inject(NavController);
   }
 
   openCalendar(){
-    console.log("hello")
     this.showCalendar = true;
   }
 
@@ -182,6 +181,6 @@ navControler:NavController = inject(NavController);
     this.showCalendar = false;
   }
   dismiss(){
-    this.navControler.pop();
+    this.location.back();
   }
 }

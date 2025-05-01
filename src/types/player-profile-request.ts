@@ -1,5 +1,5 @@
 export interface PlayerProfileRequest {
-  id?: string;
+  id?: number;
   firstName: string;
 
   lastName: string;

@@ -18,6 +18,7 @@ import { IntroContentComponent } from './intro/intro-content/intro-content.compo
 import { OnboardingStartComponent } from './onboarding/onboarding-start/onboarding-start.component';
 import { OnboardingStep3Component } from './onboarding/onboarding-step3/onboarding-step3.component';
 import { OnboardingStep4Component } from './onboarding/onboarding-step4/onboarding-step4.component';
+import { OnboardingCompletedComponent } from './onboarding/onboarding-completed/onboarding-completed.component';
 
 export const routes: Routes = [
   {
@@ -80,6 +81,10 @@ export const routes: Routes = [
   {
     path: 'onboarding-step4',
     component: OnboardingStep4Component,
+  },
+  {
+    path:'onboarding-complete',
+    component:OnboardingCompletedComponent
   },
   {
     path: 'app-verify-form',

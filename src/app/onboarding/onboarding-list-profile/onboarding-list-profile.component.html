@@ -1,7 +1,7 @@
 <div class="list_profile listing_capsule pad_side_40">
   @if(playerProfiles && playerProfiles.length>0){<p class="list_label">Created Profiles:</p>}
   <ion-list>
-    @for (profile of playerProfiles; track profile.id){
+    @for (profile of playerProfiles; track profile.id; let i = $index;){
     <ion-item-sliding #profileItem>
       <ion-item>
         <ion-avatar>
@@ -17,7 +17,7 @@
       </ion-item>
       <ion-item-options slot="end" (click)="profileItem.close();preventEvent($event)">
         <ion-item-option>
-          <ion-icon slot="icon-only" name="trash-outline" class="pink"></ion-icon>
+          <ion-icon slot="icon-only" name="trash-outline" class="pink" (click)="removeProfile(profile.id,i)"></ion-icon>
         </ion-item-option>
         <ion-item-option>
           <ion-icon slot="icon-only" name="create-outline"></ion-icon>

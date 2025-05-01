@@ -1,5 +1,5 @@
 <div class="header">
-  <div class="topbar"><ion-icon name="close-outline" class="btn_close byitself"></ion-icon></div>
+  <div class="topbar"><ion-icon name="close-outline" class="btn_close byitself" (click)="dismiss()"></ion-icon></div>
   <div class="subhdr_page">CREATE NEW PROFILE</div>
   <div class="title_page"><span class="fw_regular">Step 3:</span> Favorite Academy</div>
   <app-step-progress></app-step-progress>
@@ -9,15 +9,16 @@
     <div class="form_item">
       <ion-label>Search by *</ion-label>
       <ion-select label-placement="stacked" placeholder="Select One" toggleIcon="" class="hidelabel">
-        <ion-select-option value="apple">Apple</ion-select-option>
-        <ion-select-option value="banana">Banana</ion-select-option>
-        <ion-select-option value="orange">Orange</ion-select-option>
+        <ion-select-option *ngFor="let list of searchByList" value="{{list.value}}">{{list.label}}</ion-select-option>
       </ion-select>
     </div>
     <div class="form_item">
-      <ion-input [clearInput]="true" placeholder="Type at least 3 letters to search">
+      <ion-input [clearInput]="true" placeholder="Type at least 3 letters to search" >
         <ion-icon slot="end" name="search-outline" aria-hidden="true"></ion-icon>
       </ion-input>
+    </div>
+    <div class="btn_hld pad_bottom_40">
+      <ion-button class="main_cta">Complete</ion-button>
     </div>
   </div>
 </div>

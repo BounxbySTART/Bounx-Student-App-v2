@@ -20,4 +20,7 @@ export class PlayerService {
     return this.http.get(environment.masterUrl.concat('profile/all'))
   }
 
+  playerProfileRemove(id:number){
+    return this.http.delete(environment.masterUrl.concat('profile/'+id))
+  }
 }
