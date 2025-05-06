@@ -13,7 +13,11 @@ import { IonContent, IonIcon, IonButton, IonSegment } from "@ionic/angular/stand
   selector: 'app-p-student',
   templateUrl: './p-student.component.html',
   styleUrls: ['./p-student.component.scss'],
-  imports: [IonSegment, IonButton, IonIcon, IonContent, 
+  imports: [
+    IonSegment,
+    IonButton,
+    IonIcon,
+    IonContent, 
     ProfileCoverComponent,
     ContentTabsComponent,
     BadgeLatestComponent,
