@@ -10,10 +10,16 @@
     <div class="form_item">
       <ion-input label="First Name *" labelPlacement="stacked" formControlName="firstName"
         [clearInput]="true" errorText="Please enter first name"></ion-input >
+        @if (playerProfileFormGroup.controls['firstName'].invalid && playerProfileFormGroup.controls['firstName'].dirty) {
+          <ion-text color="danger">firstName is invalid.</ion-text>
+        }
     </div>
     <div class="form_item">
       <ion-input label="Last Name *" labelPlacement="stacked" formControlName="lastName" errorText="Please enter last name"
         [clearInput]="true"></ion-input>
+        @if (playerProfileFormGroup.controls['lastName'].invalid && playerProfileFormGroup.controls['lastName'].dirty) {
+          <ion-text color="danger">lastName is invalid.</ion-text>
+        }
     </div>
     <div class="form_item">
       <ion-input label="Date of Birth *" labelPlacement="stacked" formControlName="dob" [clearInput]="true"
@@ -24,6 +30,9 @@
           <ion-datetime id="datetime" multiple="false" presentation="date" (ionChange)="test($event)"></ion-datetime>
         </ng-template>
       </ion-modal>
+      <div *ngIf="playerProfileFormGroup.get('dob')?.errors?.['required'] && playerProfileFormGroup.get('dob')?.touched">
+        <ion-text color="danger">dob is required.</ion-text>
+    </div>
     </div>
     <div class="form_item">
       <ion-label>Gender *</ion-label>
@@ -31,6 +40,9 @@
         <ion-radio value="MALE">Male</ion-radio>
         <ion-radio value="FEMALE">Female</ion-radio>
       </ion-radio-group>
+      <div *ngIf="playerProfileFormGroup.get('gender')?.errors?.['required'] && playerProfileFormGroup.get('gender')?.touched">
+        <ion-text color="danger">Selection is required.</ion-text>
+    </div>
     </div>
     <div class="form_item">
       <ion-label>Emergency Contact *</ion-label>
@@ -46,6 +58,9 @@
       <div class="form_item">
         <ion-input label="Name *" labelPlacement="stacked" [clearInput]="true"
           formControlName="emergencyName"></ion-input>
+          <div *ngIf="playerProfileFormGroup.get('emergencyName')?.errors?.['required'] && playerProfileFormGroup.get('emergencyName')?.touched">
+            <ion-text color="danger">Name is required.</ion-text>
+        </div>
       </div>
       <div class="form_item" >
         <ion-label>Relationship *</ion-label>
@@ -64,7 +79,9 @@
           
         </ion-select>
         <ion-input *ngIf="ifEmerOther" formControlName="emergencyRelationship"> Please Specify*</ion-input>
-        
+        <div *ngIf="playerProfileFormGroup.get('emergencyRelationship')?.errors?.['required'] && playerProfileFormGroup.get('emergencyRelationship')?.touched">
+          <ion-text color="danger">Relationship details are required.</ion-text>
+      </div>
       </div>
 
       <div class="form_item">
@@ -73,6 +90,9 @@
           autocomplete="tel" (click)="openModal()"></ion-input>
         <ion-input [clearInput]="true" formControlName="emergencyPhone" placeholder="Phone Number" type="tel"
           autocomplete="tel"></ion-input>
+          @if (playerProfileFormGroup.controls['emergencyPhone'].invalid && playerProfileFormGroup.controls['emergencyPhone'].dirty) {
+            <ion-text color="danger">That doesn't seem like a valid phone number.</ion-text>
+          }
       </div>
     </div>
     <ion-button [disabled]="playerProfileFormGroup.invalid" (click)="getPlayerProfileDetail()"

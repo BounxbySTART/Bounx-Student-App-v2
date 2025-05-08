@@ -27,7 +27,7 @@ import { CountryCodeComponent } from 'src/app/country-code/country-code.componen
 import { StepProgressComponent } from 'src/app/general/step-progress/step-progress.component';
 import { MasterService } from 'src/app/services/master.service';
 import { PlayerService } from 'src/app/services/player.service';
-import { User, UserService } from 'src/app/services/user.service';
+import { CurrentProfile, User, UserService } from 'src/app/services/user.service';
 import { PlayerProfileRequest } from 'src/types/player-profile-request';
 
 @Component({
@@ -125,13 +125,18 @@ location:Location = inject(Location);
   getPlayerProfileDetail() {
     console.log('hello');
     let collectedData = this.playerProfileFormGroup.value;
+    
     this.playerService
       .playerProfileDetail(collectedData)
-      .subscribe((res: PlayerProfileRequest) => {
+      .subscribe((res) => {
         if (res) {
+        this.userService.setCurrentProfile(res);
           this.router.navigateByUrl('/onboarding-step2');
         }
-        console.log(res);
+        
+      },(err)=>{
+        console.log(err);
+        
       });
   }
 

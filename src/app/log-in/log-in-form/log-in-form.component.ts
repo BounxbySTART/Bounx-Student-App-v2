@@ -95,6 +95,7 @@ export class LogInFormComponent implements OnInit {
           this.authService.authToken = res.accessToken;
           this.authService.setRefreshToken(res.refreshToken);
           this.router.navigateByUrl('/tabs/tab1');
+          this.router.navigateByUrl('/list-profile');
         }
       },
       (err) => {
