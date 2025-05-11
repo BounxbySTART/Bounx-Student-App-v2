@@ -9,6 +9,8 @@ import {
 } from '@ionic/angular/standalone';
 import { StepProgressComponent } from 'src/app/general/step-progress/step-progress.component';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { UserService } from 'src/app/services/user.service';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'app-onboarding-step2',
@@ -24,12 +26,15 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   ],
 })
 export class OnboardingStep2Component implements OnInit {
+  profileId!:number;
   navController: NavController = inject(NavController);
   profileImage: string = '../../assets/dummy/profile_pic_user/Ryan.png';
-  constructor() {}
+  constructor(public userService:UserService, public playerService:PlayerService) {}
 
   ngOnInit() {}
   proceedToClubSelection() {
+    this.uploadImageFile();
+  
     this.navController.navigateForward('/onboarding-step3');
   }
   dismiss() {
@@ -52,6 +57,7 @@ export class OnboardingStep2Component implements OnInit {
     if (imageUrl) {
       // Can be set to the src of an image now
       this.profileImage = imageUrl;
+     
     }
   }
   async imageFromGallery() {
@@ -67,6 +73,21 @@ export class OnboardingStep2Component implements OnInit {
     if (imageUrl) {
       // Can be set to the src of an image now
       this.profileImage = imageUrl;
+    
     }
   }
+
+async uploadImageFile(){
+  
+  const response = await fetch(this.profileImage);
+    const blob = await response.blob();
+    const file = new File([blob], 'image.jpg', { type: blob.type });
+
+  this.profileId = this.userService.currentProfile.id;
+  this.playerService.studentProfilePictureUpload(this.profileId,file).subscribe((res)=>{
+console.log(res);
+
+  })
+}
+
 }

@@ -19,7 +19,7 @@
           </ion-label>
           <ion-input type="text" formControlName="firstName" [clearInput]="true" autocomplete="given-name" [maskito]="nameMaskOptions" [maskitoElement]="maskPredicate"></ion-input>
           <div *ngIf="signUpFormGroup.get('firstName')?.errors?.['required'] && signUpFormGroup.get('firstName')?.touched">
-            <ion-text color="danger">Firs name is required.</ion-text>
+            <ion-text color="danger">First name is required.</ion-text>
           </div>
           <div *ngIf="signUpFormGroup.get('firstName')?.errors?.['pattern']">
             <ion-text color="danger"> First name should be of min 2 characters.</ion-text>

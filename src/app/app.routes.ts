@@ -18,12 +18,14 @@ import { IntroContentComponent } from './intro/intro-content/intro-content.compo
 import { OnboardingStartComponent } from './onboarding/onboarding-start/onboarding-start.component';
 import { OnboardingStep3Component } from './onboarding/onboarding-step3/onboarding-step3.component';
 import { OnboardingStep4Component } from './onboarding/onboarding-step4/onboarding-step4.component';
+import { OnboardingCompletedComponent } from './onboarding/onboarding-completed/onboarding-completed.component';
 import { PStudentComponent } from './profile/p-student/p-student.component';
 import { EditPersonalDeteFormComponent } from './profile/edit-personal-dete-form/edit-personal-dete-form.component';
 import { EditContactFormComponent } from './profile/edit-contact-form/edit-contact-form.component';
 import { OtherProfilesComponent } from './profile/other-profiles/other-profiles.component';
 import { PgBadgesComponent } from './profile/pg-badges/pg-badges.component';
 import { BadgeDetailsComponent } from './profile/badge-details/badge-details.component';
+
 
 export const routes: Routes = [
   {
@@ -86,6 +88,10 @@ export const routes: Routes = [
   {
     path: 'onboarding-step4',
     component: OnboardingStep4Component,
+  },
+  {
+    path:'onboarding-complete',
+    component:OnboardingCompletedComponent
   },
   {
     path: 'app-verify-form',

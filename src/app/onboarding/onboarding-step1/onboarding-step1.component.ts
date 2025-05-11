@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import {
   FormControl,
@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CheckboxCustomEvent, DatetimeCustomEvent, IonicModule, ModalController, NavController } from '@ionic/angular';
+import { CheckboxCustomEvent, DatetimeCustomEvent, IonicModule, ModalController } from '@ionic/angular';
 import {
   
   IonIcon,
@@ -27,7 +27,7 @@ import { CountryCodeComponent } from 'src/app/country-code/country-code.componen
 import { StepProgressComponent } from 'src/app/general/step-progress/step-progress.component';
 import { MasterService } from 'src/app/services/master.service';
 import { PlayerService } from 'src/app/services/player.service';
-import { User, UserService } from 'src/app/services/user.service';
+import { CurrentProfile, User, UserService } from 'src/app/services/user.service';
 import { PlayerProfileRequest } from 'src/types/player-profile-request';
 
 @Component({
@@ -57,8 +57,10 @@ export class OnboardingStep1Component implements OnInit {
   getUser!: User;
   checkBox: boolean = true;
   showCalendar:boolean = false;
-emergencyRel:any = ['Father', 'Mother', 'Guardian', 'Brother', 'Sister', 'Husband', 'Wife', 'Fianće(e)', 'Grandparent', 'Aunt', 'Uncle', 'Cousin', 'Friend', 'Coach', 'Teacher', 'Employer', 'Neighbour'];
-navControler:NavController = inject(NavController);
+  selectedOption: string | null = null;
+  ifEmerOther:boolean = false;
+emergencyRel:any = ['Father', 'Mother', 'Guardian', 'Brother', 'Sister', 'Husband', 'Wife', 'Fianće(e)', 'Grandparent', 'Aunt', 'Uncle', 'Cousin', 'Friend', 'Coach', 'Teacher', 'Employer', 'Neighbour', 'Other'];
+location:Location = inject(Location);
   constructor(
     private playerService: PlayerService,
     private modalCtrl: ModalController,
@@ -105,18 +107,36 @@ navControler:NavController = inject(NavController);
         Validators.maxLength(15),
       ]),
     });
+
+    
+
+  }
+
+  onSelectionChange(event:any){
+   console.log(event.target.value);
+   
+    if(event.target.value === 'Other'){
+      this.ifEmerOther = true;
+    }
+    else this.ifEmerOther=false; return
+
   }
 
   getPlayerProfileDetail() {
     console.log('hello');
     let collectedData = this.playerProfileFormGroup.value;
+    
     this.playerService
       .playerProfileDetail(collectedData)
-      .subscribe((res: PlayerProfileRequest) => {
+      .subscribe((res) => {
         if (res) {
+        this.userService.setCurrentProfile(res);
           this.router.navigateByUrl('/onboarding-step2');
         }
-        console.log(res);
+        
+      },(err)=>{
+        console.log(err);
+        
       });
   }
 
@@ -158,7 +178,6 @@ navControler:NavController = inject(NavController);
   }
 
   openCalendar(){
-    console.log("hello")
     this.showCalendar = true;
   }
 
@@ -167,6 +186,6 @@ navControler:NavController = inject(NavController);
     this.showCalendar = false;
   }
   dismiss(){
-    this.navControler.pop();
+    this.location.back();
   }
 }

@@ -35,6 +35,7 @@ import { PlayerProfileRequest } from 'src/types/player-profile-request';
 })
 export class OnboardingListProfileComponent implements OnInit {
   playerProfiles: PlayerProfileRequest[] = [];
+  deleteId:string=''
   constructor(private router: Router, private playerService: PlayerService) {}
 
   ngOnInit() {
@@ -56,6 +57,15 @@ export class OnboardingListProfileComponent implements OnInit {
   getPlayerProfiles() {
     this.playerService.getPlayerProfiles().subscribe((res: any) => {
       this.playerProfiles = res;
+      console.log(this.playerProfiles);
+     
     });
+  }
+
+  removeProfile(profileId:any,i:number){
+    this.playerService.playerProfileRemove(profileId).subscribe((res)=>{
+      console.log(res);
+      this.playerProfiles.splice(i,1);
+    })
   }
 }

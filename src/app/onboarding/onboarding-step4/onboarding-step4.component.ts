@@ -6,6 +6,7 @@ import {
 } from '@ionic/angular/standalone';
 import { StepProgressComponent } from 'src/app/general/step-progress/step-progress.component';
 import { OnboardingListPaymentComponent } from '../onboarding-list-payment/onboarding-list-payment.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-onboarding-step4',
@@ -21,8 +22,11 @@ import { OnboardingListPaymentComponent } from '../onboarding-list-payment/onboa
 })
 export class OnboardingStep4Component  implements OnInit {
 
-  constructor() { }
+  constructor(public location:Location) { }
 
   ngOnInit() {}
 
+  dismiss(){
+this.location.back();
+  }
 }
