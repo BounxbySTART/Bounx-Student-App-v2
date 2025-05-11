@@ -18,22 +18,27 @@ export class PlayerService {
     );
   }
 
-  studentFavLocationDetail(body:StudentFavLocation){
-return this.http.post<StudentFavLocation>(
-  environment.masterUrl.concat('student/fav-location'),
-  body
-)
+  studentFavLocationDetail(body: StudentFavLocation) {
+    return this.http.post<StudentFavLocation>(
+      environment.masterUrl.concat('student/fav-location'),
+      body
+    );
   }
 
-
-
-  getPlayerProfiles(){
-    return this.http.get(environment.masterUrl.concat('profile/all'))
+  studentProfilePictureUpload(profileId: number, file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.put(
+      environment.masterUrl.concat('student/' + profileId),
+      formData
+    );
   }
 
-  playerProfileRemove(id:number){
-    return this.http.delete(environment.masterUrl.concat('profile/'+id))
+  getPlayerProfiles() {
+    return this.http.get(environment.masterUrl.concat('profile/all'));
   }
 
-  
+  playerProfileRemove(id: number) {
+    return this.http.delete(environment.masterUrl.concat('profile/' + id));
+  }
 }

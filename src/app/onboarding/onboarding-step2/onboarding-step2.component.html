@@ -21,6 +21,6 @@
         <ion-radio value="PHOTOA">Gallery</ion-radio>
       </ion-radio-group>
     </div>
-    <ion-button class="main_cta" (click)="proceedToClubSelection()">Next</ion-button>
+    <ion-button class="main_cta" (click)="proceedToClubSelection()" [disabled]="!profileImage">Next</ion-button>
   </div>
 </div>

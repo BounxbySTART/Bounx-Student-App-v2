@@ -75,7 +75,7 @@ location:Location = inject(Location);
     
   })
 }
-recieceFavouriteOpted(value:boolean){
+recieveFavouriteOpted(value:boolean){
 this.isFavouriteOpted = value;
 }
 
