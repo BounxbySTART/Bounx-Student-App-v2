@@ -1,0 +1,142 @@
+.allBadges_cnt {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .stats_cnt {
+        padding: 10px 0 0;
+
+        .stats_item {
+            padding-top: 0;
+        }
+    }
+
+    .badge_listing {
+        margin-top: 25px;
+
+        .badge_groups {
+
+            .badge_group_head {
+                padding: 10px 20px 12px 25px;
+                font-size: 1rem;
+                line-height: 1em;
+                font-weight: 700;
+                color: var(--primary-lime);
+                background: var(--grey-100);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                ion-icon {
+                    font-size: 18px;
+                    color: var(--primary-lime);
+                }
+            }
+
+            .badge_group_cnt {
+                padding: 20px 0;
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+
+                .badge_item {
+                    padding: 0 5px 20px;
+                    width: calc(100% / 3);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    .badge_img {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
+                        align-items: center;
+
+                        img {
+                            height: 70px;
+                        }
+
+                        .badge_count {
+                            margin-top: -10px;
+                            padding: 2px 8px 2px;
+                            font-size: 0.875rem;
+                            line-height: 1.285em;
+                            font-weight: 700;
+                            text-align: center;
+                            color: var(--general-white);
+                            background: rgba(0, 0, 0, 0.50);
+                            border-radius: 5px;
+                        }
+                    }
+
+                    .badge_name {
+                        padding: 15px 10px;
+                        min-height: 66px;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 0.875rem;
+                        line-height: 1.285em;
+                        font-weight: 700;
+                        text-align: center;
+                        color: var(--grey-100);
+                        border: 1px var(--grey-750) solid;
+                        border-radius: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    &.beforeUnlock {
+
+                        .badge_count {
+                            opacity: 0;
+                        }
+
+                        .badge_name {
+                            color: var(--grey-550);
+                            border-style: dashed;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.badge_Term {
+            margin-top: 0;
+
+            .badge_groups {
+
+                .badge_group_cnt {
+
+                    .badge_item {
+                        width: calc(100% / 2);
+
+                        .badge_name {
+
+                            .date {
+                                margin-top: 10px;
+                                padding: 3px 15px 5px 15px;
+                                font-size: 0.6875rem;
+                                line-height: 1em;
+                                font-weight: 700;
+                                color: var(--General-White, #FFF);
+                                background: var(--grey-100);
+                                border-radius: 10px;
+                            }
+                        }
+
+                        &.beforeUnlock {
+
+                            .date {
+                                color: var(--grey-550) !important;
+                                background: transparent !important;
+                                border: 1px var(--grey-750) solid;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

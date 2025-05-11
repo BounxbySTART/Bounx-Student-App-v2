@@ -1,0 +1,109 @@
+.profileCover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .profilePic {
+        margin: 70px 0 15px;
+        width: 120px;
+        height: 120px;
+        border: 1px var(--grey-750) solid;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .avgEnergy {
+        padding: 3px 10px 5px 20px;
+        font-size: 1.125rem;
+        line-height: 1em;
+        font-weight: 700;
+        color: var(--general-black);
+        background: var(--ion-color-primary);
+        border-radius: 20px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+
+        &::after {
+            content: '';
+            margin-left: 5px;
+            width: 24px;
+            height: 24px;
+            background: url(../../../assets/icon/icon_energy_darkgrey.svg) center center no-repeat;
+            display: block;
+        }
+    }
+
+    .studentName {
+        padding: 20px 0;
+        font-size: 1.875rem;
+        line-height: 1.06em;
+        font-weight: 700;
+        color: var(--general-white);
+        position: relative;
+        z-index: 3;
+    }
+
+    .profileXP {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        position: relative;
+        z-index: 4;
+
+        .seasionXP {
+            padding: 3px 0 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            .value {
+                padding-bottom: 3px;
+                font-size: 1.375rem;
+                line-height: 1.09em;
+                font-weight: 700;
+                color: var(--primary-lime);
+            }
+        }
+
+        .divider {
+            margin-left: 18px;
+            width: 22px;
+            border-left: 1px var(--grey-750) solid;
+            transform: translateY(5px) rotate(20deg);
+        }
+
+        .lifetimeXP {
+            padding: 3px 0 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            .value {
+                padding-bottom: 3px;
+                font-size: 1.25rem;
+                line-height: 1.2em;
+                font-weight: 500;
+                color: var(--general-white);
+            }
+        }
+
+        .label {
+            font-size: 0.75rem;
+            line-height: 1em;
+            font-weight: 500;
+            color: var(--grey-650);
+        }
+    }
+
+}

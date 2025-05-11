@@ -1,0 +1,21 @@
+.profile_personalDetes {
+
+    .group_btns {
+        display: flex;
+        justify-content: center;
+    }
+
+    .list_groups {
+        margin: 15px 15px 20px;
+
+        .btn_cnt {
+            padding: 20px 20px 0;
+            display: flex;
+            justify-content: center;
+
+            ion-button {
+                flex-grow: 1;
+            }
+        }
+    }
+}

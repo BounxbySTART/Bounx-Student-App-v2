@@ -1,0 +1,41 @@
+.editProfile {
+
+    .edit_profilePic {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .profilePic_preview {
+            position: relative;
+
+            .btn_edit {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                bottom: -10px;
+                right: -10px;
+            }
+
+            .profilePic {
+                width: 180px;
+                height: 180px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+
+        .uploadPic {
+            margin-top: 30px;
+            width: 100%;
+        }
+    }
+
+    .edit_profileDete {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

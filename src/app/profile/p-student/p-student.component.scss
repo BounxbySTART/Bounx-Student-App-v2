@@ -1,0 +1,33 @@
+.Profile {
+
+    .header {
+        min-width: 100%;
+        width: 100%;
+        position: absolute;
+
+        .floating_btns {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+
+            ion-icon {
+                color: #ffffff;
+            }
+        }
+    }
+
+    .group_btns {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+
+        ion-button {
+            min-height: 45px;
+            flex: 1 0 0;
+        }
+    }
+}
