@@ -44,6 +44,9 @@ export class OnboardingListPaymentComponent implements OnInit {
   }
   completeIntent(intentClientSecret: string, customerId: string) {
     //do api call to server with  intentClientSecret & customerId
+    this.playerService
+      .completeIntent({ intentClientSecret, customerId })
+      .subscribe(() => {});
   }
 
   async presentSheet(
