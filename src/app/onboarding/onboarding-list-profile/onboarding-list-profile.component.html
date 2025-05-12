@@ -7,7 +7,7 @@
         <ion-avatar>
           <img src="../../assets/dummy/profile_pic_user/Ryan.png">
         </ion-avatar>
-        <ion-label>
+        <ion-label (click)="getPlayerProfile(profile.id)">
           <p>{{profile.firstName | titlecase}}</p>
         </ion-label>
         <ion-button fill="clear" slot="end" class="btn_openOpt"
@@ -20,7 +20,7 @@
           <ion-icon slot="icon-only" name="trash-outline" class="pink" (click)="removeProfile(profile.id,i)"></ion-icon>
         </ion-item-option>
         <ion-item-option>
-          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          <ion-icon slot="icon-only" name="create-outline" (click)="editProfile(profile.id)"></ion-icon>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>

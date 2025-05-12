@@ -57,15 +57,27 @@ export class OnboardingListProfileComponent implements OnInit {
   getPlayerProfiles() {
     this.playerService.getPlayerProfiles().subscribe((res: any) => {
       this.playerProfiles = res;
+      this.playerService.playerProfiles = res;
       console.log(this.playerProfiles);
      
     });
   }
 
+  // {/profile/:id, GET} 
+  getPlayerProfile(profileId:number){
+
+    this.router.navigateByUrl('/p-student/'+profileId);
+
+  }
   removeProfile(profileId:any,i:number){
     this.playerService.playerProfileRemove(profileId).subscribe((res)=>{
       console.log(res);
       this.playerProfiles.splice(i,1);
     })
+  }
+
+  
+  editProfile(profileId:any){
+
   }
 }

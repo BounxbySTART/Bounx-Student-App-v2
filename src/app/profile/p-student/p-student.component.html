@@ -2,16 +2,16 @@
   <div class="header">
     <div class="topbar">
       <div class="btn_icon btn_back">
-        <ion-icon name="arrow-back-outline"></ion-icon>
+        <ion-icon name="arrow-back-outline" (click)="goToPreviousPage()"></ion-icon>
       </div>
     </div>
     <div class="floating_btns">
-      <ion-button class="round_btn bg_white btn_otherProfiles">
+      <ion-button class="round_btn bg_white btn_otherProfiles" (click)="getProfilesList()">
         <img src="../../../assets/icon/icon_change_profile_darkgrey.svg" />
       </ion-button>
       <ion-button class="round_btn bg_none btn_otherProfiles">
         <ion-icon name="share-social-outline"></ion-icon>
-      </ion-button>
+      </ion-button> 
       <ion-button class="round_btn bg_none btn_otherProfiles">
         <ion-icon name="information-circle-outline"></ion-icon>
       </ion-button>
@@ -21,7 +21,7 @@
 
 
   <!-- •••••• PROFILE COVER •••••• -->
-  <app-profile-cover></app-profile-cover>
+  <app-profile-cover [profileId]="profileId"></app-profile-cover>
   <app-badge-latest></app-badge-latest>
 
 

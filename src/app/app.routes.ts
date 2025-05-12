@@ -126,7 +126,7 @@ export const routes: Routes = [
     component: IntroContentComponent,
   },
   {
-    path: 'p-student',
+    path: 'p-student/:id',
     component: PStudentComponent,
   },
   {
@@ -138,7 +138,7 @@ export const routes: Routes = [
     component: EditContactFormComponent,
   },
   {
-    path: 'other-profiles',
+    path: 'other-profiles/:id',
     component: OtherProfilesComponent,
   },
   {

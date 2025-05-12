@@ -46,6 +46,7 @@ export class OnboardingListPaymentComponent implements OnInit {
       paymentIntentClientSecret: paymentIntentClientSecret,
       customerId: customerId,
       customerEphemeralKeySecret: ephemeralKey,
+      merchantDisplayName:'bounx'
     });
     Stripe.presentPaymentSheet().then((res)=>{
       console.log(res,"payment sheet");
