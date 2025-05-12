@@ -12,6 +12,7 @@ import { AcademyService } from 'src/app/services/academy.service';
 import { HttpService } from 'src/app/services/http.service';
 import { OnboardingAcademyResultComponent } from "../onboarding-academy-result/onboarding-academy-result.component";
 import { Keyboard } from '@capacitor/keyboard';
+import { Router } from '@angular/router';
 
 @Component({
   standalone:true,
@@ -38,7 +39,7 @@ searchResultItems: any[] = [];
 searchTerm: string ='';
 isFavouriteOpted!:boolean;
 @ViewChild('searchBar') searchBar:any;
-  constructor(public academyService:AcademyService) { }
+  constructor(public academyService:AcademyService, public router:Router) { }
 location:Location = inject(Location);
 
 
@@ -79,6 +80,9 @@ recieveFavouriteOpted(value:boolean){
 this.isFavouriteOpted = value;
 }
 
+proceedToPayments(){
+  this.router.navigateByUrl('/onboarding-step4');
+}
 
   dismiss(){
 this.location.back();

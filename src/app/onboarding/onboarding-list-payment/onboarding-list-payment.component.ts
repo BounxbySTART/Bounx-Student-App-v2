@@ -21,6 +21,9 @@ export class OnboardingListPaymentComponent implements OnInit {
   constructor(public playerService: PlayerService) {
     Stripe.initialize({
       publishableKey: environment.stripePublishableKey,
+    }).then((res)=>{
+      console.log(res,"Stripe init");
+      
     });
   }
 
@@ -37,7 +40,7 @@ export class OnboardingListPaymentComponent implements OnInit {
     paymentIntentClientSecret: string,
     customerId: string,
     ephemeralKey: string
-  ) {
+  ) {  
     // prepare PaymentSheet with CreatePaymentSheetOption.
     await Stripe.createPaymentSheet({
       paymentIntentClientSecret: paymentIntentClientSecret,
