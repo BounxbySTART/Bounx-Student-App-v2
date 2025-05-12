@@ -47,6 +47,12 @@ export class OnboardingListPaymentComponent implements OnInit {
       customerId: customerId,
       customerEphemeralKeySecret: ephemeralKey,
     });
-    const result = await Stripe.presentPaymentSheet();
+    Stripe.presentPaymentSheet().then((res)=>{
+      console.log(res,"payment sheet");
+      
+    },(err)=>{
+      console.log(err);
+      
+    });
   }
 }
