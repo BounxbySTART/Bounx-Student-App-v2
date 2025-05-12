@@ -45,11 +45,13 @@ export class OnboardingAcademyResultComponent  implements OnInit {
 //  @Body('profileId') profileId: number,
 // @Body('locationId') locationId: number,
 
+ngOnChanges(){
+  
+}
   addToFavorites(search:any){
    console.log(search.id);
    this.profileId = this.userService.currentProfile.id;
    console.log(this.profileId);
-   let obj 
    this.playerService.studentFavLocationDetail({profileId:this.profileId,locationId:search.id}).subscribe((res)=>{
     console.log(res);
     this.isFavourite=true;

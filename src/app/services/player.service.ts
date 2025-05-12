@@ -41,4 +41,8 @@ export class PlayerService {
   playerProfileRemove(id: number) {
     return this.http.delete(environment.masterUrl.concat('profile/' + id));
   }
+
+  setupIntent(body:any){
+    return this.http.post(environment.masterUrl.concat('user-payments/initiate-setup'),body)
+  }
 }
