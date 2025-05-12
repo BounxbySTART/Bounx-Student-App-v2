@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Stripe } from '@capacitor-community/stripe';
+import { PaymentSheetEventsEnum, Stripe } from '@capacitor-community/stripe';
 import {
   IonList,
   IonItem,
@@ -21,9 +21,8 @@ export class OnboardingListPaymentComponent implements OnInit {
   constructor(public playerService: PlayerService) {
     Stripe.initialize({
       publishableKey: environment.stripePublishableKey,
-    }).then((res)=>{
-      console.log(res,"Stripe init");
-      
+    }).then((res) => {
+      console.log(res, 'Stripe init');
     });
   }
 
@@ -33,26 +32,37 @@ export class OnboardingListPaymentComponent implements OnInit {
     this.playerService.setupIntent({}).subscribe((res: any) => {
       console.log(res);
       this.presentSheet(res.client_secret, res.customerId, res.ephemeralKey);
+      this.intentListener(res.client_secret, res.customerId);
     });
+  }
+  intentListener(intentClientSecret: string, customerId: string) {
+    Stripe.addListener(PaymentSheetEventsEnum.Completed, () => {
+      console.log('PaymentSheetEventsEnum.Completed');
+      // send intentClientSecret & customerId to backend
+      this.completeIntent(intentClientSecret, customerId);
+    });
+  }
+  completeIntent(intentClientSecret: string, customerId: string) {
+    //do api call to server with  intentClientSecret & customerId
   }
 
   async presentSheet(
-    paymentIntentClientSecret: string,
+    setupIntentClientSecret: string,
     customerId: string,
     ephemeralKey: string
-  ) {  
+  ) {
     // prepare PaymentSheet with CreatePaymentSheetOption.
     await Stripe.createPaymentSheet({
-      paymentIntentClientSecret: paymentIntentClientSecret,
+      setupIntentClientSecret: setupIntentClientSecret,
       customerId: customerId,
       customerEphemeralKeySecret: ephemeralKey,
+      merchantDisplayName: 'BOUNX',
+      style: 'alwaysLight',
+      billingDetailsCollectionConfiguration: {
+        address: 'never',
+        name: 'automatic',
+      },
     });
-    Stripe.presentPaymentSheet().then((res)=>{
-      console.log(res,"payment sheet");
-      
-    },(err)=>{
-      console.log(err);
-      
-    });
+    const result = await Stripe.presentPaymentSheet();
   }
 }
