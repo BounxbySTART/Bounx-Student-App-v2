@@ -1,0 +1,18 @@
+.p_Academy {
+    position: relative;
+
+    .header {
+        width: 100%;
+        position: absolute;
+        z-index: 10;
+    }
+
+    app-academy-header {
+        position: relative;
+        z-index: 1;
+    }
+
+    .TAB_activities {
+        padding-top: 10px;
+    }
+}

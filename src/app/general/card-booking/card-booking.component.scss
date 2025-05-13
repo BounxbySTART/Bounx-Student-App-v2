@@ -1,0 +1,221 @@
+.card_booking {
+    margin-bottom: 15px;
+    background: var(--general-white);
+    border: 1px var(--grey-800) solid;
+    border-radius: 20px;
+    overflow: hidden;
+
+    .card_top_bar {
+        padding: 8px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .booking_type {
+
+            &::before {
+                font-size: 0.625rem;
+                line-height: 1em;
+                font-weight: 600;
+                text-transform: uppercase;
+                display: block;
+            }
+        }
+
+        .booking_tag {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 5px;
+
+            .tag_item {
+                margin: -3px 0;
+                padding: 3px 8px 4px;
+                font-size: 0.625rem;
+                line-height: 1em;
+                font-weight: 600;
+                text-transform: uppercase;
+                border-radius: 15px;
+
+                &.tag_private {
+                    padding: 2px 8px 3px;
+                    border: 1px var(--grey-100) solid;
+                }
+
+                &.tag_memberonly {
+                    color: var(--lime-shade06);
+                    background: #F9FFD9;
+                    border: 1px var(--lime-shade03) solid;
+                }
+
+                &.tag_inviteonly {
+                    color: var(--seafoam-shade06);
+                    background: #D6F9FB;
+                    border: 1px var(--seafoam-shade03) solid;
+                }
+
+                &.tag_foryou {
+                    background: var(--general-black);
+                    color: var(--general-white);
+                }
+            }
+        }
+
+        &.class {
+            color: var(--lime-shade07);
+            background: var(--primary-lime);
+
+            .booking_type::before {
+                content: 'Class';
+            }
+        }
+        
+        &.event {
+            color: var(--seafoam-shade06);
+            background: var(--primary-seafoam);
+
+            .booking_type::before {
+                content: 'Event';
+            }
+        }
+
+        &.invoice {
+            color: var(--teal-shade06);
+            background: var(--primary-teal);
+
+            .booking_type::before {
+                content: 'Invoice';
+            }
+        }
+    }
+
+    .cancel_bar {
+        padding: 5px 10px;
+        font-size: 0.625rem;
+        line-height: 1em;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--general-white);
+        background: var(--general-stop);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card_cnt {
+        padding: 13px 10px 20px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .booking_detes {
+
+            .tag_activitytype {
+                margin-bottom: 10px;
+                padding: 5px 10px;
+                font-size: 0.625rem;
+                line-height: 1em;
+                font-weight: 600;
+                text-transform: uppercase;
+                color: var(--grey-400);
+                border: 1px var(--grey-700) solid;
+                border-radius: 15px;
+                display: inline-flex;
+                gap: 7px;
+
+                img {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+
+            .booking_daterange {
+                margin-top: 5px;
+                color: var(--seafoam-shade05);
+            }
+
+            .booking_academy {
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                .academy_pic {
+                    width: 20px;
+                    height: 20px;
+                    border: 1px var(--grey-750) solid;
+                    border-radius: 50%;
+                    overflow: hidden;
+                }
+            }
+        }
+
+        .btn_arrow {
+            --padding-top: 0;
+            --padding-bottom: 0;
+            --padding-start: 10px;
+            --padding-end: 10px;
+
+            ion-icon {
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+.for_who {
+    margin: -15px 20px 27px;
+    padding: 5px 10px 7px 20px;
+    border: 1px var(--grey-800) solid;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: space-between;
+
+    .label {
+
+        &::before {
+            font-size: 0.75rem;
+            line-height: 1em;
+            font-weight: 600;
+            color: var(--general-white);
+            display: block;
+        }
+    }
+
+    .profile_pics_cnt {
+        margin-bottom: -22px;
+        display: flex;
+        gap: 5px;
+
+        .profile_item {
+            width: 34px;
+            height: 34px;
+            font-size: 0.75rem;
+            line-height: 1em;
+            font-weight: 700;
+            color: var(--general-black);
+            background: var(--grey-750);
+            border: 1px var(--grey-800) solid;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &.available_for {
+        background: var(--grey-150);
+
+        .label::before {
+            content: 'Available for:';
+        }
+    }
+
+    &.booked_for {
+        background: var(--grey-350);
+
+        .label::before {
+            content: 'Booked for:';
+        }
+    }
+}

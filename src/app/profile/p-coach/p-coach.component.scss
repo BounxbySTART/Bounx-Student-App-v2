@@ -1,0 +1,24 @@
+.p_Coach {
+
+    .header {
+        position: relative;
+        z-index: 1000;
+
+        .topbar {
+
+            .tag_coach {
+                padding: 5px 20px;
+                font-weight: 700;
+                background: var(--primary-lime);
+                border: 1px var(--general-black) solid;
+                border-radius: 20px;
+            }
+        }
+    }
+
+    app-coach-header {
+        position: relative;
+        z-index: 1;
+    }
+
+}
