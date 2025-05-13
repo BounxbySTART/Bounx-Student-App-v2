@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PaymentSheetEventsEnum, Stripe } from '@capacitor-community/stripe';
 import {
   IonList,
@@ -18,7 +19,7 @@ import { environment } from 'src/environments/environment';
   imports: [IonList, IonItem, IonAvatar, IonLabel, IonIcon, IonButton],
 })
 export class OnboardingListPaymentComponent implements OnInit {
-  constructor(public playerService: PlayerService) {
+  constructor(public playerService: PlayerService, public router:Router) {
     Stripe.initialize({
       publishableKey: environment.stripePublishableKey,
     }).then((res) => {
@@ -68,4 +69,9 @@ export class OnboardingListPaymentComponent implements OnInit {
     });
     const result = await Stripe.presentPaymentSheet();
   }
+ 
+  navigateToCompletion(){
+    this.router.navigateByUrl('/onboarding-complete');
+  }
+
 }

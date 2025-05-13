@@ -12,11 +12,13 @@ import {
   IonIcon,
   IonButton,
   IonSegment,
+  ModalController
 } from '@ionic/angular/standalone';
 import { PlayerProfileRequest } from 'src/types/player-profile-request';
 import { PlayerService } from 'src/app/services/player.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { OtherProfilesComponent } from '../other-profiles/other-profiles.component';
 
 @Component({
   selector: 'app-p-student',
@@ -35,39 +37,60 @@ import { Location } from '@angular/common';
     CoachFeedbackCardComponent,
     FavoriteListingComponent,
     PersonalDetailsComponent,
-  ],
+  ]
 })
 export class PStudentComponent implements OnInit {
   playerProfiles: PlayerProfileRequest[] = [];
-  profileId:number=0; 
-  firstName:string='';
-  lastName:string='';
+  profileId: number = 0;
 
-  constructor(public playerService: PlayerService, public router: Router, public activeRoute:ActivatedRoute, public location:Location) {
-    
-  }
+  constructor(
+    public playerService: PlayerService,
+    public router: Router,
+    public activeRoute: ActivatedRoute,
+    public location: Location,
+    public modalController: ModalController
+  ) {}
 
   ngOnInit() {
-    this.profileId = +(this.activeRoute.snapshot.paramMap.get('id')??0);
-    console.log(this.profileId,"Hello");
+    this.profileId = +(this.activeRoute.snapshot.paramMap.get('id') ?? 0);
     this.getPlayerProfiles();
   }
 
   getProfilesList() {
     if (this.playerProfiles && this.playerProfiles.length > 1) {
-      this.router.navigateByUrl('/other-profiles/'+this.profileId);
+      this.presentModal();
+      // this.router.navigateByUrl('/other-profiles/'+this.profileId);
       return;
     } else {
       return false;
     }
   }
 
-  getPlayerProfiles() {
-    
-      this.playerProfiles = this.playerService.playerProfiles;
-      
+  async presentModal() {
+    console.log('In Modal');
+
+    const modal = await this.modalController.create({
+      component: OtherProfilesComponent,
+      initialBreakpoint: 0.65,
+      breakpoints: [0, 0.65, 0.85],
+      componentProps: {
+        profileId: this.profileId,
+      },
+    });
+    modal.present();
+    const { data, role } = await modal.onWillDismiss();
+    if (role == 'confirm') {
+      this.profileId = data;
+      this.getPlayerProfiles();
+    }
+     
   }
-  goToPreviousPage(){
+
+  getPlayerProfiles() {
+    this.playerProfiles = this.playerService.playerProfiles;
+  }
+
+  goToPreviousPage() {
     this.location.back();
   }
 }

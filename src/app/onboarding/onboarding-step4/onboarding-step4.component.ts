@@ -36,7 +36,6 @@ paymentInfoGroup!:FormGroup
 
  
 navigateToCompletion(){
-  console.log("HELLO");
   
   this.router.navigateByUrl('/onboarding-complete');
 }
