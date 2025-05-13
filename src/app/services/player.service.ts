@@ -47,7 +47,17 @@ export class PlayerService {
     return this.http.delete(environment.masterUrl.concat('profile/' + id));
   }
 
-  setupIntent(body:any){
-    return this.http.post(environment.masterUrl.concat('user-payments/initiate-setup'),body)
+  setupIntent(body: any) {
+    return this.http.post(
+      environment.masterUrl.concat('user-payments/initiate-setup'),
+      body
+    );
+  }
+
+  completeIntent(body: { customerId: string; intentClientSecret: string }) {
+    return this.http.post(
+      environment.masterUrl.concat('user-payments/complete-setup'),
+      body
+    );
   }
 }
