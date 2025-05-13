@@ -30,9 +30,10 @@ export class OnboardingAcademyResultComponent  implements OnInit {
   @Input() searchTextResults:any[] | undefined;
   profileId!:number;
   isFavourite:boolean = false;
+  selectedIds:Map<number,any> = new Map();
 
 
-  @Output() isFavouriteOpted:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() selectedAcademies:EventEmitter<Map<number,any>>  = new EventEmitter<Map<number,any>> ();
 
   constructor(public academyService:AcademyService, public userService:UserService, public playerService:PlayerService ) {
     // console.log(this.searchText);
@@ -48,16 +49,24 @@ export class OnboardingAcademyResultComponent  implements OnInit {
 ngOnChanges(){
   
 }
-  addToFavorites(search:any){
-   console.log(search.id);
+  toggleToFavorites(search:any){
+  /*  console.log(search.id);
    this.profileId = this.userService.currentProfile.id;
    console.log(this.profileId);
    this.playerService.studentFavLocationDetail({profileId:this.profileId,locationId:search.id}).subscribe((res)=>{
     console.log(res);
     this.isFavourite=true;
    })
+    */
+   if(this.selectedIds.has(search.id)){
+    this.selectedIds.delete(search.id);
+   }
+   else{
+   this.selectedIds.set(search.id,search)
+   }
    
-   this.isFavouriteOpted.emit(this.isFavourite);
+
+   this.selectedAcademies.emit(this.selectedIds);
  
   }
 

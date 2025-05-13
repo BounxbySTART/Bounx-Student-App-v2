@@ -25,6 +25,7 @@ import { EditContactFormComponent } from './profile/edit-contact-form/edit-conta
 import { OtherProfilesComponent } from './profile/other-profiles/other-profiles.component';
 import { PgBadgesComponent } from './profile/pg-badges/pg-badges.component';
 import { BadgeDetailsComponent } from './profile/badge-details/badge-details.component';
+import { OnboardingFavoriteTrayComponent } from './onboarding/onboarding-favorite-tray/onboarding-favorite-tray.component';
 
 
 export const routes: Routes = [
@@ -92,6 +93,10 @@ export const routes: Routes = [
   {
     path:'onboarding-complete',
     component:OnboardingCompletedComponent
+  },
+  {
+    path:'onboarding-favorite-tray',
+    component:OnboardingFavoriteTrayComponent
   },
   {
     path: 'app-verify-form',
