@@ -5,7 +5,7 @@
     <ion-item-sliding #profileItem>
       <ion-item>
         <ion-avatar>
-          <img src="../../assets/dummy/profile_pic_user/Ryan.png">
+          <img src="{{imageUrl}}{{profile.profilePicture}}">
         </ion-avatar>
         <ion-label (click)="getPlayerProfile(profile.id)">
           <p>{{profile.firstName | titlecase}}</p>

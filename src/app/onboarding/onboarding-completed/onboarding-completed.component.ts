@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonButton, IonContent } from '@ionic/angular/standalone';
 import { OnboardingListProfileComponent } from '../onboarding-list-profile/onboarding-list-profile.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-onboarding-completed',
@@ -9,7 +10,12 @@ import { OnboardingListProfileComponent } from '../onboarding-list-profile/onboa
   imports: [IonContent, IonButton, OnboardingListProfileComponent],
 })
 export class OnboardingCompletedComponent implements OnInit {
-  constructor() {}
+  constructor(public router:Router) {}
 
   ngOnInit() {}
+  
+  redirecToDashBoard()
+{
+   this.router.navigateByUrl('/tabs/tab1');
+}
 }

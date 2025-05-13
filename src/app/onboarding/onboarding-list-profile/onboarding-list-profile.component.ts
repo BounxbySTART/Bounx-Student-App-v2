@@ -14,6 +14,7 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 import { PlayerService } from 'src/app/services/player.service';
+import { environment } from 'src/environments/environment';
 import { PlayerProfileRequest } from 'src/types/player-profile-request';
 
 @Component({
@@ -34,6 +35,7 @@ import { PlayerProfileRequest } from 'src/types/player-profile-request';
   ],
 })
 export class OnboardingListProfileComponent implements OnInit {
+  imageUrl:string=environment.profileImageUrl;
   playerProfiles: PlayerProfileRequest[] = [];
   deleteId:string=''
   constructor(private router: Router, private playerService: PlayerService) {}
