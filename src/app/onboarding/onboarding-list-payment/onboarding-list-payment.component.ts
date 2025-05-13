@@ -62,7 +62,7 @@ export class OnboardingListPaymentComponent implements OnInit {
       merchantDisplayName: 'BOUNX',
       style: 'alwaysLight',
       billingDetailsCollectionConfiguration: {
-        address: 'never',
+        // address: 'never',
         name: 'automatic',
       },
     });

@@ -1,8 +1,10 @@
 <div class="badgeLatest">
   <div class="badgeLatest_cnt">
+    @for (badge of badges; track badge.i;){
     <div class="badge_item">
-      <img src="../../../assets/badge/badge_Getting_it_Done.svg" />
+      <img src="{{badge.badgeImage}}" />
     </div>
+  }
     <div class="badge_item">
       <img src="../../../assets/badge/empty_white.svg" />
     </div>

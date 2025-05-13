@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'app-badge-latest',
@@ -6,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./badge-latest.component.scss'],
 })
 export class BadgeLatestComponent  implements OnInit {
+@Input() profileId:number = 0;
+badges:any[]=[];
+  constructor(public playerService:PlayerService) { }
 
-  constructor() { }
+  ngOnInit() {
+    this.getCurrentProfileInfo();
+  }
 
-  ngOnInit() {}
-
+  getCurrentProfileInfo(){
+    this.playerService.getPlayerProfile(this.profileId).subscribe((res:any)=>{
+   console.log(res,"badge");
+   this.badges= res.badges;
+ console.log(this.badges);
+ 
+    })
+  }
 }
