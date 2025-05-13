@@ -5,8 +5,11 @@
 export const environment = {
   production: false,
   // masterUrl: "https://dev.technotrant.com/"
-  masterUrl: "http://localhost:8080/",
-  stripePublishableKey:"pk_test_51RLUm9PqCWcBWkKoFw0sR64HaSgjIri44mkyMWfjC1HBdYNvcGV4GSOlnYRmI3ZByhtTz3gORTWSmpCX0RBhSm1f00UUUP1usX"
+  masterUrl: 'http://localhost:8080/',
+  stripePublishableKey:
+    'pk_test_51RLUm9PqCWcBWkKoFw0sR64HaSgjIri44mkyMWfjC1HBdYNvcGV4GSOlnYRmI3ZByhtTz3gORTWSmpCX0RBhSm1f00UUUP1usX',
+  profileImageUrl: 'https://bounxacademystaging.blob.core.windows.net/student/',
+  badgeImageUrl: 'https://bounxacademystaging.blob.core.windows.net/badges/',
 };
 
 /*
