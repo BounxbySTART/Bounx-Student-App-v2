@@ -68,8 +68,8 @@ export class ResetPassFormStep1Component implements OnInit {
 
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
-      initialBreakpoint: 0.25,
-      breakpoints: [0, 0.25, 0.75],
+      initialBreakpoint: 0.45,
+      breakpoints: [0, 0.45, 0.75],
     });
     modal.present();
 
