@@ -44,6 +44,7 @@ import { OnboardingFavoriteTrayComponent } from '../onboarding-favorite-tray/onb
     ReactiveFormsModule,
     OnboardingAcademyResultComponent,
     FormsModule,
+    OnboardingFavoriteTrayComponent,
   ],
 })
 export class OnboardingStep3Component implements OnInit {
@@ -54,7 +55,7 @@ export class OnboardingStep3Component implements OnInit {
   selectedValue: string = '';
   searchResultItems: any[] = [];
   searchTerm: string = '';
-  selectedAcademyList:Map<number,any> = new Map<number,any>();
+  selectedAcademyList: Map<number, any> = new Map<number, any>();
   @ViewChild('searchBar') searchBar: any;
   constructor(
     public academyService: AcademyService,
@@ -64,8 +65,8 @@ export class OnboardingStep3Component implements OnInit {
   location: Location = inject(Location);
 
   ngOnInit() {}
-  keyUp(ev: any) {
-    if (ev.code == 'Enter') {
+  keyDown(ev: KeyboardEvent) {
+    if (ev.key == 'Enter') {
       // hide keyboard
       Keyboard.hide().then(() => {
         // keyboard hidden , do something
@@ -87,18 +88,14 @@ export class OnboardingStep3Component implements OnInit {
   }
 
   performSearch() {
-    this.academyService
-      .getAcademyCityName(this.selectedValue, this.searchTerm)
-      .subscribe((res: any) => {
-        this.searchResultItems = res;
-      });
+    this.searchTerm = this.searchTerm.trim();
+    if (!this.searchTerm || this.searchTerm.length < 3) return;
+    this.academyService.searchAcademy(this.searchTerm).subscribe((res: any) => {
+      this.searchResultItems = res;
+    });
   }
-  selectedAcademies(value: Map<number,any>) {
-   this.selectedAcademyList = value;
-  if( this.selectedAcademyList.size>0){
-    this.presentModal();
-  }
-  else this.modalController.dismiss();
+  selectedAcademies(value: Map<number, any>) {
+    this.selectedAcademyList = value;
   }
 
   proceedToPayments() {
@@ -107,22 +104,5 @@ export class OnboardingStep3Component implements OnInit {
 
   dismiss() {
     this.location.back();
-  }
-
-  async presentModal() {
-    console.log('In Modal');
-
-    const modal = await this.modalController.create({
-      component: OnboardingFavoriteTrayComponent,
-      initialBreakpoint: 0.25,
-      breakpoints: [0, 0.25, 0.45],
-      componentProps: {
-        searchResultItems: this.searchResultItems,
-      },
-    });
-    modal.present();
-    const { data, role } = await modal.onWillDismiss();
-    if (role == 'confirm') {
-    }
   }
 }

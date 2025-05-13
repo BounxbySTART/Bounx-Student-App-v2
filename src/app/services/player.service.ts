@@ -11,7 +11,7 @@ import { StudentFavLocation } from 'src/types/student-fav-location-request';
 export class PlayerService {
   constructor(private http: HttpService) {}
 
-  playerProfiles:any[]=[];
+  playerProfiles: any[] = [];
 
   playerProfileDetail(body: PlayerProfileRequest) {
     return this.http.post<CurrentProfile>(
@@ -35,8 +35,8 @@ export class PlayerService {
       formData
     );
   }
-  getPlayerProfile(profileId:number){
-    return this.http.get(environment.masterUrl.concat('profile/'+profileId));
+  getPlayerProfile(profileId: number) {
+    return this.http.get(environment.masterUrl.concat('profile/' + profileId));
   }
 
   getPlayerProfiles() {
@@ -54,7 +54,11 @@ export class PlayerService {
     );
   }
 
-  completeIntent(body: { customerId: string; intentClientSecret: string }) {
+  completeIntent(body: {
+    customerId: string;
+    intentClientSecret: string;
+    intentId: string;
+  }) {
     return this.http.post(
       environment.masterUrl.concat('user-payments/complete-setup'),
       body

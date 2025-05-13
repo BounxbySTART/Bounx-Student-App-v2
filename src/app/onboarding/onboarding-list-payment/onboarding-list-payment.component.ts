@@ -19,7 +19,7 @@ import { environment } from 'src/environments/environment';
   imports: [IonList, IonItem, IonAvatar, IonLabel, IonIcon, IonButton],
 })
 export class OnboardingListPaymentComponent implements OnInit {
-  constructor(public playerService: PlayerService, public router:Router) {
+  constructor(public playerService: PlayerService, public router: Router) {
     Stripe.initialize({
       publishableKey: environment.stripePublishableKey,
     }).then((res) => {
@@ -33,20 +33,28 @@ export class OnboardingListPaymentComponent implements OnInit {
     this.playerService.setupIntent({}).subscribe((res: any) => {
       console.log(res);
       this.presentSheet(res.client_secret, res.customerId, res.ephemeralKey);
-      this.intentListener(res.client_secret, res.customerId);
+      this.intentListener(res.client_secret, res.customerId, res.intentId);
     });
   }
-  intentListener(intentClientSecret: string, customerId: string) {
+  intentListener(
+    intentClientSecret: string,
+    customerId: string,
+    intentId: string
+  ) {
     Stripe.addListener(PaymentSheetEventsEnum.Completed, () => {
       console.log('PaymentSheetEventsEnum.Completed');
       // send intentClientSecret & customerId to backend
-      this.completeIntent(intentClientSecret, customerId);
+      this.completeIntent(intentClientSecret, customerId, intentId);
     });
   }
-  completeIntent(intentClientSecret: string, customerId: string) {
+  completeIntent(
+    intentClientSecret: string,
+    customerId: string,
+    intentId: string
+  ) {
     //do api call to server with  intentClientSecret & customerId
     this.playerService
-      .completeIntent({ intentClientSecret, customerId })
+      .completeIntent({ intentClientSecret, customerId, intentId })
       .subscribe(() => {});
   }
 
@@ -69,9 +77,8 @@ export class OnboardingListPaymentComponent implements OnInit {
     });
     const result = await Stripe.presentPaymentSheet();
   }
- 
-  navigateToCompletion(){
+
+  navigateToCompletion() {
     this.router.navigateByUrl('/onboarding-complete');
   }
-
 }

@@ -3,40 +3,41 @@
   <div class="subhdr_page">CREATE NEW PROFILE</div>
   <div class="title_page"><span class="fw_regular">Step 3:</span> Favorite Academy</div>
   <app-step-progress [step]="3"></app-step-progress>
+  <div class="header-toolbar">
+    <ion-searchbar #searchBar type="text" name="item" (keydown)="keyDown($event)" (ionChange)="search($event)"
+      placeholder="Type at least 3 letters to search" enterkeyhint="search" inputmode="search"></ion-searchbar>
+  </div>
 </div>
 
 <div class="form">
   <div class="form_cnt">
-    <div class="form_item">
+    <!-- <div class="form_item">
       <ion-label>Search by *</ion-label>
-      <ion-select label-placement="stacked" placeholder="Select One" toggleIcon="" class="hidelabel" [(ngModel)]="selectedValue">
-        <ion-select-option *ngFor="let list of searchByList" value="{{list.value}}" >{{list.label}}</ion-select-option>
+      <ion-select label-placement="stacked" placeholder="Select One" toggleIcon="" class="hidelabel"
+        [(ngModel)]="selectedValue">
+        <ion-select-option *ngFor="let list of searchByList" value="{{list.value}}">{{list.label}}</ion-select-option>
       </ion-select>
-    </div>
-   <!--  <div class="form_item">
+    </div> -->
+    <!--  <div class="form_item">
       <ion-input placeholder="Type at least 3 letters to search" [formControl]="searchCityAcademy">
         <ion-icon slot="end" name="search-outline" aria-hidden="true" ></ion-icon>
       </ion-input>
 
     </div> -->
-    <div class="form_item">
-    <ion-searchbar
-    #searchBar
-    type="text"
-    name="item"
-    (keyup)="keyUp($event)"
-    (ionChange)="search($event)"
-    placeholder="Type at least 3 letters to search"
-    enterkeyhint="search"
-    inputmode="search"
-  ></ion-searchbar>
-</div>
+    <!-- <div class="form_item">
+      <ion-searchbar #searchBar type="text" name="item" (keyup)="keyUp($event)" (ionChange)="search($event)"
+        placeholder="Type at least 3 letters to search" enterkeyhint="search" inputmode="search"></ion-searchbar>
+    </div> -->
 
-    <ng-container *ngIf="true">
-    <app-onboarding-academy-result [searchTextResults]="searchResultItems" (selectedAcademies)="selectedAcademies($event)"></app-onboarding-academy-result>
-  </ng-container>
-    <div class="btn_hld pad_bottom_40">
-      <ion-button class="main_cta" [disabled]="true" >Complete</ion-button>
-    </div>
+    <ng-container>
+      <app-onboarding-academy-result [searchTextResults]="searchResultItems"
+        (selectedAcademies)="selectedAcademies($event)"></app-onboarding-academy-result>
+    </ng-container>
+    @if (selectedAcademyList.size<1){ <div class="btn_hld pad_bottom_40">
+      <ion-button class="main_cta" [disabled]="true">Complete</ion-button>
   </div>
+  }
 </div>
+</div>
+@if (selectedAcademyList.size>0) { <app-onboarding-favorite-tray [selectedAcademyList]="selectedAcademyList"
+  (selectedAcademies)="selectedAcademies($event)"></app-onboarding-favorite-tray>}
