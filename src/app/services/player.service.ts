@@ -64,4 +64,8 @@ export class PlayerService {
       body
     );
   }
+
+  getPaymentMethods() {
+    return this.http.get(environment.masterUrl.concat('user-payments'));
+  }
 }

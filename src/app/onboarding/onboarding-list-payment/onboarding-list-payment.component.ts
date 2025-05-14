@@ -19,6 +19,7 @@ import { environment } from 'src/environments/environment';
   imports: [IonList, IonItem, IonAvatar, IonLabel, IonIcon, IonButton],
 })
 export class OnboardingListPaymentComponent implements OnInit {
+  paymentMethods: any[] = [];
   constructor(public playerService: PlayerService, public router: Router) {
     Stripe.initialize({
       publishableKey: environment.stripePublishableKey,
@@ -28,7 +29,14 @@ export class OnboardingListPaymentComponent implements OnInit {
   }
 
   //  client_secret, ephemeralKey
-  ngOnInit() {}
+  ngOnInit() {
+    this.getPaymentMethods();
+  }
+  getPaymentMethods() {
+    this.playerService.getPaymentMethods().subscribe((res: any) => {
+      this.paymentMethods = res;
+    });
+  }
   startSetupIntent() {
     this.playerService.setupIntent({}).subscribe((res: any) => {
       console.log(res);
@@ -55,7 +63,9 @@ export class OnboardingListPaymentComponent implements OnInit {
     //do api call to server with  intentClientSecret & customerId
     this.playerService
       .completeIntent({ intentClientSecret, customerId, intentId })
-      .subscribe(() => {});
+      .subscribe((res: any) => {
+        this.paymentMethods = res;
+      });
   }
 
   async presentSheet(
