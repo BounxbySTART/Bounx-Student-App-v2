@@ -111,7 +111,7 @@ export const routes: Routes = [
     component: OnboardingAddProfileComponent,
   },
   {
-    path: 'app-reset-pass-form-step1',
+    path: 'reset-pass-form-step1',
     component: ResetPassFormStep1Component,
   },
   {

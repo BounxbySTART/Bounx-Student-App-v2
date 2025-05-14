@@ -25,6 +25,8 @@ import { OnboardingAcademyResultComponent } from '../onboarding-academy-result/o
 import { Keyboard } from '@capacitor/keyboard';
 import { Router } from '@angular/router';
 import { OnboardingFavoriteTrayComponent } from '../onboarding-favorite-tray/onboarding-favorite-tray.component';
+import { AlertController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   standalone: true,
@@ -52,19 +54,24 @@ export class OnboardingStep3Component implements OnInit {
     { label: 'City/State', value: 'location' },
     { label: 'Academy Name', value: 'name' },
   ];
+  profileId!:number;
   selectedValue: string = '';
   searchResultItems: any[] = [];
   searchTerm: string = '';
   selectedAcademyList: Map<number, any> = new Map<number, any>();
   @ViewChild('searchBar') searchBar: any;
   constructor(
-    public academyService: AcademyService,
-    public router: Router,
-    public modalController: ModalController
+    private academyService: AcademyService,
+    private router: Router,
+    private modalController: ModalController,
+    private alertController:AlertController,
+    private userService:UserService
   ) {}
   location: Location = inject(Location);
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.profileId =  this.userService.currentProfile.id
+  }
   keyDown(ev: KeyboardEvent) {
     if (ev.key == 'Enter') {
       // hide keyboard
@@ -102,7 +109,41 @@ export class OnboardingStep3Component implements OnInit {
     this.router.navigateByUrl('/onboarding-step4');
   }
 
-  dismiss() {
+  async dismiss() {
+    const alert = await this.alertController.create({
+      header: 'Cancel Profile creation?',
+      message: `Your data will not be saved and profile will not be created if you cancel sign up process now`,
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            // nothing to do
+          },
+        },
+        {
+          text: 'Yes',
+          role: 'confirm',
+          handler: () => {
+            //something to do
+            if (this.profileId) {
+              this.playerService
+                .playerProfileRemove(this.profileId)
+                .subscribe((res) => {
+                  console.log(res);
+                });
+            }
+            this.router.navigateByUrl('/onboarding-complete');
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  goToPreviousPage() {
     this.location.back();
   }
+
 }

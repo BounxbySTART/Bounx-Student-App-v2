@@ -31,6 +31,7 @@ import { PlayerProfileRequest } from 'src/types/player-profile-request';
     IonItemOption,
     IonIcon,
     IonButton,
+    IonContent,
     CommonModule,
   ],
 })
