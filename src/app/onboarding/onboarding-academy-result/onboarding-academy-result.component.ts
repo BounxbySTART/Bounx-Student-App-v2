@@ -22,7 +22,7 @@ export class OnboardingAcademyResultComponent implements OnInit {
   @Input() searchTextResults: any[] | undefined;
   profileId!: number;
   isFavourite: boolean = false;
-  selectedIds: Map<number, any> = new Map();
+  @Input() selectedIds: Map<number, any> = new Map();
   @Input() isSelectedView = false;
   @Output() selectedAcademies: EventEmitter<Map<number, any>> =
     new EventEmitter<Map<number, any>>();

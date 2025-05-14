@@ -68,7 +68,7 @@ export class OnboardingStep3Component implements OnInit {
     private modalController: ModalController,
     private alertController: AlertController,
     private userService: UserService,
-    private playerService:PlayerService
+    private playerService: PlayerService
   ) {}
   location: Location = inject(Location);
 
@@ -107,6 +107,9 @@ export class OnboardingStep3Component implements OnInit {
   selectedAcademies(value: Map<number, any>) {
     this.selectedAcademyList = value;
     this.selectedItems = [...this.selectedAcademyList.values()];
+  }
+  selectedAcademiesFromView(value: Map<number, any>) {
+    this.selectedAcademyList = value;
   }
 
   proceedToPayments() {
