@@ -1,4 +1,4 @@
-export interface StudentFavLocation{
-    profileId:number;
-    locationId:number
+export interface StudentFavLocation {
+  profileId: number;
+  locationIds: number[];
 }

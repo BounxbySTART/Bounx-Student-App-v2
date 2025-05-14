@@ -93,8 +93,9 @@
 <!-- •••••• DASHBOARD •••••• -->
 <ion-content [fullscreen]="true" class="Dashboard dark_page">
   <app-bounx-logo-icon></app-bounx-logo-icon>
-
+  @if (playerService.playerProfiles && playerService.playerProfiles.length>0) {
   <app-profile-selector></app-profile-selector>
+  }
   <app-my-favorites></app-my-favorites>
   <div class="div_slandedlines"></div>
   <app-term-badge></app-term-badge>

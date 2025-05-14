@@ -3,17 +3,19 @@
 
     <div class="profiles">
       <!-- <div class="item see_all">SEE ALL</div> -->
-      
+
       <div class="item studentProfile">
         <div class="item_cnt">
-          <div class="profile_pic"><img src="../../../assets/profiles_pic/students/01.png" /></div>
+          <div class="profile_pic"><img src="{{profileImageUrl}}{{playerService.playerProfiles[0].profilePicture}}" />
+          </div>
           <div class="profile_dete">
-            <div class="profile_name">Firstname</div>
+            <div class="profile_name">{{playerService.playerProfiles[0].firstName}}</div>
             <div class="gamifi_data">
               <div class="ave_energy">2.67</div>
               <div class="term_xp">18k</div>
             </div>
-            <div class="btn_viewProfile"><ion-icon name="arrow-forward-outline"></ion-icon></div>
+            <div class="btn_viewProfile" routerLink="/p-student/{{playerService.playerProfiles[0].id}}"><ion-icon
+                name="arrow-forward-outline"></ion-icon></div>
           </div>
         </div>
       </div>
