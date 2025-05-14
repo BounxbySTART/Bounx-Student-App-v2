@@ -39,5 +39,5 @@
   }
 </div>
 </div>
-@if (selectedAcademyList.size>0) { <app-onboarding-favorite-tray [selectedAcademyList]="selectedAcademyList"
+@if (selectedAcademyList.size>0) { <app-onboarding-favorite-tray [searchTextResults]="selectedItems"
   (selectedAcademies)="selectedAcademies($event)"></app-onboarding-favorite-tray>}

@@ -56,6 +56,7 @@ export class OnboardingStep3Component implements OnInit {
   searchResultItems: any[] = [];
   searchTerm: string = '';
   selectedAcademyList: Map<number, any> = new Map<number, any>();
+  selectedItems: any[] = [];
   @ViewChild('searchBar') searchBar: any;
   constructor(
     public academyService: AcademyService,
@@ -96,6 +97,7 @@ export class OnboardingStep3Component implements OnInit {
   }
   selectedAcademies(value: Map<number, any>) {
     this.selectedAcademyList = value;
+    this.selectedItems = [...this.selectedAcademyList.values()];
   }
 
   proceedToPayments() {

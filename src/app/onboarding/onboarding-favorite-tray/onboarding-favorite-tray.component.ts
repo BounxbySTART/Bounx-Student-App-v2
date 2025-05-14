@@ -39,11 +39,11 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class OnboardingFavoriteTrayComponent implements OnChanges {
   expanded: boolean = false;
-  @Input('selectedAcademyList') selectedAcademyList: Map<number, any> = new Map<
+  /* @Input('selectedAcademyList') selectedAcademyList: Map<number, any> = new Map<
     number,
     any
-  >();
-  searchTextResults: any[] = [];
+  >(); */
+  @Input() searchTextResults: any[] = [];
   @Output() selectedAcademies: EventEmitter<Map<number, any>> =
     new EventEmitter<Map<number, any>>();
   constructor(
@@ -53,9 +53,9 @@ export class OnboardingFavoriteTrayComponent implements OnChanges {
   ) {}
 
   ngOnChanges() {
-    this.convertSearchItems();
+    console.log('changes');
   }
-  convertSearchItems() {
+  /*   convertSearchItems() {
     console.log('converting');
 
     if (this.selectedAcademyList.size > 0) {
@@ -64,15 +64,17 @@ export class OnboardingFavoriteTrayComponent implements OnChanges {
         this.searchTextResults.push(val);
       });
     }
-  }
+  } */
   selectedAcademiesEvent(value: Map<number, any>) {
-    this.selectedAcademyList = value;
-    this.selectedAcademies.emit(this.selectedAcademyList);
-    this.convertSearchItems();
+    const academyMap = new Map();
+
+    // this.searchTextResults
+    this.selectedAcademies.emit(value);
   }
 
   saveFavProfiles() {
-    const locationIds = [...this.selectedAcademyList.keys()];
+    // const locationIds = [...this.selectedAcademyList.keys()];
+    const locationIds: any[] = [];
     this.playerService
       .studentFavLocationDetail({
         profileId: this.userService.currentProfile.id,

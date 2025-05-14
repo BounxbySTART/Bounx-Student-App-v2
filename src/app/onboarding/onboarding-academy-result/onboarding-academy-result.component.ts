@@ -23,7 +23,7 @@ export class OnboardingAcademyResultComponent implements OnInit {
   profileId!: number;
   isFavourite: boolean = false;
   selectedIds: Map<number, any> = new Map();
-  isSelectedView = false;
+  @Input() isSelectedView = false;
   @Output() selectedAcademies: EventEmitter<Map<number, any>> =
     new EventEmitter<Map<number, any>>();
 
@@ -38,7 +38,13 @@ export class OnboardingAcademyResultComponent implements OnInit {
   //  @Body('profileId') profileId: number,
   // @Body('locationId') locationId: number,
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    if (this.isSelectedView) {
+      this.searchTextResults?.forEach((i) => {
+        this.selectedIds.set(i.id, i);
+      });
+    }
+  }
   toggleToFavorites(search: any) {
     /*  console.log(search.id);
    this.profileId = this.userService.currentProfile.id;

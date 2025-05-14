@@ -6,7 +6,7 @@
         <p class="p3">Favorite:</p>
       </div>
       <div class="added_profile">
-        @for (academy of selectedAcademyList.values(); track $index) {
+        @for (academy of searchTextResults; track $index) {
         <div class="item"><img src="../../assets/dummy/profile_pic_academy/Tompkins.png" /></div>
         }
 
@@ -36,7 +36,7 @@
           }
         </ion-list>
       </div> -->
-      <app-onboarding-academy-result [searchTextResults]="searchTextResults"
+      <app-onboarding-academy-result [searchTextResults]="searchTextResults" [isSelectedView]="true"
         (selectedAcademies)="selectedAcademiesEvent($event)"></app-onboarding-academy-result>
     </div>
     <div class="cta_cnt">
