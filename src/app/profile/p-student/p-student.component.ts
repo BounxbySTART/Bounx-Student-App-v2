@@ -12,7 +12,7 @@ import {
   IonIcon,
   IonButton,
   IonSegment,
-  ModalController
+  ModalController,
 } from '@ionic/angular/standalone';
 import { PlayerProfileRequest } from 'src/types/player-profile-request';
 import { PlayerService } from 'src/app/services/player.service';
@@ -37,12 +37,12 @@ import { OtherProfilesComponent } from '../other-profiles/other-profiles.compone
     CoachFeedbackCardComponent,
     FavoriteListingComponent,
     PersonalDetailsComponent,
-  ]
+  ],
 })
 export class PStudentComponent implements OnInit {
   playerProfiles: PlayerProfileRequest[] = [];
   profileId: number = 0;
-
+  playerProfile: any;
   constructor(
     public playerService: PlayerService,
     public router: Router,
@@ -53,7 +53,16 @@ export class PStudentComponent implements OnInit {
 
   ngOnInit() {
     this.profileId = +(this.activeRoute.snapshot.paramMap.get('id') ?? 0);
+    this.getPlayerProfile();
     this.getPlayerProfiles();
+  }
+
+  getPlayerProfile() {
+    this.playerService
+      .getPlayerProfile(this.profileId)
+      .subscribe((res: any) => {
+        this.playerProfile = res;
+      });
   }
 
   getProfilesList() {
@@ -83,7 +92,6 @@ export class PStudentComponent implements OnInit {
       this.profileId = data;
       this.getPlayerProfiles();
     }
-     
   }
 
   getPlayerProfiles() {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MasterService } from '../services/master.service';
 import {
   IonContent,
@@ -7,7 +7,13 @@ import {
   IonRadio,
   IonList,
   IonItem,
-  ModalController, IonSkeletonText, IonLabel, IonButton, IonIcon } from '@ionic/angular/standalone';
+  ModalController,
+  IonSkeletonText,
+  IonLabel,
+  IonButton,
+  IonIcon,
+} from '@ionic/angular/standalone';
+import { IonInput } from '@ionic/angular';
 
 export interface Country {
   name: string;
@@ -20,7 +26,11 @@ export interface Country {
   selector: 'app-country-code',
   templateUrl: './country-code.component.html',
   styleUrls: ['./country-code.component.scss'],
-  imports: [IonIcon, IonButton, IonLabel, IonSkeletonText, 
+  imports: [
+    IonIcon,
+    IonButton,
+    IonLabel,
+    IonSkeletonText,
     IonRadio,
     IonContent,
     IonSearchbar,
@@ -31,11 +41,15 @@ export interface Country {
 })
 export class CountryCodeComponent implements AfterViewInit {
   countries: Country[] = [];
+  @ViewChild('input') input!: IonSearchbar;
+
   constructor(
     private masterService: MasterService,
     private modalCtrl: ModalController
   ) {}
-
+  ionViewDidEnter() {
+    this.input.setFocus();
+  }
   ngAfterViewInit() {
     this.getAllCountries();
   }
@@ -63,7 +77,7 @@ export class CountryCodeComponent implements AfterViewInit {
     console.log('selected value', target.value);
     return this.modalCtrl.dismiss(target.value, 'confirm');
   }
-  cancel(){
+  cancel() {
     return this.modalCtrl.dismiss();
   }
 }

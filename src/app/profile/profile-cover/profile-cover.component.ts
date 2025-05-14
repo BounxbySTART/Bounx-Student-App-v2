@@ -8,23 +8,12 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./profile-cover.component.scss'],
 })
 export class ProfileCoverComponent {
-  firstName:string='';
-  imageUrl:string=environment.profileImageUrl;
-  lastName:string='';
-  profilePicture:string='';
-  @Input() profileId:number=0;
-  constructor(public playerService:PlayerService) { }
+  imageUrl: string = environment.profileImageUrl;
+  @Input() profile: any;
+  constructor(public playerService: PlayerService) {}
 
-  ngOnChanges(){
+  ngOnChanges() {
     this.getCurrentProfileInfo();
   }
-  getCurrentProfileInfo(){
-    this.playerService.getPlayerProfile(this.profileId).subscribe((res:any)=>{
-      console.log(res);
-      this.firstName = res.firstName;
-      this.lastName= res.lastName;
-      this.profilePicture = res.profilePicture;
-    })
-  }
-
+  getCurrentProfileInfo() {}
 }
