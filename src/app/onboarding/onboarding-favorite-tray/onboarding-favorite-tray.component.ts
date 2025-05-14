@@ -6,9 +6,9 @@ import {
   IonAvatar,
   IonIcon,
   IonLabel,
-  IonButton,
-} from '@ionic/angular/standalone';
+  IonButton} from '@ionic/angular/standalone';
 import { OnboardingAcademyResultComponent } from '../onboarding-academy-result/onboarding-academy-result.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-onboarding-favorite-tray',
@@ -24,6 +24,7 @@ import { OnboardingAcademyResultComponent } from '../onboarding-academy-result/o
     NgClass,
     KeyValuePipe,
     OnboardingAcademyResultComponent,
+    RouterLink
   ],
 })
 export class OnboardingFavoriteTrayComponent implements OnChanges {
