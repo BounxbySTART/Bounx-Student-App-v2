@@ -1,12 +1,17 @@
 <div class="header">
-  <div class="topbar"><ion-icon name="close-outline" class="btn_close byitself" (click)="dismiss()"></ion-icon></div>
+  <div class="topbar">
+    <div class="btn_icon btn_back">
+      <ion-icon name="arrow-back-outline" (click)="backToPrevious()"></ion-icon>
+    </div>
+    <ion-icon name="close-outline" class="btn_close byitself" (click)="dismiss()"></ion-icon>
+  </div>
   <div class="subhdr_page">CREATE NEW PROFILE</div>
   <div class="title_page"><span class="fw_regular">Step 4:</span> Payment Method</div>
   <app-step-progress [step]="4"></app-step-progress>
 </div>
 <app-onboarding-list-payment></app-onboarding-list-payment>
 <div>
-<!--   <form class="form" [formGroup]="paymentInfoGroup">
+  <!--   <form class="form" [formGroup]="paymentInfoGroup">
   <div class="form_cnt">
     <div class="form_item">
       <ion-input label="Card Number *" type="number" labelPlacement="stacked" formControlName="cardNumber" [clearInput]="true" placeholder="- - - - &nbsp; - - - - &nbsp; - - - - &nbsp; - - - -"></ion-input>
