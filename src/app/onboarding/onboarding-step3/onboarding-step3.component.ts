@@ -27,6 +27,7 @@ import { Router } from '@angular/router';
 import { OnboardingFavoriteTrayComponent } from '../onboarding-favorite-tray/onboarding-favorite-tray.component';
 import { AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   standalone: true,
@@ -54,7 +55,7 @@ export class OnboardingStep3Component implements OnInit {
     { label: 'City/State', value: 'location' },
     { label: 'Academy Name', value: 'name' },
   ];
-  profileId!:number;
+  profileId!: number;
   selectedValue: string = '';
   searchResultItems: any[] = [];
   searchTerm: string = '';
@@ -64,13 +65,14 @@ export class OnboardingStep3Component implements OnInit {
     private academyService: AcademyService,
     private router: Router,
     private modalController: ModalController,
-    private alertController:AlertController,
-    private userService:UserService
+    private alertController: AlertController,
+    private userService: UserService,
+    private playerService:PlayerService
   ) {}
   location: Location = inject(Location);
 
   ngOnInit() {
-    this.profileId =  this.userService.currentProfile.id
+    this.profileId = this.userService.currentProfile.id;
   }
   keyDown(ev: KeyboardEvent) {
     if (ev.key == 'Enter') {
@@ -145,5 +147,4 @@ export class OnboardingStep3Component implements OnInit {
   goToPreviousPage() {
     this.location.back();
   }
-
 }
