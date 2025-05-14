@@ -124,6 +124,6 @@ export class LogInFormComponent implements OnInit {
     this.loginForm.patchValue({ phoneCode: data });
   }
   reDirectToResetPassword() {
-    this.router.navigateByUrl('/app-reset-pass-form-step1');
+    this.router.navigateByUrl('/reset-pass-form-step1');
   }
 }
