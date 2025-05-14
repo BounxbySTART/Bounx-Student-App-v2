@@ -34,9 +34,5 @@ import { PlayerService } from '../services/player.service';
 })
 export class Tab1Page {
   constructor(public playerService: PlayerService) {}
-  ngOnInit() {
-    this.playerService.getPlayerProfiles().subscribe((res: any) => {
-      this.playerService.playerProfiles = res;
-    });
-  }
+  ngOnInit() {}
 }

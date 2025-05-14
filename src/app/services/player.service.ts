@@ -9,7 +9,11 @@ import { StudentFavLocation } from 'src/types/student-fav-location-request';
   providedIn: 'root',
 })
 export class PlayerService {
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService) {
+    this.getPlayerProfiles().subscribe((res: any) => {
+      this.playerProfiles = res;
+    });
+  }
 
   playerProfiles: any[] = [];
 

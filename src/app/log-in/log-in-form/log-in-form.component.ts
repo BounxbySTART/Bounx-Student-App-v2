@@ -15,7 +15,9 @@ import {
   IonButton,
   ModalController,
   IonContent,
-  IonText, IonIcon } from '@ionic/angular/standalone';
+  IonText,
+  IonIcon,
+} from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { LogInFooterComponent } from '../log-in-footer/log-in-footer.component';
 import { CountryCodeComponent } from 'src/app/country-code/country-code.component';
@@ -36,7 +38,7 @@ import { MaskitoDirective } from '@maskito/angular';
   selector: 'app-log-in-form',
   templateUrl: './log-in-form.component.html',
   styleUrls: ['./log-in-form.component.scss'],
-  imports: [ 
+  imports: [
     IonContent,
     IonLabel,
     IonInput,
@@ -57,7 +59,7 @@ export class LogInFormComponent implements OnInit {
   readonly maskPredicate: MaskitoElementPredicate = async (el) =>
     (el as HTMLIonInputElement).getInputElement();
   loginForm!: FormGroup;
-  authenticationError:any;
+  authenticationError: any;
   constructor(
     private masterService: MasterService,
     private modalCtrl: ModalController,
@@ -88,22 +90,24 @@ export class LogInFormComponent implements OnInit {
   }
   userLogin() {
     let loginDetails = this.loginForm.value;
-    this.masterService.login({ ...loginDetails, userType: 'STUDENT' }).subscribe(
-      (res: any) => {
-        if (res) {
-          this.userService.setUser(res);
-          this.authService.authToken = res.accessToken;
-          this.authService.setRefreshToken(res.refreshToken);
-          this.router.navigateByUrl('/tabs/tab1');
-          // this.router.navigateByUrl('/onboarding-start');
-          // this.router.navigateByUrl('/list-profile');
+    this.masterService
+      .login({ ...loginDetails, userType: 'STUDENT' })
+      .subscribe(
+        (res: any) => {
+          if (res) {
+            this.userService.setUser(res);
+            this.authService.authToken = res.accessToken;
+            this.authService.setRefreshToken(res.refreshToken);
+            this.router.navigateByUrl('/tabs/tab1', { replaceUrl: true });
+            // this.router.navigateByUrl('/onboarding-start');
+            // this.router.navigateByUrl('/list-profile');
+          }
+        },
+        (err) => {
+          this.authenticationError = err.error;
+          console.log(err.error.message);
         }
-      },
-      (err) => {
-        this.authenticationError = err.error;
-        console.log(err.error.message);
-      }
-    );
+      );
   }
 
   async openModal(ev: Event) {
