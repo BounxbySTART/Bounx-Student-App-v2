@@ -31,10 +31,7 @@ import {
 import { CountryCodeComponent } from 'src/app/country-code/country-code.component';
 import { StepProgressComponent } from 'src/app/general/step-progress/step-progress.component';
 import { PlayerService } from 'src/app/services/player.service';
-import {
-  User,
-  UserService,
-} from 'src/app/services/user.service';
+import { User, UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-onboarding-step1',
@@ -83,10 +80,11 @@ export class OnboardingStep1Component implements OnInit {
     'Teacher',
     'Employer',
     'Neighbour',
+    'Account Owner',
     'Other',
   ];
   location: Location = inject(Location);
-  profileId!:number;
+  profileId!: number;
   constructor(
     private playerService: PlayerService,
     private modalCtrl: ModalController,
@@ -96,9 +94,9 @@ export class OnboardingStep1Component implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.initForm();
     this.getUser = this.userService.user;
-    this.playerProfileFormGroup.patchValue({
+    this.initForm();
+    /* this.playerProfileFormGroup.patchValue({
       emergencyName: this.getUser.firstName,
     });
     this.playerProfileFormGroup.patchValue({
@@ -106,7 +104,7 @@ export class OnboardingStep1Component implements OnInit {
     });
     this.playerProfileFormGroup.patchValue({
       emergencyPhone: this.getUser.phone,
-    });
+    }); */
   }
 
   initForm() {
@@ -131,6 +129,7 @@ export class OnboardingStep1Component implements OnInit {
         Validators.maxLength(15),
       ]),
     });
+    this.manipulateEmergencyContactDetails();
   }
 
   onSelectionChange(event: any) {
@@ -145,7 +144,7 @@ export class OnboardingStep1Component implements OnInit {
   getPlayerProfileDetail() {
     console.log('hello');
     let collectedData = this.playerProfileFormGroup.value;
-
+    collectedData.dob = new Date(collectedData.dob).toISOString();
     this.playerService.playerProfileDetail(collectedData).subscribe(
       (res) => {
         if (res) {
@@ -162,8 +161,8 @@ export class OnboardingStep1Component implements OnInit {
   async openModal() {
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
-      initialBreakpoint: 0.45,
-      breakpoints: [0, 0.45, 0.75],
+      initialBreakpoint: 0.65,
+      breakpoints: [0, 0.65, 0.85],
     });
     modal.present();
 
@@ -175,6 +174,8 @@ export class OnboardingStep1Component implements OnInit {
 
   checkBoxValue(ev: CheckboxCustomEvent) {
     this.checkBox = ev.detail.checked;
+  }
+  manipulateEmergencyContactDetails() {
     if (this.checkBox == false) {
       this.playerProfileFormGroup.get('emergencyName')?.reset();
       this.playerProfileFormGroup.get('emergencyRelationship')?.reset();
@@ -201,7 +202,15 @@ export class OnboardingStep1Component implements OnInit {
   }
 
   test(ev: DatetimeCustomEvent) {
-    this.playerProfileFormGroup.patchValue({ dob: ev.detail.value });
+    if (!ev.detail.value) return;
+    const date = new Date(ev.detail.value.toString());
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    };
+    const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
+    this.playerProfileFormGroup.patchValue(options);
     this.showCalendar = false;
   }
   backToPrevious() {
@@ -225,9 +234,8 @@ export class OnboardingStep1Component implements OnInit {
           role: 'confirm',
           handler: () => {
             //something to do
-      
+
             this.router.navigateByUrl('/onboarding-complete');
-            
           },
         },
       ],

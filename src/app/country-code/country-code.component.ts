@@ -58,11 +58,11 @@ export class CountryCodeComponent implements AfterViewInit {
       this.countries = res;
     });
   }
-  expandModal() {
+  /* expandModal() {
     this.modalCtrl.getTop().then((modal) => {
       if (modal) modal.setCurrentBreakpoint(0.75);
     });
-  }
+  } */
 
   searchCountry(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;

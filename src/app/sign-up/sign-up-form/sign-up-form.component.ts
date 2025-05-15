@@ -1,4 +1,4 @@
-import { NgClass,NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -15,7 +15,7 @@ import {
   IonButton,
   IonContent,
   ModalController,
-  IonText
+  IonText,
 } from '@ionic/angular/standalone';
 import { MasterService } from 'src/app/services/master.service';
 import { CountryCodeComponent } from '../../country-code/country-code.component';
@@ -29,7 +29,7 @@ import { VerificationService } from 'src/app/services/verification.service';
 import { DropdownButtonComponent } from 'src/app/general/dropdown-button/dropdown-button.component';
 import { MaskitoElementPredicate, MaskitoOptions } from '@maskito/core';
 import { MaskitoDirective } from '@maskito/angular';
-import { SignUpFooterComponent } from "../sign-up-footer/sign-up-footer.component";
+import { SignUpFooterComponent } from '../sign-up-footer/sign-up-footer.component';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -49,8 +49,8 @@ import { SignUpFooterComponent } from "../sign-up-footer/sign-up-footer.componen
     IonButton,
     MaskitoDirective,
     IonText,
-    SignUpFooterComponent
-],
+    SignUpFooterComponent,
+  ],
   providers: [MasterService],
 })
 export class SignUpFormComponent implements OnInit {
@@ -65,7 +65,7 @@ export class SignUpFormComponent implements OnInit {
     (el as HTMLIonInputElement).getInputElement();
 
   signUpFormGroup!: FormGroup;
-  authenticationError:any;
+  authenticationError: any;
 
   constructor(
     private masterService: MasterService,
@@ -112,16 +112,18 @@ export class SignUpFormComponent implements OnInit {
       lastName: this.signUpFormGroup.value.lastName.trim(),
     };
 
-    this.masterService.verifyPlayerUser(collectedData).subscribe((res: any) => {
-      this.verficationService.signUpUser = collectedData;
-      this.verficationService.signUpUser.sid = res.sid;
-      this.verficationService.signUpUser.isPasswordReset = false;
+    this.masterService.verifyPlayerUser(collectedData).subscribe(
+      (res: any) => {
+        this.verficationService.signUpUser = collectedData;
+        this.verficationService.signUpUser.sid = res.sid;
+        this.verficationService.signUpUser.isPasswordReset = false;
 
-      this.router.navigateByUrl('/app-verify-form');
-    },(err:any)=>{
-     this.authenticationError= err.error;
-          
-    });
+        this.router.navigateByUrl('/app-verify-form');
+      },
+      (err: any) => {
+        this.authenticationError = err.error;
+      }
+    );
   }
 
   async openModal(ev: Event) {
@@ -131,8 +133,8 @@ export class SignUpFormComponent implements OnInit {
 
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
-      initialBreakpoint: 0.45,
-      breakpoints: [0, 0.45, 0.75],
+      initialBreakpoint: 0.65,
+      breakpoints: [0, 0.65, 0.85],
     });
     modal.present();
 

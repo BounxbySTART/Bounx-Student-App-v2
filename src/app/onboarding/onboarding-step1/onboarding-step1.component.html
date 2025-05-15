@@ -29,13 +29,15 @@
       </div>
       <div class="form_item">
         <ion-input label="Date of Birth *" labelPlacement="stacked" formControlName="dob" [clearInput]="true"
-          placeholder="MM-DD-YYYY"></ion-input>
-        <ion-icon icon="calendar-number-outline" (click)="openCalendar()"></ion-icon>
-        <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendar">
+          placeholder="MM-DD-YYYY" type="date"></ion-input>
+        <ion-icon icon="calendar-number-outline"></ion-icon>
+        <!--  <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendar">
           <ng-template>
-            <ion-datetime id="datetime" multiple="false" presentation="date" (ionChange)="test($event)"></ion-datetime>
+            <div class="calendar"> <ion-datetime id="datetime" multiple="false" presentation="date"
+                (ionChange)="test($event)"></ion-datetime></div>
+
           </ng-template>
-        </ion-modal>
+        </ion-modal> -->
         <div
           *ngIf="playerProfileFormGroup.get('dob')?.errors?.['required'] && playerProfileFormGroup.get('dob')?.touched">
           <ion-text color="danger">dob is required.</ion-text>
