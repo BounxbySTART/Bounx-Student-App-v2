@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonButton, IonContent, IonIcon } from "@ionic/angular/standalone";
 import { PgBadgesTabsComponent } from "../pg-badges-tabs/pg-badges-tabs.component";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pg-badges',
@@ -10,8 +11,12 @@ import { PgBadgesTabsComponent } from "../pg-badges-tabs/pg-badges-tabs.componen
 })
 export class PgBadgesComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private location:Location) { }
 
   ngOnInit() {}
+
+  returnToPreviousPage(){
+this.location.back();
+  }
 
 }

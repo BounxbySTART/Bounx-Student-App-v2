@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IonList, IonLabel, IonButton, IonIcon, IonItem, IonAvatar, 
   IonItemOptions, IonItemOption, IonItemSliding } from "@ionic/angular/standalone";
 
@@ -19,7 +19,8 @@ import { IonList, IonLabel, IonButton, IonIcon, IonItem, IonAvatar,
   ]
 })
 export class FavoriteListingComponent  implements OnInit {
-
+  @Input() profileId: number | undefined;
+  @Input() studentProfile: any;
   constructor() { }
 
   ngOnInit() {}

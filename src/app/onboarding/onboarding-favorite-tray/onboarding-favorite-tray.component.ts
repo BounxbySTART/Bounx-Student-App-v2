@@ -25,16 +25,10 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './onboarding-favorite-tray.component.html',
   styleUrls: ['./onboarding-favorite-tray.component.scss'],
   imports: [
-    IonList,
-    IonItem,
-    IonAvatar,
     IonIcon,
-    IonLabel,
     IonButton,
     NgClass,
-    KeyValuePipe,
     OnboardingAcademyResultComponent,
-    RouterLink,
   ],
 })
 export class OnboardingFavoriteTrayComponent implements OnChanges {

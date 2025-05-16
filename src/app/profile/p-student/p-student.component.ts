@@ -27,7 +27,6 @@ import { BounxProfileComponent } from '../bounx-profile/bounx-profile.component'
   templateUrl: './p-student.component.html',
   styleUrls: ['./p-student.component.scss'],
   imports: [
-    IonSegment,
     IonButton,
     IonIcon,
     IonContent,
@@ -39,7 +38,6 @@ import { BounxProfileComponent } from '../bounx-profile/bounx-profile.component'
     CoachFeedbackCardComponent,
     FavoriteListingComponent,
     PersonalDetailsComponent,
-    NgIf,
   ],
 })
 export class PStudentComponent implements OnInit {
@@ -57,10 +55,14 @@ export class PStudentComponent implements OnInit {
     public modalController: ModalController
   ) {}
 
-  ngOnInit() {
+    ngOnInit() {
     this.profileId = +(this.activeRoute.snapshot.paramMap.get('id') ?? 0);
-    this.getPlayerProfile();
-    this.getPlayerProfiles();
+     this.getPlayerProfile();
+     this.getPlayerProfiles();
+   
+  }
+
+  initTabs(){
     this.tabs = [
       {
         name: 'Profile',
@@ -109,13 +111,14 @@ export class PStudentComponent implements OnInit {
       },
     ];
   }
-
   getPlayerProfile() {
     this.playerService
       .getPlayerProfile(this.profileId)
       .subscribe((res: any) => {
         this.playerProfile = res;
+        this.initTabs();
       });
+      
   }
 
   getProfilesList() {
@@ -140,32 +143,25 @@ export class PStudentComponent implements OnInit {
       },
     });
     modal.present();
-    const { data, role } = await modal.onWillDismiss();
-    if (role == 'confirm') {
+    modal.onWillDismiss().then((res)=>{
+      console.log(res);
+      if (res.role == 'confirm') {
+        this.profileId = res.data;
+        this.getPlayerProfile();
+        console.log('out Modal');
+      }
+    },(rej)=>{});
+    /* if (role == 'confirm') {
       this.profileId = data;
       this.getPlayerProfiles();
-    }
+      console.log('out Modal');
+    } */
   }
 
   getPlayerProfiles() {
     this.playerProfiles = this.playerService.playerProfiles;
   }
-
-  tabChanged(tabName: any) {
-    console.log(tabName);
-
-    this.atPresentTabName = tabName;
-    if (this.atPresentTabName == 'news') {
-      // this.loadNews();
-    }
-    if (this.atPresentTabName == 'company') {
-      // this.loadCompanyDetails();
-    }
-    if (this.atPresentTabName == 'financial') {
-      // this.generateDividendData();
-    }
-  }
-
+  
   goToPreviousPage() {
     this.location.back();
   }

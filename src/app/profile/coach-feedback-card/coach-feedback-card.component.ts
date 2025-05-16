@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IonItem } from "@ionic/angular/standalone";
 
 @Component({
@@ -8,6 +8,8 @@ import { IonItem } from "@ionic/angular/standalone";
   imports: [IonItem]
 })
 export class CoachFeedbackCardComponent  implements OnInit {
+  @Input() profileId: number | undefined;
+  @Input() studentProfile: any;
 
   constructor() { }
 
