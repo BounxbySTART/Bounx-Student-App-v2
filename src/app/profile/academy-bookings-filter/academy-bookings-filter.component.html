@@ -1,0 +1,90 @@
+<ion-content class="AcademyBookingsFilter">
+  <div class="modal_cnt">
+    <div class="header_modal">
+      <div class="title">Filter Bookings</div>
+      <ion-button class="round_btn bg_white">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
+  <div class="list_profile listing_capsule pad_side_20 pad_top_20">
+    <div class="label_header">
+      <p>Available for:</p>
+    </div>
+    <ion-list>
+      <ion-item class="selected">
+        <ion-avatar>
+          <img src="../../assets/dummy/profile_pic_user/Ryan.png">
+        </ion-avatar>
+        <ion-label>
+          Ryan Garland
+        </ion-label>
+        <ion-button class="round_btn bg_none">
+          <ion-icon name="square-outline" class="beforeSelect"></ion-icon>
+          <ion-icon name="checkbox-outline" class="afterSelect"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-avatar>
+          <img src="../../assets/dummy/profile_pic_user/Ryan.png">
+        </ion-avatar>
+        <ion-label>
+          Ryan Garland
+        </ion-label>
+        <ion-button class="round_btn bg_none">
+          <ion-icon name="square-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="list_bookingtype listing_data w_outline bg_white pad_side_30 pad_top_30 w_favorite">
+    <div class="label_header">
+      <p>Booking Type:</p>
+    </div>
+    <ion-list class="gap5px">
+      <ion-item class="selected">
+        <div class="checkboxdiv">
+          <ion-icon name="radio-button-off-outline" class="beforeSelect"></ion-icon>
+          <ion-icon name="checkmark-circle-outline" class="afterSelect"></ion-icon>
+        </div>
+        <ion-label>
+          All booking types
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <div class="checkboxdiv">
+          <ion-icon name="radio-button-off-outline" class="beforeSelect"></ion-icon>
+          <ion-icon name="checkmark-circle-outline" class="afterSelect"></ion-icon>
+        </div>
+        <ion-label>
+          Classes
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <div class="checkboxdiv">
+          <ion-icon name="radio-button-off-outline" class="beforeSelect"></ion-icon>
+          <ion-icon name="checkmark-circle-outline" class="afterSelect"></ion-icon>
+        </div>
+        <ion-label>
+          Events
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="footer footer_tray stay_bottom ">
+    <div class="tray_cnt">
+      <div class="cta_cnt two_btns">
+        <ion-button class="optional_cta full_width bg_none">
+          Reset Filters
+        </ion-button>
+        <ion-button class="main_cta">Apply</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

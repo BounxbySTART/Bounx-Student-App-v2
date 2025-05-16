@@ -25,7 +25,12 @@ import { EditContactFormComponent } from './profile/edit-contact-form/edit-conta
 import { OtherProfilesComponent } from './profile/other-profiles/other-profiles.component';
 import { PgBadgesComponent } from './profile/pg-badges/pg-badges.component';
 import { BadgeDetailsComponent } from './profile/badge-details/badge-details.component';
-import { OnboardingFavoriteTrayComponent } from './onboarding/onboarding-favorite-tray/onboarding-favorite-tray.component';
+import { PAcademyComponent } from './profile/p-academy/p-academy.component';
+import { PCoachComponent } from './profile/p-coach/p-coach.component';
+import { AcademyLocationSelectComponent } from './profile/academy-location-select/academy-location-select.component';
+import { AcademyBookingsFilterComponent } from './profile/academy-bookings-filter/academy-bookings-filter.component';
+import { AcademyPicsComponent } from './profile/academy-pics/academy-pics.component';
+import { AcademyPicsGalleryComponent } from './profile/academy-pics-gallery/academy-pics-gallery.component';
 
 
 export const routes: Routes = [
@@ -95,10 +100,6 @@ export const routes: Routes = [
     component:OnboardingCompletedComponent
   },
   {
-    path:'onboarding-favorite-tray',
-    component:OnboardingFavoriteTrayComponent
-  },
-  {
     path: 'app-verify-form',
     component: VerifyFormComponent,
   },
@@ -135,6 +136,14 @@ export const routes: Routes = [
     component: PStudentComponent,
   },
   {
+    path: 'p-academy',
+    component: PAcademyComponent,
+  },
+  {
+    path: 'p-coach',
+    component: PCoachComponent,
+  },
+  {
     path: 'edit-personal-details',
     component: EditPersonalDeteFormComponent,
   },
@@ -153,5 +162,17 @@ export const routes: Routes = [
   {
     path: 'badge-details',
     component: BadgeDetailsComponent,
+  },
+  {
+    path: 'academy-location-select',
+    component: AcademyLocationSelectComponent,
+  },
+  {
+    path: 'academy-bookings-filter',
+    component: AcademyBookingsFilterComponent,
+  },
+  {
+    path: 'academy-pics-gallery',
+    component: AcademyPicsGalleryComponent,
   }
 ];

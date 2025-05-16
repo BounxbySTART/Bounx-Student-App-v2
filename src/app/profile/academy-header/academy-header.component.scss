@@ -1,0 +1,119 @@
+.pAcademy_header {
+    margin-bottom: 25px;
+    position: relative;
+
+    .academy_pic {
+        background: var(--grey-750);
+        border-radius: 0 0 40px 40px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+
+        .icon {
+            padding: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            position: absolute;
+            z-index: 2;
+            right: 20px;
+            bottom: 10px;
+        }
+
+        .image {
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .academy_profilePic {
+        padding: 0 20px 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: relative;
+        z-index: 2;
+
+        .profileImg {
+            margin-top: -60px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .tag_activityType {
+            padding: 6px 12px 7px 10px;
+            background: var(--general-white);
+            border: 1px var(--grey-100) solid;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            .icon_activity {
+                width: 13px;
+                height: 13px;
+                background-size: contain !important;
+            }
+
+            .activity_text::after {
+                font-size: 0.8125rem;
+                line-height: 1em;
+                font-weight: 500;
+                text-transform: uppercase;
+                display: block;
+            }
+
+            &.tennis {
+
+                .icon_activity {
+                    background: url(../../../assets/icon/activities/icon_tennis.svg) no-repeat center center;
+                }
+
+                .activity_text::after {
+                    content: "Tennis";
+                }
+            }
+        }
+    }
+
+    .academy_name {
+        margin: 10px 40px 5px;
+    }
+
+    .academy_location {
+        margin: 10px 40px 0;
+
+        ion-select {
+            padding: 4px 15px 8px 18px;
+            width: auto;
+            font-weight: 700;
+            background: var(--lime-shade01);
+            --background: var(--lime-shade01);
+            border: 1px var(--grey-100) solid;
+            border-radius: 25px;
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: baseline;
+
+            &::part(icon) {
+                margin-top: 3px;
+                margin-left: 5px;
+            }
+
+            &::before {
+                content: 'Location:';
+                margin-right: 5px;
+                font-size: 0.8125rem;
+                line-height: 1em;
+                font-weight: 500;
+            }
+        }
+    }
+}

@@ -6,6 +6,7 @@ import {
   arrowForwardOutline,
   calendarOutline,
   calendarNumberOutline,
+  checkboxOutline,
   checkmarkCircleOutline,
   chevronDownOutline,
   chevronUpOutline,
@@ -15,11 +16,13 @@ import {
   ellipsisHorizontalOutline,
   eyeOffOutline,
   eyeOutline,
+  funnelOutline,
   informationCircleOutline,
   radioButtonOffOutline,
   searchOutline,
   shareSocialOutline,
-  trashOutline,
+  squareOutline,
+  trashOutline
 } from 'ionicons/icons';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { UserService } from './services/user.service';
@@ -43,6 +46,7 @@ export class AppComponent {
       arrowForwardOutline,
       calendarOutline,
       calendarNumberOutline,
+      checkboxOutline,
       checkmarkCircleOutline,
       chevronDownOutline,
       chevronUpOutline,
@@ -52,10 +56,12 @@ export class AppComponent {
       ellipsisHorizontal,
       eyeOffOutline,
       eyeOutline,
+      funnelOutline,
       informationCircleOutline,
       radioButtonOffOutline,
       searchOutline,
       shareSocialOutline,
+      squareOutline,
       trashOutline,
       followHeart: 'assets/icon/icon_follow_heart.svg',
       followHeartTick: 'assets/icon/icon_follow_heart_tick.svg',

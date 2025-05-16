@@ -1,3 +1,44 @@
-<p>
-  p-academy works!
-</p>
+<ion-content [fullscreen]="true" class="Profile p_Academy light_page">
+  <div class="header">
+    <div class="topbar">
+      <div class="btn_icon bg_white btn_back">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </div>
+      <div class="btn_icon bg_white btn_favorite favorited"></div>
+    </div>
+  </div>
+
+
+
+  <!-- •••••• PROFILE HEADER •••••• -->
+  <app-academy-header></app-academy-header>
+
+
+
+  <!-- •••••• TABS •••••• -->
+  <app-content-tabs-academy></app-content-tabs-academy>
+
+
+
+  <!-- •••••• TAB - ACTIVITIES •••••• -->
+  <div class="TAB_activities contentTABS_body bg_white">
+    <app-academy-bookings></app-academy-bookings>
+    <!-- <app-no-result-academy-bookings></app-no-result-academy-bookings> -->
+  </div>
+  
+
+
+  <!-- •••••• TAB - PROFILE •••••• -->
+  <!-- <div class="TAB_profile contentTABS_body bg_white">
+    <app-academy-profile-branch-dete></app-academy-profile-branch-dete>
+    <app-academy-profile-about></app-academy-profile-about>
+  </div> -->
+
+
+
+  <!-- •••••• TAB - COACHES •••••• -->
+  <!-- <div class="TAB_activities contentTABS_body bg_white">
+    <app-academy-coach-list></app-academy-coach-list>
+  </div> -->
+
+</ion-content>
