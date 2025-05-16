@@ -1,6 +1,6 @@
 <div class="badgeLatest">
   <div class="badgeLatest_cnt">
-    @for (b of profile.badges; track b.id;){
+    @for (b of profile?.badges; track b.id;){
     <div class="badge_item">
       <img src="{{imageUrl}}{{b.badge.badgeImage}}" />
     </div>

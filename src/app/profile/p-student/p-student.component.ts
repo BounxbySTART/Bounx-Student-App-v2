@@ -20,6 +20,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location, NgIf } from '@angular/common';
 import { OtherProfilesComponent } from '../other-profiles/other-profiles.component';
 import { Tab } from 'src/types/tabs-in-player-profile';
+import { BounxProfileComponent } from '../bounx-profile/bounx-profile.component';
 
 @Component({
   selector: 'app-p-student',
@@ -38,7 +39,7 @@ import { Tab } from 'src/types/tabs-in-player-profile';
     CoachFeedbackCardComponent,
     FavoriteListingComponent,
     PersonalDetailsComponent,
-    NgIf
+    NgIf,
   ],
 })
 export class PStudentComponent implements OnInit {
@@ -46,8 +47,8 @@ export class PStudentComponent implements OnInit {
   profileId: number = 0;
   playerProfile: any;
   tabs!: Tab[];
-  atPresentTabName!:string;
-  
+  atPresentTabName!: string;
+
   constructor(
     public playerService: PlayerService,
     public router: Router,
@@ -60,13 +61,54 @@ export class PStudentComponent implements OnInit {
     this.profileId = +(this.activeRoute.snapshot.paramMap.get('id') ?? 0);
     this.getPlayerProfile();
     this.getPlayerProfiles();
-    this.tabs= [{ name: 'Profile', title: 'Bounx Profile' },
-    { name: 'Feedback', title: 'Feedback' },
-    { name: 'Leaderboard', title: 'Leaderboard' },
-    { name: 'Favorites', title: 'Favorites' }]
+    this.tabs = [
+      {
+        name: 'Profile',
+        title: 'Bounx Profile',
+        component: BounxProfileComponent,
+        inputs: {
+          profileId: this.profileId,
+          studentProfile: this.playerProfile,
+        },
+      },
+      {
+        name: 'Feedback',
+        title: 'Feedback',
+        component: CoachFeedbackCardComponent,
+        inputs: {
+          profileId: this.profileId,
+          studentProfile: this.playerProfile,
+        },
+      },
+      {
+        name: 'Performance',
+        title: 'Performance',
+        component: PersonalDetailsComponent,
+        inputs: {
+          profileId: this.profileId,
+          studentProfile: this.playerProfile,
+        },
+      },
+      {
+        name: 'Favorites',
+        title: 'Favorites',
+        component: FavoriteListingComponent,
+        inputs: {
+          profileId: this.profileId,
+          studentProfile: this.playerProfile,
+        },
+      },
+      {
+        name: 'PersonalDetails',
+        title: 'Personal Details',
+        component: PersonalDetailsComponent,
+        inputs: {
+          profileId: this.profileId,
+          studentProfile: this.playerProfile,
+        },
+      },
+    ];
   }
-
-
 
   getPlayerProfile() {
     this.playerService
@@ -109,7 +151,7 @@ export class PStudentComponent implements OnInit {
     this.playerProfiles = this.playerService.playerProfiles;
   }
 
-  tabChanged(tabName:any) {
+  tabChanged(tabName: any) {
     console.log(tabName);
 
     this.atPresentTabName = tabName;

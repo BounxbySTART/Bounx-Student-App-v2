@@ -1,23 +1,25 @@
-<div class="list_profile listing_capsule">
-  <ion-list>
-    <ion-item-sliding #profileItem>
-      <ion-item>
-        <ion-avatar>
-          <img src="../../../assets/dummy/profile_pic_academy/Tompkins.png" />
-        </ion-avatar>
-        <ion-label>
-          Tompkins Sports
-        </ion-label>
-        <ion-button fill="clear" slot="end" class="btn_openOpt"
-          (click)="profileItem.open(undefined);preventEvent($event)">
-          <ion-icon name="ellipsis-horizontal"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item-options slot="end" (click)="profileItem.close();preventEvent($event)">
-        <ion-item-option>
-          <ion-icon slot="icon-only" name="trash-outline" class="pink"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+<div class="TAB_favorites contentTABS_body bg_grey800">
+  <div class="list_profile listing_capsule">
+    <ion-list>
+      <ion-item-sliding #profileItem>
+        <ion-item>
+          <ion-avatar>
+            <img src="../../../assets/dummy/profile_pic_academy/Tompkins.png" />
+          </ion-avatar>
+          <ion-label>
+            Tompkins Sports
+          </ion-label>
+          <ion-button fill="clear" slot="end" class="btn_openOpt"
+            (click)="profileItem.open(undefined);preventEvent($event)">
+            <ion-icon name="ellipsis-horizontal"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-item-options slot="end" (click)="profileItem.close();preventEvent($event)">
+          <ion-item-option>
+            <ion-icon slot="icon-only" name="trash-outline" class="pink"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
 </div>

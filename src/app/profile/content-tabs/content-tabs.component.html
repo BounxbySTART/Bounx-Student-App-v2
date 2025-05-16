@@ -1,37 +1,15 @@
-<!-- <div class="contentTABS">
-  <div class="tab_cnt">
-    <div class="item selected">Bounx Profile</div>
-    <div class="item">Feedback</div>
-    <div class="item">Performance</div>
-    <div class="item">Leaderboard</div>
-    <div class="item">Favorites</div>
-    <div class="item">Personal Details</div>
-  </div>
-  <div class="divider bg_black"></div>
-</div> -->
-
-<ion-segment color="warning">
+<ion-segment color="primary" [scrollable]="true">
   @for(tab of tabs;track $index){
-  <ion-segment-button value="first" [contentId]="tab.name">
+  <ion-segment-button [value]="tab.name" [contentId]="tab.name">
     <ion-label>{{tab.title}}</ion-label>
   </ion-segment-button>
-}
+  }
 </ion-segment>
 
-<!-- <ion-segment-view>
-  <ion-segment-content id="first">First</ion-segment-content>
-  <ion-segment-content id="second">Second</ion-segment-content>
-  <ion-segment-content id="third">Third</ion-segment-content>
-</ion-segment-view> -->
-
-<!-- <ul id="TABhdr" class="TABhdr_hld"> 
-  <li *ngFor="let tab of tabs;let i=index" class="TABhdr_item" [ngClass]="atPresentTab==i?'selected':''" (click)="switchTo(i)">
-    <div class="contentTABS">
-    <div class="tab_cnt"><span> <div class="item">{{tab.title}}</div> </span></div>
-
-  </div>
-
-  </li>
-
-</ul> -->
-
+<ion-segment-view>
+  @for(tab of tabs;track $index){
+  <ion-segment-content [id]="tab.name">
+    <ng-container *ngComponentOutlet="tab.component;inputs: tab.inputs"></ng-container>
+  </ion-segment-content>
+  }
+</ion-segment-view>

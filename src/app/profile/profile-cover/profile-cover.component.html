@@ -1,7 +1,7 @@
 <div class="profileCover">
 
   <div class="profilePic">
-    <img src="{{imageUrl}}{{profile.profilePicture}}" />
+    <img src="{{imageUrl}}{{profile?.profilePicture}}" />
   </div>
 
   <div class="avgEnergy">
@@ -9,7 +9,7 @@
   </div>
 
   <div class="studentName">
-    {{profile.firstName}} {{profile.lastName}}
+    {{profile?.firstName}} {{profile?.lastName}}
   </div>
 
   <div class="profileXP">
