@@ -7,9 +7,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CheckboxCustomEvent, DatetimeCustomEvent, IonicModule, ModalController } from '@ionic/angular';
 import {
-  
+  AlertController,
+  CheckboxCustomEvent,
+  DatetimeCustomEvent,
+  IonicModule,
+  ModalController,
+} from '@ionic/angular';
+import {
   IonIcon,
   IonInput,
   IonLabel,
@@ -25,10 +30,8 @@ import {
 } from '@ionic/angular/standalone';
 import { CountryCodeComponent } from 'src/app/country-code/country-code.component';
 import { StepProgressComponent } from 'src/app/general/step-progress/step-progress.component';
-import { MasterService } from 'src/app/services/master.service';
 import { PlayerService } from 'src/app/services/player.service';
-import { CurrentProfile, User, UserService } from 'src/app/services/user.service';
-import { PlayerProfileRequest } from 'src/types/player-profile-request';
+import { User, UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-onboarding-step1',
@@ -56,22 +59,44 @@ export class OnboardingStep1Component implements OnInit {
   playerProfileFormGroup!: FormGroup;
   getUser!: User;
   checkBox: boolean = true;
-  showCalendar:boolean = false;
+  showCalendar: boolean = false;
   selectedOption: string | null = null;
-  ifEmerOther:boolean = false;
-emergencyRel:any = ['Father', 'Mother', 'Guardian', 'Brother', 'Sister', 'Husband', 'Wife', 'Fianće(e)', 'Grandparent', 'Aunt', 'Uncle', 'Cousin', 'Friend', 'Coach', 'Teacher', 'Employer', 'Neighbour', 'Other'];
-location:Location = inject(Location);
+  ifEmerOther: boolean = false;
+  emergencyRel: any = [
+    'Father',
+    'Mother',
+    'Guardian',
+    'Brother',
+    'Sister',
+    'Husband',
+    'Wife',
+    'Fianće(e)',
+    'Grandparent',
+    'Aunt',
+    'Uncle',
+    'Cousin',
+    'Friend',
+    'Coach',
+    'Teacher',
+    'Employer',
+    'Neighbour',
+    'Account Owner',
+    'Other',
+  ];
+  location: Location = inject(Location);
+  profileId!: number;
   constructor(
     private playerService: PlayerService,
     private modalCtrl: ModalController,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
-    this.initForm();
     this.getUser = this.userService.user;
-    this.playerProfileFormGroup.patchValue({
+    this.initForm();
+    /* this.playerProfileFormGroup.patchValue({
       emergencyName: this.getUser.firstName,
     });
     this.playerProfileFormGroup.patchValue({
@@ -79,7 +104,7 @@ location:Location = inject(Location);
     });
     this.playerProfileFormGroup.patchValue({
       emergencyPhone: this.getUser.phone,
-    });
+    }); */
   }
 
   initForm() {
@@ -96,10 +121,7 @@ location:Location = inject(Location);
       gender: new FormControl('', Validators.required),
       isEmergencyContactPrimaryAccount: new FormControl(true),
       emergencyName: new FormControl('', Validators.required),
-      emergencyRelationship: new FormControl(
-        '',
-        Validators.required
-      ),
+      emergencyRelationship: new FormControl('', Validators.required),
       emergencyPhoneCode: new FormControl('', Validators.required),
       emergencyPhone: new FormControl('', [
         Validators.required,
@@ -107,44 +129,40 @@ location:Location = inject(Location);
         Validators.maxLength(15),
       ]),
     });
-
-    
-
+    this.manipulateEmergencyContactDetails();
   }
 
-  onSelectionChange(event:any){
-   console.log(event.target.value);
-   
-    if(event.target.value === 'Other'){
-      this.ifEmerOther = true;
-    }
-    else this.ifEmerOther=false; return
+  onSelectionChange(event: any) {
+    console.log(event.target.value);
 
+    if (event.target.value === 'Other') {
+      this.ifEmerOther = true;
+    } else this.ifEmerOther = false;
+    return;
   }
 
   getPlayerProfileDetail() {
     console.log('hello');
     let collectedData = this.playerProfileFormGroup.value;
-    
-    this.playerService
-      .playerProfileDetail(collectedData)
-      .subscribe((res) => {
+    collectedData.dob = new Date(collectedData.dob).toISOString();
+    this.playerService.playerProfileDetail(collectedData).subscribe(
+      (res) => {
         if (res) {
-        this.userService.setCurrentProfile(res);
+          this.userService.setCurrentProfile(res);
           this.router.navigateByUrl('/onboarding-step2');
         }
-        
-      },(err)=>{
+      },
+      (err) => {
         console.log(err);
-        
-      });
+      }
+    );
   }
 
   async openModal() {
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
-      initialBreakpoint: 0.25,
-      breakpoints: [0, 0.25, 0.75],
+      initialBreakpoint: 0.65,
+      breakpoints: [0, 0.65, 0.85],
     });
     modal.present();
 
@@ -156,6 +174,8 @@ location:Location = inject(Location);
 
   checkBoxValue(ev: CheckboxCustomEvent) {
     this.checkBox = ev.detail.checked;
+  }
+  manipulateEmergencyContactDetails() {
     if (this.checkBox == false) {
       this.playerProfileFormGroup.get('emergencyName')?.reset();
       this.playerProfileFormGroup.get('emergencyRelationship')?.reset();
@@ -177,15 +197,50 @@ location:Location = inject(Location);
     }
   }
 
-  openCalendar(){
+  openCalendar() {
     this.showCalendar = true;
   }
 
-  test(ev:DatetimeCustomEvent){
-    this.playerProfileFormGroup.patchValue({dob: ev.detail.value});
+  test(ev: DatetimeCustomEvent) {
+    if (!ev.detail.value) return;
+    const date = new Date(ev.detail.value.toString());
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    };
+    const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
+    this.playerProfileFormGroup.patchValue(options);
     this.showCalendar = false;
   }
-  dismiss(){
+  backToPrevious() {
     this.location.back();
+  }
+
+  async dismiss() {
+    const alert = await this.alertController.create({
+      header: 'Cancel Profile creation?',
+      message: `Your data will not be saved and profile will not be created if you cancel sign up process now`,
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            // nothing to do
+          },
+        },
+        {
+          text: 'Yes',
+          role: 'confirm',
+          handler: () => {
+            //something to do
+
+            this.router.navigateByUrl('/onboarding-complete');
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 }

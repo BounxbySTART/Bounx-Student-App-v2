@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import {
   IonIcon,
   IonLabel,
@@ -11,6 +11,7 @@ import { StepProgressComponent } from 'src/app/general/step-progress/step-progre
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { UserService } from 'src/app/services/user.service';
 import { PlayerService } from 'src/app/services/player.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-onboarding-step2',
@@ -26,18 +27,26 @@ import { PlayerService } from 'src/app/services/player.service';
   ],
 })
 export class OnboardingStep2Component implements OnInit {
-  profileId!:number;
+  profileId!: number;
   navController: NavController = inject(NavController);
   profileImage: string = '../../assets/dummy/profile_pic_user/Ryan.png';
-  constructor(public userService:UserService, public playerService:PlayerService) {}
+  constructor(
+    public userService: UserService,
+    public playerService: PlayerService,
+    private alertController: AlertController,
+    private router: Router
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.profileId = this.userService.currentProfile.id;
+  }
   proceedToClubSelection() {
     this.uploadImageFile();
-  
+
     this.navController.navigateForward('/onboarding-step3');
   }
-  dismiss() {
+
+  goToPreviousPage() {
     this.navController.pop();
   }
   async chooseImage(source: CameraSource) {
@@ -57,7 +66,6 @@ export class OnboardingStep2Component implements OnInit {
     if (imageUrl) {
       // Can be set to the src of an image now
       this.profileImage = imageUrl;
-     
     }
   }
   async imageFromGallery() {
@@ -73,21 +81,51 @@ export class OnboardingStep2Component implements OnInit {
     if (imageUrl) {
       // Can be set to the src of an image now
       this.profileImage = imageUrl;
-    
     }
   }
 
-async uploadImageFile(){
-  
-  const response = await fetch(this.profileImage);
+  async uploadImageFile() {
+    const response = await fetch(this.profileImage);
     const blob = await response.blob();
     const file = new File([blob], 'image.jpg', { type: blob.type });
 
-  this.profileId = this.userService.currentProfile.id;
-  this.playerService.studentProfilePictureUpload(this.profileId,file).subscribe((res)=>{
-console.log(res);
+    this.playerService
+      .studentProfilePictureUpload(this.profileId, file)
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
 
-  })
-}
+  async dismiss() {
+    const alert = await this.alertController.create({
+      header: 'Cancel Profile creation?',
+      message: `Your data will not be saved and profile will not be created if you cancel sign up process now`,
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            // nothing to do
+          },
+        },
+        {
+          text: 'Yes',
+          role: 'confirm',
+          handler: () => {
+            //something to do
+            if (this.profileId) {
+              this.playerService
+                .playerProfileRemove(this.profileId)
+                .subscribe((res) => {
+                  console.log(res);
+                });
+            }
+            this.router.navigateByUrl('/onboarding-complete');
+          },
+        },
+      ],
+    });
 
+    await alert.present();
+  }
 }

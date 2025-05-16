@@ -62,7 +62,9 @@ export class AppComponent {
       searchOutline,
       shareSocialOutline,
       squareOutline,
-      trashOutline
+      trashOutline,
+      followHeart: 'assets/icon/icon_follow_heart.svg',
+      followHeartTick: 'assets/icon/icon_follow_heart_tick.svg',
     });
   }
 }

@@ -1,16 +1,22 @@
 <div class="list_profile listing_capsule pad_side_20 pad_top_20">
-  <p class="list_label pad_left_20">Results:</p>
- 
+  <!-- <p class="list_label pad_left_20">Results:</p> -->
+
   <ion-list *ngFor="let search of searchTextResults">
-    <ion-item >
+    <ion-item>
       <ion-avatar>
         <img src="../../assets/dummy/profile_pic_academy/Tompkins.png">
       </ion-avatar>
       <ion-label>
-       <!--  Academy Name {{search.name}} --> {{search.name}}
+        <!--  Academy Name {{search.name}} --> {{search.name}}
       </ion-label>
-      <ion-button fill="clear" slot="end" (click)="addToFavorites(search)">
-        <ion-icon name="add-outline" ></ion-icon>
+      <ion-button fill="clear" slot="end" (click)="toggleToFavorites(search)">
+        @if (selectedIds.has(search.id) || isSelectedView) {
+        <ion-icon name="follow-heart-tick"></ion-icon>
+        }
+        @else {
+        <ion-icon name="follow-heart"></ion-icon>
+        }
+
       </ion-button>
     </ion-item>
   </ion-list>

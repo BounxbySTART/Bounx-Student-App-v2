@@ -1,30 +1,94 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PaymentSheetEventsEnum, Stripe } from '@capacitor-community/stripe';
 import {
   IonList,
   IonItem,
   IonAvatar,
   IonLabel,
   IonIcon,
-  IonButton
+  IonButton,
 } from '@ionic/angular/standalone';
+import { PlayerService } from 'src/app/services/player.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-onboarding-list-payment',
   templateUrl: './onboarding-list-payment.component.html',
   styleUrls: ['./onboarding-list-payment.component.scss'],
-  imports: [
-    IonList,
-    IonItem,
-    IonAvatar,
-    IonLabel,
-    IonIcon,
-    IonButton
-  ],
+  imports: [IonList, IonItem, IonAvatar, IonLabel, IonIcon, IonButton],
 })
-export class OnboardingListPaymentComponent  implements OnInit {
+export class OnboardingListPaymentComponent implements OnInit {
+  paymentMethods: any[] = [];
+  constructor(public playerService: PlayerService, public router: Router) {
+    Stripe.initialize({
+      publishableKey: environment.stripePublishableKey,
+    }).then((res) => {
+      console.log(res, 'Stripe init');
+    });
+  }
 
-  constructor() { }
+  //  client_secret, ephemeralKey
+  ngOnInit() {
+    this.getPaymentMethods();
+  }
+  getPaymentMethods() {
+    this.playerService.getPaymentMethods().subscribe((res: any) => {
+      this.paymentMethods = res;
+    });
+  }
+  startSetupIntent() {
+    this.playerService.setupIntent({}).subscribe((res: any) => {
+      console.log(res);
+      this.presentSheet(res.client_secret, res.customerId, res.ephemeralKey);
+      this.intentListener(res.client_secret, res.customerId, res.intentId);
+    });
+  }
+  intentListener(
+    intentClientSecret: string,
+    customerId: string,
+    intentId: string
+  ) {
+    Stripe.addListener(PaymentSheetEventsEnum.Completed, () => {
+      console.log('PaymentSheetEventsEnum.Completed');
+      // send intentClientSecret & customerId to backend
+      this.completeIntent(intentClientSecret, customerId, intentId);
+    });
+  }
+  completeIntent(
+    intentClientSecret: string,
+    customerId: string,
+    intentId: string
+  ) {
+    //do api call to server with  intentClientSecret & customerId
+    this.playerService
+      .completeIntent({ intentClientSecret, customerId, intentId })
+      .subscribe((res: any) => {
+        this.paymentMethods = res;
+      });
+  }
 
-  ngOnInit() {}
+  async presentSheet(
+    setupIntentClientSecret: string,
+    customerId: string,
+    ephemeralKey: string
+  ) {
+    // prepare PaymentSheet with CreatePaymentSheetOption.
+    await Stripe.createPaymentSheet({
+      setupIntentClientSecret: setupIntentClientSecret,
+      customerId: customerId,
+      customerEphemeralKeySecret: ephemeralKey,
+      merchantDisplayName: 'BOUNX',
+      style: 'alwaysLight',
+      billingDetailsCollectionConfiguration: {
+        // address: 'never',
+        name: 'automatic',
+      },
+    });
+    const result = await Stripe.presentPaymentSheet();
+  }
 
+  navigateToCompletion() {
+    this.router.navigateByUrl('/onboarding-complete');
+  }
 }

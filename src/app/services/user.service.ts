@@ -1,27 +1,26 @@
-
 import { Injectable } from '@angular/core';
 
 export interface User {
   accessToken: string;
   firstName: string;
   lastName: string;
-  phoneCode:string;
+  phoneCode: string;
   phone: string;
 }
 
-export interface StudentFavLocation{
-  id:number;
-  student_profiles_id:string;
-  academy_location_id:string;
-}
-export interface CurrentProfile{
+export interface StudentFavLocation {
   id: number;
-  user:User;
-  firstName:string;
-  lastname:string;
-  dob:string;
-  gender:string;
-  isEmergencyContactPrimaryAccount:boolean;
+  student_profiles_id: string;
+  academy_location_id: string;
+}
+export interface CurrentProfile {
+  id: number;
+  user: User;
+  firstName: string;
+  lastname: string;
+  dob: string;
+  gender: string;
+  isEmergencyContactPrimaryAccount: boolean;
   emergencyName: string;
   emergencyRelationship: string;
   emergencyPhoneCode: string;
@@ -43,7 +42,8 @@ export interface CurrentProfile{
 })
 export class UserService {
   user!: User;
-  currentProfile!:CurrentProfile;
+  currentProfile!: CurrentProfile;
+  profiles: any[] = [];
   constructor() {
     const userVal = localStorage.getItem('user');
     if (userVal) {
@@ -51,7 +51,7 @@ export class UserService {
     }
 
     const currentProfileVal = localStorage.getItem('currentProfile');
-    if(currentProfileVal){
+    if (currentProfileVal) {
       this.currentProfile = JSON.parse(currentProfileVal);
     }
   }
@@ -61,10 +61,8 @@ export class UserService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  setCurrentProfile(currentProfile:CurrentProfile){
-    this.currentProfile=currentProfile;
-    localStorage.setItem('currentProfile',JSON.stringify(currentProfile));
+  setCurrentProfile(currentProfile: CurrentProfile) {
+    this.currentProfile = currentProfile;
+    localStorage.setItem('currentProfile', JSON.stringify(currentProfile));
   }
-
-
 }

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -54,7 +54,8 @@ export class ResetPassFormStep1Component implements OnInit {
     private modalCtrl: ModalController,
     private router: Router,
     private masterService: MasterService,
-    private verficationService: VerificationService
+    private verficationService: VerificationService,
+    private location:Location
   ) {}
 
   ngOnInit() {
@@ -68,8 +69,8 @@ export class ResetPassFormStep1Component implements OnInit {
 
     const modal = await this.modalCtrl.create({
       component: CountryCodeComponent,
-      initialBreakpoint: 0.25,
-      breakpoints: [0, 0.25, 0.75],
+      initialBreakpoint: 0.65,
+      breakpoints: [0, 0.65, 0.85],
     });
     modal.present();
 
@@ -111,5 +112,8 @@ export class ResetPassFormStep1Component implements OnInit {
         console.log(err);
         
       });
+  }
+  goToPreviousPage(){
+    this.location.back();
   }
 }

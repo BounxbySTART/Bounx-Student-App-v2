@@ -112,7 +112,7 @@ export const routes: Routes = [
     component: OnboardingAddProfileComponent,
   },
   {
-    path: 'app-reset-pass-form-step1',
+    path: 'reset-pass-form-step1',
     component: ResetPassFormStep1Component,
   },
   {
@@ -132,7 +132,7 @@ export const routes: Routes = [
     component: IntroContentComponent,
   },
   {
-    path: 'p-student',
+    path: 'p-student/:id',
     component: PStudentComponent,
   },
   {
@@ -152,7 +152,7 @@ export const routes: Routes = [
     component: EditContactFormComponent,
   },
   {
-    path: 'other-profiles',
+    path: 'other-profiles/:id',
     component: OtherProfilesComponent,
   },
   {

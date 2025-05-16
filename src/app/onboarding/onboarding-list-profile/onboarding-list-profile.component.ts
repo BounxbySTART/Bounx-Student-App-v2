@@ -14,6 +14,7 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 import { PlayerService } from 'src/app/services/player.service';
+import { environment } from 'src/environments/environment';
 import { PlayerProfileRequest } from 'src/types/player-profile-request';
 
 @Component({
@@ -30,10 +31,12 @@ import { PlayerProfileRequest } from 'src/types/player-profile-request';
     IonItemOption,
     IonIcon,
     IonButton,
+    IonContent,
     CommonModule,
   ],
 })
 export class OnboardingListProfileComponent implements OnInit {
+  imageUrl:string=environment.profileImageUrl;
   playerProfiles: PlayerProfileRequest[] = [];
   deleteId:string=''
   constructor(private router: Router, private playerService: PlayerService) {}
@@ -57,15 +60,27 @@ export class OnboardingListProfileComponent implements OnInit {
   getPlayerProfiles() {
     this.playerService.getPlayerProfiles().subscribe((res: any) => {
       this.playerProfiles = res;
+      this.playerService.playerProfiles = res;
       console.log(this.playerProfiles);
      
     });
   }
 
+  // {/profile/:id, GET} 
+  getPlayerProfile(profileId:number){
+
+    this.router.navigateByUrl('/p-student/'+profileId);
+
+  }
   removeProfile(profileId:any,i:number){
     this.playerService.playerProfileRemove(profileId).subscribe((res)=>{
       console.log(res);
       this.playerProfiles.splice(i,1);
     })
+  }
+
+  
+  editProfile(profileId:any){
+
   }
 }

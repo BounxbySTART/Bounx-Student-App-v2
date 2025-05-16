@@ -1,12 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { KeyValuePipe, NgClass } from '@angular/common';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   IonList,
   IonItem,
   IonAvatar,
   IonIcon,
   IonLabel,
-  IonButton
+  IonButton,
 } from '@ionic/angular/standalone';
+import { OnboardingAcademyResultComponent } from '../onboarding-academy-result/onboarding-academy-result.component';
+import { Router, RouterLink } from '@angular/router';
+import { PlayerService } from 'src/app/services/player.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-onboarding-favorite-tray',
@@ -18,13 +30,57 @@ import {
     IonAvatar,
     IonIcon,
     IonLabel,
-    IonButton
+    IonButton,
+    NgClass,
+    KeyValuePipe,
+    OnboardingAcademyResultComponent,
+    RouterLink,
   ],
 })
-export class OnboardingFavoriteTrayComponent  implements OnInit {
+export class OnboardingFavoriteTrayComponent implements OnChanges {
+  expanded: boolean = false;
+  /* @Input('selectedAcademyList') selectedAcademyList: Map<number, any> = new Map<
+    number,
+    any
+  >(); */
+  @Input() searchTextResults: any[] = [];
+  @Output() selectedAcademies: EventEmitter<Map<number, any>> =
+    new EventEmitter<Map<number, any>>();
+  constructor(
+    private router: Router,
+    private playerService: PlayerService,
+    private userService: UserService
+  ) {}
 
-  constructor() { }
+  ngOnChanges() {
+    console.log('changes');
+  }
+  /*   convertSearchItems() {
+    console.log('converting');
 
-  ngOnInit() {}
+    if (this.selectedAcademyList.size > 0) {
+      this.searchTextResults = [];
+      this.selectedAcademyList.forEach((val, key) => {
+        this.searchTextResults.push(val);
+      });
+    }
+  } */
+  selectedAcademiesEvent(value: Map<number, any>) {
+    const academyMap = new Map();
 
+    // this.searchTextResults
+    this.selectedAcademies.emit(value);
+  }
+
+  saveFavProfiles() {
+    // const locationIds = [...this.selectedAcademyList.keys()];
+    const locationIds: any[] = [];
+    this.playerService
+      .studentFavLocationDetail({
+        profileId: this.userService.currentProfile.id,
+        locationIds,
+      })
+      .subscribe(() => {});
+    this.router.navigateByUrl('/onboarding-step4');
+  }
 }

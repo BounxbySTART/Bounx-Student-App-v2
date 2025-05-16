@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-import { IonContent, IonHeader, IonToolbar, IonTitle } from "@ionic/angular/standalone";
-import { OnboardingStartComponent } from "../onboarding/onboarding-start/onboarding-start.component";
-import { OnboardingListProfileComponent } from "../onboarding/onboarding-list-profile/onboarding-list-profile.component";
-import { ProfileSelectorComponent } from "../dashboard/profile-selector/profile-selector.component";
-import { MyFavoritesComponent } from "../dashboard/my-favorites/my-favorites.component";
-import { MyBookingsComponent } from "../dashboard/my-bookings/my-bookings.component";
-import { TermBadgeComponent } from "../dashboard/term-badge/term-badge.component";
-import { BounxLogoIconComponent } from "../general/bounx-logo-icon/bounx-logo-icon.component";
+import {
+  IonContent,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+} from '@ionic/angular/standalone';
+import { OnboardingStartComponent } from '../onboarding/onboarding-start/onboarding-start.component';
+import { OnboardingListProfileComponent } from '../onboarding/onboarding-list-profile/onboarding-list-profile.component';
+import { ProfileSelectorComponent } from '../dashboard/profile-selector/profile-selector.component';
+import { MyFavoritesComponent } from '../dashboard/my-favorites/my-favorites.component';
+import { MyBookingsComponent } from '../dashboard/my-bookings/my-bookings.component';
+import { TermBadgeComponent } from '../dashboard/term-badge/term-badge.component';
+import { BounxLogoIconComponent } from '../general/bounx-logo-icon/bounx-logo-icon.component';
+import { PlayerService } from '../services/player.service';
 
 @Component({
   selector: 'app-tab1',
@@ -23,11 +29,10 @@ import { BounxLogoIconComponent } from "../general/bounx-logo-icon/bounx-logo-ic
     MyFavoritesComponent,
     MyBookingsComponent,
     TermBadgeComponent,
-    BounxLogoIconComponent
-]
+    BounxLogoIconComponent,
+  ],
 })
 export class Tab1Page {
-
-  constructor() {}
-
+  constructor(public playerService: PlayerService) {}
+  ngOnInit() {}
 }

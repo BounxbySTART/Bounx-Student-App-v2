@@ -6,14 +6,12 @@ import { Router } from '@angular/router';
   templateUrl: './log-in-footer.component.html',
   styleUrls: ['./log-in-footer.component.scss'],
 })
-export class LogInFooterComponent  implements OnInit {
-
-  constructor(private router:Router) { }
+export class LogInFooterComponent implements OnInit {
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
-  reDirectToSignUpPage(){
-    this.router.navigateByUrl('/sign-up');
+  reDirectToSignUpPage() {
+    this.router.navigateByUrl('/sign-up', { replaceUrl: true });
   }
-
 }

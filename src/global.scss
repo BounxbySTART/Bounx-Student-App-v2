@@ -936,7 +936,6 @@ ion-button {
     width: 24px;
     height: 24px;
     // transition: all 0.3s ease;
-
     ion-icon {
         font-size: 24px;
     }
@@ -1799,7 +1798,7 @@ body {
             }
 
             .btn_icon {
-                transform: rotate(180deg);
+                rotate: 180deg;
             }
         }
     }
@@ -1935,8 +1934,6 @@ ion-label {
         font-size: 1rem;
     }
 }
-
-
 /* Profile Image */
 
 .profileImg {

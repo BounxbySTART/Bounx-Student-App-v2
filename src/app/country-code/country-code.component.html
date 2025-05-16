@@ -7,8 +7,8 @@
     <div class="SearchBar">
       <ion-label>Search</ion-label>
       <!-- search text box works but the font color needs to be adjusted-->
-      <ion-searchbar placeholder="Type here to search country" [debounce]="1000" (ionInput)="searchCountry($event)"
-        (click)="expandModal()" autocomplete="off" class="search_input"></ion-searchbar>
+      <ion-searchbar #input placeholder="Type here to search country" [debounce]="500"
+        (ionInput)="searchCountry($event)" autocomplete="off" class="search_input"></ion-searchbar>
     </div>
     @if (!countries || countries.length==0) {
     <ion-list [inset]="true">
@@ -29,7 +29,8 @@
         @for (country of countries; track country.code) {
         <ion-item>
           <ion-radio labelPlacement="end" alignment="center" justify="start"
-            [value]="country.dialCode"><span>{{country.flag}} &nbsp;</span><span>{{country.dialCode}} &nbsp;</span>{{country.name}}</ion-radio>
+            [value]="country.dialCode"><span>{{country.flag}} &nbsp;</span><span>{{country.dialCode}}
+              &nbsp;</span>{{country.name}}</ion-radio>
         </ion-item>
         }
       </ion-radio-group>

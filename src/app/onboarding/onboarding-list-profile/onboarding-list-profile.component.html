@@ -1,3 +1,4 @@
+
 <div class="list_profile listing_capsule pad_side_40">
   @if(playerProfiles && playerProfiles.length>0){<p class="list_label">Created Profiles:</p>}
   <ion-list>
@@ -5,9 +6,9 @@
     <ion-item-sliding #profileItem>
       <ion-item>
         <ion-avatar>
-          <img src="../../assets/dummy/profile_pic_user/Ryan.png">
+          <img src="{{imageUrl}}{{profile.profilePicture}}">
         </ion-avatar>
-        <ion-label>
+        <ion-label (click)="getPlayerProfile(profile.id)">
           <p>{{profile.firstName | titlecase}}</p>
         </ion-label>
         <ion-button fill="clear" slot="end" class="btn_openOpt"
@@ -20,7 +21,7 @@
           <ion-icon slot="icon-only" name="trash-outline" class="pink" (click)="removeProfile(profile.id,i)"></ion-icon>
         </ion-item-option>
         <ion-item-option>
-          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          <ion-icon slot="icon-only" name="create-outline" (click)="editProfile(profile.id)"></ion-icon>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>

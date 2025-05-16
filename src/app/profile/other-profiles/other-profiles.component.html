@@ -2,7 +2,7 @@
   <div class="modal_cnt">
     <div class="header_modal">
       <div class="title">Other Profiles</div>
-      <ion-button class="round_btn bg_white">
+      <ion-button class="round_btn bg_white" (click)="dismiss()">
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </div>
@@ -10,30 +10,29 @@
 
   <div class="list_profile listing_capsule pad_side_20 pad_top_20">
     <ion-list>
-      <ion-item class="selected">
+      @for (profile of playerProfiles; track profile.id; let i = $index;){
+      <ion-item  [ngClass]="{'selected':profileId==profile.id}">
         <ion-avatar>
-          <img src="../../assets/dummy/profile_pic_user/Ryan.png">
+          <img src="{{imageUrl}}{{profile.profilePicture}}">
         </ion-avatar>
         <ion-label>
-          Ryan Garland
+          {{profile.firstName | titlecase}} {{profile.lastName | titlecase}}
+       
         </ion-label>
-        <ion-button class="round_btn bg_none">
-          <ion-icon name="radio-button-off-outline" class="beforeSelect"></ion-icon>
-          <ion-icon name="checkmark-circle-outline" class="afterSelect"></ion-icon>
+        <ion-button class="round_btn bg_none" (click)="getPlayerProfile(profile.id)">
+          @if(profileId==profile.id){
+         
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          }
+          @else{
+
+            <ion-icon name="radio-button-off-outline"></ion-icon>
+          }
         </ion-button>
       </ion-item>
 
-      <ion-item>
-        <ion-avatar>
-          <img src="../../assets/dummy/profile_pic_user/Ryan.png">
-        </ion-avatar>
-        <ion-label>
-          Ryan Garland
-        </ion-label>
-        <ion-button class="round_btn bg_none">
-          <ion-icon name="radio-button-off-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
+     
+    }
     </ion-list>
   </div>
 </ion-content>

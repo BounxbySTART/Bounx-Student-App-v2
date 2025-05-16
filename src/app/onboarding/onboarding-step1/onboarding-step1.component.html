@@ -1,102 +1,115 @@
 <ion-content [fullscreen]="true" class="Onboarding light_page centerise_page">
-<div class="header">
-  <div class="topbar"><ion-icon name="close-outline" class="btn_close byitself" (click)="dismiss()"></ion-icon></div>
-  <div class="subhdr_page">CREATE NEW PROFILE</div>
-  <div class="title_page"><span class="fw_regular">Step 1:</span> Profile Details</div>
-  <app-step-progress></app-step-progress>
-</div>
-<form class="form" [formGroup]="playerProfileFormGroup">
-  <div class="form_cnt">
-    <div class="form_item">
-      <ion-input label="First Name *" labelPlacement="stacked" formControlName="firstName"
-        [clearInput]="true" errorText="Please enter first name"></ion-input >
-        @if (playerProfileFormGroup.controls['firstName'].invalid && playerProfileFormGroup.controls['firstName'].dirty) {
-          <ion-text color="danger">firstName is invalid.</ion-text>
-        }
+  <div class="header">
+    <div class="topbar">
+      <div class="btn_icon btn_back">
+        <ion-icon name="arrow-back-outline" (click)="backToPrevious()"></ion-icon>
+      </div>
+      <ion-icon name="close-outline" class="btn_close byitself" (click)="dismiss()"></ion-icon>
     </div>
-    <div class="form_item">
-      <ion-input label="Last Name *" labelPlacement="stacked" formControlName="lastName" errorText="Please enter last name"
-        [clearInput]="true"></ion-input>
-        @if (playerProfileFormGroup.controls['lastName'].invalid && playerProfileFormGroup.controls['lastName'].dirty) {
-          <ion-text color="danger">lastName is invalid.</ion-text>
-        }
-    </div>
-    <div class="form_item">
-      <ion-input label="Date of Birth *" labelPlacement="stacked" formControlName="dob" [clearInput]="true"
-        placeholder="MM-DD-YYYY"></ion-input>
-      <ion-icon icon="calendar-number-outline" (click)="openCalendar()"></ion-icon>
-      <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendar">
-        <ng-template>
-          <ion-datetime id="datetime" multiple="false" presentation="date" (ionChange)="test($event)"></ion-datetime>
-        </ng-template>
-      </ion-modal>
-      <div *ngIf="playerProfileFormGroup.get('dob')?.errors?.['required'] && playerProfileFormGroup.get('dob')?.touched">
-        <ion-text color="danger">dob is required.</ion-text>
-    </div>
-    </div>
-    <div class="form_item">
-      <ion-label>Gender *</ion-label>
-      <ion-radio-group class="two_opt" formControlName="gender">
-        <ion-radio value="MALE">Male</ion-radio>
-        <ion-radio value="FEMALE">Female</ion-radio>
-      </ion-radio-group>
-      <div *ngIf="playerProfileFormGroup.get('gender')?.errors?.['required'] && playerProfileFormGroup.get('gender')?.touched">
-        <ion-text color="danger">Selection is required.</ion-text>
-    </div>
-    </div>
-    <div class="form_item">
-      <ion-label>Emergency Contact *</ion-label>
-      <ion-checkbox labelPlacement="end" checked formControlName="isEmergencyContactPrimaryAccount"
-        (ionChange)="checkBoxValue($event)">
-        <p class="ion-text-wrap">
-          Same as Primary Account
-        </p>
-      </ion-checkbox>
-    </div>
-    <div class="form_lvl2" *ngIf="!checkBox">
-      <p>Please provide emergency contact:<br /><br /></p>
+    <div class="subhdr_page">CREATE NEW PROFILE</div>
+    <div class="title_page"><span class="fw_regular">Step 1:</span> Profile Details</div>
+    <app-step-progress></app-step-progress>
+  </div>
+  <form class="form" [formGroup]="playerProfileFormGroup">
+    <div class="form_cnt">
       <div class="form_item">
-        <ion-input label="Name *" labelPlacement="stacked" [clearInput]="true"
-          formControlName="emergencyName"></ion-input>
-          <div *ngIf="playerProfileFormGroup.get('emergencyName')?.errors?.['required'] && playerProfileFormGroup.get('emergencyName')?.touched">
-            <ion-text color="danger">Name is required.</ion-text>
+        <ion-input label="First Name *" labelPlacement="stacked" formControlName="firstName" [clearInput]="true"
+          errorText="Please enter first name"></ion-input>
+        @if (playerProfileFormGroup.controls['firstName'].invalid && playerProfileFormGroup.controls['firstName'].dirty)
+        {
+        <ion-text color="danger">firstName is invalid.</ion-text>
+        }
+      </div>
+      <div class="form_item">
+        <ion-input label="Last Name *" labelPlacement="stacked" formControlName="lastName"
+          errorText="Please enter last name" [clearInput]="true"></ion-input>
+        @if (playerProfileFormGroup.controls['lastName'].invalid && playerProfileFormGroup.controls['lastName'].dirty) {
+        <ion-text color="danger">lastName is invalid.</ion-text>
+        }
+      </div>
+      <div class="form_item">
+        <ion-input label="Date of Birth *" labelPlacement="stacked" formControlName="dob" [clearInput]="true"
+          placeholder="MM-DD-YYYY" type="date"></ion-input>
+        <ion-icon icon="calendar-number-outline"></ion-icon>
+        <!--  <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendar">
+          <ng-template>
+            <div class="calendar"> <ion-datetime id="datetime" multiple="false" presentation="date"
+                (ionChange)="test($event)"></ion-datetime></div>
+
+          </ng-template>
+        </ion-modal> -->
+        <div
+          *ngIf="playerProfileFormGroup.get('dob')?.errors?.['required'] && playerProfileFormGroup.get('dob')?.touched">
+          <ion-text color="danger">dob is required.</ion-text>
         </div>
       </div>
-      <div class="form_item" >
-        <ion-label>Relationship *</ion-label>
-        <ion-select label-placement="stacked" placeholder="Select One" toggleIcon="" class="hidelabel"
-          formControlName="emergencyRelationship" (ionChange)="onSelectionChange($event)">
+      <div class="form_item">
+        <ion-label>Gender *</ion-label>
+        <ion-radio-group class="two_opt" formControlName="gender">
+          <ion-radio value="MALE">Male</ion-radio>
+          <ion-radio value="FEMALE">Female</ion-radio>
+        </ion-radio-group>
+        <div
+          *ngIf="playerProfileFormGroup.get('gender')?.errors?.['required'] && playerProfileFormGroup.get('gender')?.touched">
+          <ion-text color="danger">Selection is required.</ion-text>
+        </div>
+      </div>
+      <div class="form_item">
+        <ion-label>Emergency Contact *</ion-label>
+        <ion-checkbox labelPlacement="end" checked formControlName="isEmergencyContactPrimaryAccount"
+          (ionChange)="checkBoxValue($event)">
+          <p class="ion-text-wrap">
+            Same as Primary Account
+          </p>
+        </ion-checkbox>
+      </div>
+      <div class="form_lvl2" *ngIf="!checkBox">
+        <p>Please provide emergency contact:<br /><br /></p>
+        <div class="form_item">
+          <ion-input label="Name *" labelPlacement="stacked" [clearInput]="true"
+            formControlName="emergencyName"></ion-input>
+          <div
+            *ngIf="playerProfileFormGroup.get('emergencyName')?.errors?.['required'] && playerProfileFormGroup.get('emergencyName')?.touched">
+            <ion-text color="danger">Name is required.</ion-text>
+          </div>
+        </div>
+        <div class="form_item">
+          <ion-label>Relationship *</ion-label>
+          <ion-select label-placement="stacked" placeholder="Select One" toggleIcon="" class="hidelabel"
+            formControlName="emergencyRelationship" (ionChange)="onSelectionChange($event)">
 
-          <!-- <ion-select-option value="Account Owner">Account Owner</ion-select-option> -->
-           <ion-select-option *ngFor="let emerRel of emergencyRel" value="{{emerRel}}" >{{emerRel}}</ion-select-option>
-          <!-- <ion-select (ionChange)="updateUI($event)">
+            <!-- <ion-select-option value="Account Owner">Account Owner</ion-select-option> -->
+            <ion-select-option *ngFor="let emerRel of emergencyRel" value="{{emerRel}}">{{emerRel}}</ion-select-option>
+            <!-- <ion-select (ionChange)="updateUI($event)">
             <ion-select-option value="light">Light Mode</ion-select-option>
             <ion-select-option value="dark">Dark Mode</ion-select-option>
           </ion-select>
           
           <p>Current Theme: {{ selectedTheme }}</p> -->
-          
-          
-        </ion-select>
-        <ion-input *ngIf="ifEmerOther" formControlName="emergencyRelationship"> Please Specify*</ion-input>
-        <div *ngIf="playerProfileFormGroup.get('emergencyRelationship')?.errors?.['required'] && playerProfileFormGroup.get('emergencyRelationship')?.touched">
-          <ion-text color="danger">Relationship details are required.</ion-text>
-      </div>
-      </div>
 
-      <div class="form_item">
-        <ion-label>Phone Number *</ion-label>
-        <ion-input [clearInput]="true" formControlName="emergencyPhoneCode" placeholder="+1" type="tel" readonly
-          autocomplete="tel" (click)="openModal()"></ion-input>
-        <ion-input [clearInput]="true" formControlName="emergencyPhone" placeholder="Phone Number" type="tel"
-          autocomplete="tel"></ion-input>
-          @if (playerProfileFormGroup.controls['emergencyPhone'].invalid && playerProfileFormGroup.controls['emergencyPhone'].dirty) {
-            <ion-text color="danger">That doesn't seem like a valid phone number.</ion-text>
+
+          </ion-select>
+          <ion-input *ngIf="ifEmerOther" formControlName="emergencyRelationship"> Please Specify*</ion-input>
+          <div
+            *ngIf="playerProfileFormGroup.get('emergencyRelationship')?.errors?.['required'] && playerProfileFormGroup.get('emergencyRelationship')?.touched">
+            <ion-text color="danger">Relationship details are required.</ion-text>
+          </div>
+        </div>
+
+        <div class="form_item">
+          <ion-label>Phone Number *</ion-label>
+          <ion-input [clearInput]="true" formControlName="emergencyPhoneCode" placeholder="+1" type="tel" readonly
+            autocomplete="tel" (click)="openModal()"></ion-input>
+          <ion-input [clearInput]="true" formControlName="emergencyPhone" placeholder="Phone Number" type="tel"
+            autocomplete="tel"></ion-input>
+          @if (playerProfileFormGroup.controls['emergencyPhone'].invalid &&
+          playerProfileFormGroup.controls['emergencyPhone'].dirty) {
+          <ion-text color="danger">That doesn't seem like a valid phone number.</ion-text>
           }
+        </div>
       </div>
+      <ion-button [disabled]="playerProfileFormGroup.invalid" (click)="getPlayerProfileDetail()"
+        class="main_cta">Next</ion-button>
     </div>
-    <ion-button [disabled]="playerProfileFormGroup.invalid" (click)="getPlayerProfileDetail()"
-      class="main_cta">Next</ion-button>
-  </div>
-</form>
+  </form>
 </ion-content>

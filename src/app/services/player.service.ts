@@ -9,7 +9,13 @@ import { StudentFavLocation } from 'src/types/student-fav-location-request';
   providedIn: 'root',
 })
 export class PlayerService {
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService) {
+    this.getPlayerProfiles().subscribe((res: any) => {
+      this.playerProfiles = res;
+    });
+  }
+
+  playerProfiles: any[] = [];
 
   playerProfileDetail(body: PlayerProfileRequest) {
     return this.http.post<CurrentProfile>(
@@ -33,6 +39,9 @@ export class PlayerService {
       formData
     );
   }
+  getPlayerProfile(profileId: number) {
+    return this.http.get(environment.masterUrl.concat('profile/' + profileId));
+  }
 
   getPlayerProfiles() {
     return this.http.get(environment.masterUrl.concat('profile/all'));
@@ -40,5 +49,27 @@ export class PlayerService {
 
   playerProfileRemove(id: number) {
     return this.http.delete(environment.masterUrl.concat('profile/' + id));
+  }
+
+  setupIntent(body: any) {
+    return this.http.post(
+      environment.masterUrl.concat('user-payments/initiate-setup'),
+      body
+    );
+  }
+
+  completeIntent(body: {
+    customerId: string;
+    intentClientSecret: string;
+    intentId: string;
+  }) {
+    return this.http.post(
+      environment.masterUrl.concat('user-payments/complete-setup'),
+      body
+    );
+  }
+
+  getPaymentMethods() {
+    return this.http.get(environment.masterUrl.concat('user-payments'));
   }
 }
