@@ -27,12 +27,15 @@
 
 
   <!-- •••••• TABS •••••• -->
-  <app-content-tabs></app-content-tabs>
+  <app-content-tabs
+  [tabs]="tabs"
+  (onTabChange)="tabChanged($event)"
+  ></app-content-tabs>
 
 
 
   <!-- •••••• TAB - BOUNX PROFILE •••••• -->
-  <!-- <div class="TAB_BounxProfile contentTABS_body bg_white">
+  <div class="TAB_BounxProfile contentTABS_body bg_white" *ngIf="atPresentTabName==''">
     <div class="group_btns section">
       <ion-button class="small_btn bg_black">
         All Badges <ion-icon name="arrow-forward-outline" class="ontheright"></ion-icon>
@@ -43,7 +46,7 @@
     </div>
     <app-badge-term></app-badge-term>
     <app-profile-stats></app-profile-stats>
-  </div> -->
+  </div>
 
 
 

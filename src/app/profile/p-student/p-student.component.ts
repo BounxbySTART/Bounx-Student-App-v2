@@ -17,8 +17,9 @@ import {
 import { PlayerProfileRequest } from 'src/types/player-profile-request';
 import { PlayerService } from 'src/app/services/player.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 import { OtherProfilesComponent } from '../other-profiles/other-profiles.component';
+import { Tab } from 'src/types/tabs-in-player-profile';
 
 @Component({
   selector: 'app-p-student',
@@ -37,12 +38,16 @@ import { OtherProfilesComponent } from '../other-profiles/other-profiles.compone
     CoachFeedbackCardComponent,
     FavoriteListingComponent,
     PersonalDetailsComponent,
+    NgIf
   ],
 })
 export class PStudentComponent implements OnInit {
   playerProfiles: PlayerProfileRequest[] = [];
   profileId: number = 0;
   playerProfile: any;
+  tabs!: Tab[];
+  atPresentTabName!:string;
+  
   constructor(
     public playerService: PlayerService,
     public router: Router,
@@ -55,7 +60,13 @@ export class PStudentComponent implements OnInit {
     this.profileId = +(this.activeRoute.snapshot.paramMap.get('id') ?? 0);
     this.getPlayerProfile();
     this.getPlayerProfiles();
+    this.tabs= [{ name: 'Profile', title: 'Bounx Profile' },
+    { name: 'Feedback', title: 'Feedback' },
+    { name: 'Leaderboard', title: 'Leaderboard' },
+    { name: 'Favorites', title: 'Favorites' }]
   }
+
+
 
   getPlayerProfile() {
     this.playerService
@@ -96,6 +107,21 @@ export class PStudentComponent implements OnInit {
 
   getPlayerProfiles() {
     this.playerProfiles = this.playerService.playerProfiles;
+  }
+
+  tabChanged(tabName:any) {
+    console.log(tabName);
+
+    this.atPresentTabName = tabName;
+    if (this.atPresentTabName == 'news') {
+      // this.loadNews();
+    }
+    if (this.atPresentTabName == 'company') {
+      // this.loadCompanyDetails();
+    }
+    if (this.atPresentTabName == 'financial') {
+      // this.generateDividendData();
+    }
   }
 
   goToPreviousPage() {
