@@ -55,14 +55,14 @@ export class PStudentComponent implements OnInit {
     public modalController: ModalController
   ) {}
 
-    ngOnInit() {
+  ngOnInit() {
     this.profileId = +(this.activeRoute.snapshot.paramMap.get('id') ?? 0);
-     this.getPlayerProfile();
-     this.getPlayerProfiles();
-   
+    this.getPlayerProfile();
+    this.getPlayerProfiles();
+    this.initTabs();
   }
 
-  initTabs(){
+  initTabs() {
     this.tabs = [
       {
         name: 'Profile',
@@ -112,13 +112,17 @@ export class PStudentComponent implements OnInit {
     ];
   }
   getPlayerProfile() {
-    this.playerService
+    const a = this.playerService
       .getPlayerProfile(this.profileId)
       .subscribe((res: any) => {
         this.playerProfile = res;
-        this.initTabs();
+        this.tabs.forEach((val, index) => {
+          const temp = this.tabs;
+          temp[index].inputs.profileId = this.profileId;
+          temp[index].inputs.studentProfile = this.playerProfile;
+          this.tabs = [...temp];
+        });
       });
-      
   }
 
   getProfilesList() {
@@ -143,14 +147,17 @@ export class PStudentComponent implements OnInit {
       },
     });
     modal.present();
-    modal.onWillDismiss().then((res)=>{
-      console.log(res);
-      if (res.role == 'confirm') {
-        this.profileId = res.data;
-        this.getPlayerProfile();
-        console.log('out Modal');
-      }
-    },(rej)=>{});
+    modal.onWillDismiss().then(
+      (res) => {
+        console.log(res);
+        if (res.role == 'confirm') {
+          this.profileId = res.data;
+          this.getPlayerProfile();
+          console.log('out Modal');
+        }
+      },
+      (rej) => {}
+    );
     /* if (role == 'confirm') {
       this.profileId = data;
       this.getPlayerProfiles();
@@ -161,7 +168,7 @@ export class PStudentComponent implements OnInit {
   getPlayerProfiles() {
     this.playerProfiles = this.playerService.playerProfiles;
   }
-  
+
   goToPreviousPage() {
     this.location.back();
   }
